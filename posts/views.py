@@ -8,4 +8,4 @@ from django.views.generic.edit import CreateView
 
 class PostView(CreateView):
 	model = Post
-	template_name = create_article.html
+	#template_name = create_article.html
