@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'userena',
     'accounts',
     'easy_thumbnails',
-    'guardian'
+    'guardian',
+    'posts'
 )
 
 AUTHENTICATION_BACKENDS = (
