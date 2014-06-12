@@ -6,8 +6,9 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'tft.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')), 
+    # url(r'^blog/', include('blog.urls')),
+
 	url(r'^accounts/', include('userena.urls')),
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^posts/', PostView.as_view(success_url = "posts")),
+	url(r'^posts/', PostView.as_view()),
 )
