@@ -23,7 +23,9 @@ SECRET_KEY = '17pe$oh_ezrh8j0ygw0i1u39t8aae(!ou34#ys(vcpxt88^kw6'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
+TEMPLATE_DIRS = ('templates')
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 ALLOWED_HOSTS = []
 
 
@@ -58,9 +60,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'tft.urls'
+ROOT_URLCONF = 'TFT_project.urls'
 
-WSGI_APPLICATION = 'tft.wsgi.application'
+WSGI_APPLICATION = 'TFT_project.wsgi.application'
 
 
 # Database
@@ -91,7 +93,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 AUTH_PROFILE_MODULE = 'accounts.MyProfile'
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
