@@ -1,14 +1,26 @@
 {% extends 'userena/base_userena.html' %}
 {% load i18n %}
 {% load url from future %}
+{% block title %}{% trans "登入｜TFT支持系統" %}{% endblock %}
+{% block meta %}
+ {% load static from staticfiles %}
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+{% endblock %}
 
-{% block title %}{% trans "SigninABCD" %}{% endblock %}
+<!--LOGO-->
+{% block logo %}
+<div align="center" >
+  <br/><br/>
+  <img src="{% static "img/TFTlogo.gif" %}" width=40%>
+  <br/><br/>
+</div>
+{% endblock %}
 
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" class="form-signin">
   {% csrf_token %}
   <fieldset>
-    <legend>{% trans "Signin" %}</legend>
     {{ form.non_field_errors }}
     {% for field in form %}
     {{ field.errors }}
@@ -29,4 +41,5 @@
   <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
   {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
 </form>
+
 {% endblock %}
