@@ -30,10 +30,11 @@
 
 
 
-<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+
+<body style="background-image:url({% static 'img/background.jpg' %});background-repeat:no-repeat;margin:0;padding:0;-moz-background-size: cover;background-size: cover;">
   <div id="body" class="container">
     {% block body %}
-    <img src="{% static 'img/background.jpg' %}" >
+
     {% endblock %}
   </div>
 
