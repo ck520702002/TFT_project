@@ -10,6 +10,9 @@ class MyProfile(UserenaBaseProfile):
     							unique=True,
     							verbose_name=_('user'),
     							related_name='my_profile') 
-    description = models.CharField(_('description'),max_length=30)    
+    description = models.CharField(_('description'),max_length=30) 
+    school = models.CharField(max_length=30)       
+    phone_number = models.CharField(max_length=30) 
+    account = models.CharField(max_length=30)       
 
 
