@@ -13,38 +13,11 @@
 <!--LOGO-->
 
 {% block body %}
-<div class = "container" align = "center" >
+<div class = "container" align = "center" color="#FFFFFF" style="width:250px">
   <div align = "center">
   <form action="" method="post" class="form-signin">
    {% csrf_token %}
-<!--
-    <fieldset>
 
-      {{ form.non_field_errors }}
-      {% for field in form %}
-        {{ field.errors }}
-        {% comment %} Displaying checkboxes differently {% endcomment %}
-        {% if field.name == 'remember_me' %}
-          <p class="checkbox">
-          <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-          </p>
-        {% else %}
-          <p>
-          {{ field }}
-          </p>
-        {% endif %}
-      {% endfor %} 
-
-
-<input class="required" id="id_identification" maxlength="75" name="identification" type="text">
-<input class="required" id="id_password" name="password" type="password">
-
-<p class="checkbox">
-          <label for="id_remember_me"><input id="id_remember_me" name="remember_me" type="checkbox"> Remember me for a month</label>
-          </p>
-
-    </fieldset>-->
-<div>
   <fieldset>
           {{ form.non_field_errors }}
             <p>
@@ -59,10 +32,10 @@
             <label for="id_remember_me"><input id="id_remember_me" name="remember_me" type="checkbox"> Remember me for a month</label>
             </p>
   </fieldset>
-</div>
+
     <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "登入" %}" style="margin-left:5px;width:230px"/>
     <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "註冊" %}" style="margin-left:5px;width:230px"/>
-    <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
+    <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" color="#000000" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
     {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
   </form>
 
