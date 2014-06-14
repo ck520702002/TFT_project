@@ -4,9 +4,9 @@
   {% load static from staticfiles %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}登入｜TFT支持系統{% endblock %}</title>
    <!-- Bootstrap -->
-  <link rel="shortcut icon" href="{% static 'img/TFTslogo.gif' %}" type="image/jpg">
+  <link rel="shortcut icon" href="{% static 'img/NTU.jpg' %}" type="image/jpg">
   <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
   <meta charset="utf-8">
   <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
@@ -18,24 +18,17 @@
 
   {% block meta %}
   {% endblock %} <!-- too add more stuff in child templates if needed -->
+{% block content_title %}{% endblock %}
+{% load static from staticfiles %}
 </head>
 
-{% block logo %}
-<div align="center" >
-  <br/><br/>
-  <img src="{% static 'img/TFTlogo.gif' %}" >
-  <br/><br/>
-</div>
+<body>
+{% block content %}
 {% endblock %}
 
-
-
-<body style="background-image:url({% static 'img/background.jpg' %});background-repeat:no-repeat;margin:0;padding:0;-moz-background-size: cover;background-size: cover;">
-  <div id="body" class="container" color="#FFFFFF">
     {% block body %}
 
     {% endblock %}
-  </div>
 
 </body>
 </html>
