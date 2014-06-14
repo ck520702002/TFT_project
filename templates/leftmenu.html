@@ -1,0 +1,33 @@
+{% extends 'main_base.html' %}
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="row row-offcanvas-left row-offcanvas row-offcanvas-right">
+    {% block leftmenu %}
+    <div class="col-xs-0 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="list-group">
+            <ul class="nav" id="side-menu">
+
+            </ul>
+            <!-- /#side-menu -->
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    {% endblock %}
+</div>
+
+<div class="container">
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; NexToU 2014</p>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

@@ -44,6 +44,9 @@
     <link rel="shortcut icon" href="/Images/bootstrap/ico/favicon.png">
 </head>
 
+{% block body%}
+{% endblock %}
+
 <body>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -129,51 +132,12 @@
 
             <!--/span-->
             <div class="col-xs-9 col-sm-7">
-                <div class="control-group"> <!-- 輸入訊息-->
-                    <label class="control-label" for="textarea">留言板</label>
-					<div class="controls">
-                        <textarea style="width:200px;"class="form-control input-xlarge" id="textarea" rows="1" placeholder="標題"></textarea>
-                        <br/>
-                    </div>                        
-					<div class="controls">
-                        <textarea class="form-control input-xlarge" id="textarea" rows="3"placeholder="文章內容"></textarea>
-                        <br/>
-                    </div>                        
-                    <div class="span4"><!--tags and send msg-->
-                        <div class="btn-group">
-                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">分享<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                                <li><a tabindex="-1" href="#">心情分享</a></li>
-                                <li><a tabindex="-1" href="#">教學日誌</a></li>
-                                <li><a tabindex="-1" href="#">教學週誌</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="btn-group">
-                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">提問<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                                <li><a tabindex="-1" href="#">教學方法</a></li>
-                                <li><a tabindex="-1" href="#">班級經營</a></li>
-                                <li><a tabindex="-1" href="#">學生輔導</a></li>
-                                <li><a tabindex="-1" href="#">學校行政</a></li>
-                                <li><a tabindex="-1" href="#">年級/科目</a></li>
-                            </ul>
-                        </div>
-                        <button class="btn btn-primary" type="button">送出</button>
-                    </div>
-                    
-                </div>
-            
-                <div class="row-fluid">
-                    <div class="span4">
-                        <br/>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">標題</div>
-                            <div class="panel-body">Hello. This is the Panel content.</div>
-                        </div>
-                    </div>
-                </div>
+                {% block content_title%}{% endblock %}
+                {% block content %}
+                {% endblock %}
             </div>
+            
+
             <!--/span-->
 			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 				<div class="row-fluid">
