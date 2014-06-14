@@ -4,6 +4,10 @@
 
 db.sqlite3
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> jean's-branch
 *.pydevproject
 .project
 .metadata
@@ -215,3 +219,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+db.sqlite3
