@@ -44,22 +44,22 @@
           </p>
 
     </fieldset>-->
-
-<fieldset>
-        {{ form.non_field_errors }}
-          <p>
-          <input style="margin-left:5px;width:230px" class="required" id="id_identification" maxlength="75" name="identification" type="text" placeholder="Email address">
-          {{ field.errors }}
-          </p>
-          <p>
-          <input style="margin-left:5px;width:230px" class="required" id="id_password" name="password" type="password" placeholder="Password">
-          {{ field.errors }}
-          </p>
-          <p class="checkbox">
-          <label for="id_remember_me"><input id="id_remember_me" name="remember_me" type="checkbox"> Remember me for a month</label>
-          </p>
-    </fieldset>
-
+<div>
+  <fieldset>
+          {{ form.non_field_errors }}
+            <p>
+            <input style="margin-left:5px;width:230px" class="required" id="id_identification" maxlength="75" name="identification" type="text" placeholder="Email address">
+            {{ field.errors }}
+            </p>
+            <p>
+            <input style="margin-left:5px;width:230px" class="required" id="id_password" name="password" type="password" placeholder="Password">
+            {{ field.errors }}
+            </p>
+            <p class="checkbox">
+            <label for="id_remember_me"><input id="id_remember_me" name="remember_me" type="checkbox"> Remember me for a month</label>
+            </p>
+  </fieldset>
+</div>
     <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "登入" %}" style="margin-left:5px;width:230px"/>
     <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "註冊" %}" style="margin-left:5px;width:230px"/>
     <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
