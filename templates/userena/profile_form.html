@@ -30,14 +30,14 @@
     <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
     <li class="last"><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
   </ul>
+
   {% csrf_token %}
   <div class="panel panel-default">
       <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
         <div class="panel-body">
-                             
+                {{ form.as_p }}             
         </div> 
 
-      {{ form.as_p }}
       <input type="submit" value="{% trans "Save changes" %}" />
   </div>    
 </form>
