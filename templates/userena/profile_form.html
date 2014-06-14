@@ -4,7 +4,7 @@
 
 {% block title %}{% trans "編輯個人資訊｜TFT支持系統" %}{% endblock %}
 
-{% block content_title %}<h2>{% blocktrans with profile.user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
+{% block content_title %}{% endblock %}
 
 <head>
   {% load static from staticfiles %}
@@ -32,62 +32,93 @@
   </ul>
   {% csrf_token %}
   <div class="panel panel-default">
-                        <div class="panel-heading">＃的個人資料編輯頁面</div>
+                        <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
                             <div class="panel-body">
                                 <form class="form-horizontal">
                                 <fieldset>
-                                <div class="form-group"><!--信箱-->
-                                    <label for="inputName" class="col-lg-2 control-label">姓名</label>
+                                <div class="form-group"><!--FIRST NAME-->
+                                    <label for="id_first_name" class="col-lg-2 control-label">First Name</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="text" class="form-control" id="id_first_name" name="first_name" maxlength="30" placeholder="First Name">
                                     </div>
                                 </div>
-                                <div class="form-group"><!--信箱-->
-                                    <label for="inputEmail" class="col-lg-2 control-label">帳號</label>
+                                <div class="form-group"><!--FIRST NAME-->
+                                    <label for="id_last_name" class="col-lg-2 control-label">Last Name</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="text" class="form-control" id="id_last_name"  name="last_name"maxlength="30" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group"><!--帳號名稱-->
+                                    <label for="id_account" class="col-lg-2 control-label">帳號名稱</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="id_account" maxlength="30" name="account" placeholder="Account Name">
                                     </div>
                                 </div>
                                 <div class="form-group"><!--密碼-->
                                     <label for="inputPassword" class="col-lg-2 control-label">密碼</label>
                                         <div class="col-lg-10">
-                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                        <input type="text" class="form-control" id="inputPassword" placeholder="Password">
                                         </div>
                                 </div>
                                 <div class="form-group"><!--電話-->
-                                    <label for="inputphone" class="col-lg-2 control-label">聯絡電話</label>
+                                    <label for="id_phone_number" class="col-lg-2 control-label">聯絡電話</label>
                                         <div class="col-lg-10">
-                                        <input type="phone" class="form-control" id="inputPhone" placeholder="">
+                                        <input type="text" class="form-control" id="id_phone_number" maxlength="30" name="phone_number" placeholder="">
                                         </div>
                                 </div>
                                 <div class="form-group"><!--地區-->
-                                    <label for="inputplace" class="col-lg-2 control-label">服務地區</label>
+                                    <label for="id_school" class="col-lg-2 control-label">服務地區</label>
                                         <div class="col-lg-10">
-                                        <input type="place" class="form-control" id="inputPhone" placeholder="ex.台南小學">
+                                        <input type="text" class="form-control" id="id_school" maxlength="30" name="school" placeholder="ex.台南小學">
                                         </div>
                                 </div>
                                 <div class="form-group"><!--簡介-->
-                                    <label for="textArea" class="col-lg-2 control-label">簡介</label>
+                                    <label for="id_description" class="col-lg-2 control-label">簡介</label>
                                     <div class="col-lg-10">
-                                        <textarea class="form-control" rows="3" id="textArea"></textarea>
+                                        <textarea class="form-control" rows="3" id="id_description" name="description"></textarea>
                                         <span class="help-block">更新自己的履歷或簡介，讓大家更認識你吧!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-10 col-lg-offset-2">
                                         <button class="btn btn-default">取消</button>
-                                        <button type="submit" class="btn btn-primary">確定更新</button>
+                                        <input type="submit" value="{% trans "確定更新" %}" />
+                                        <!--<button type="submit" class="btn btn-primary">確定更新</button>-->
                                     </div>
-                                </div>
+                                </div>  
+<!--
+    <p><label for="id_first_name">First name:</label> 
+      <input id="id_first_name" maxlength="30" name="first_name" type="text">
+    </p>
+    <p><label for="id_last_name">Last name:</label> 
+      <input id="id_last_name" maxlength="30" name="last_name" type="text">
+    </p>
+  
+    <p><label for="id_mugshot">Mugshot:</label> 
+      <input id="id_mugshot" name="mugshot" type="file"> 
+      <span class="helptext">A personal image displayed in your profile.</span>
+    </p>
+    
+    <p><label for="id_description">Description:</label> 
+      <input id="id_description" maxlength="30" name="description" type="text">
+    </p>
+    <p><label for="id_school">School:</label> 
+      <input id="id_school" maxlength="30" name="school" type="text">
+    </p>
+    <p><label for="id_phone_number">Phone number:</label> 
+      <input id="id_phone_number" maxlength="30" name="phone_number" type="text">
+    </p>
+    <p><label for="id_account">Account:</label> 
+      <input id="id_account" maxlength="30" name="account" type="text">
+    </p>
                                 </fieldset>
                                 </form>
                             </div>
-                        </div>
+                        </div>    
+-->
 
-  <fieldset>
-    <legend>{% trans "Edit Profile" %}</legend>
-    {{ form.as_p }}
-  </fieldset>
-  <input type="submit" value="{% trans "Save changes" %}" />
+    <!--{{ form.as_p }}-->
+
+  <!--<input type="submit" value="{% trans "Save changes" %}" />-->
 </form>
 {% endblock %}
