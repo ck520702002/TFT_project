@@ -101,9 +101,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 AUTH_PROFILE_MODULE = 'accounts.MyProfile'
-LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_REDIRECT_URL = ''
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
+USERENA_REDIRECT_ON_SIGNOUT = '/'
+USERENA_SIGNIN_REDIRECT_URL = '/'
+USERENA_ACTIVATION_REQUIRED = False
+USERENA_DEFAULT_PRIVACY = 'open'
+USERENA_SIGNIN_AFTER_SIGNUP = True
+
+
+
+
 ANONYMOUS_USER_ID = -1
 EMAIL_USE_TLS = True  
 EMAIL_HOST = 'smtp.gmail.com'  
