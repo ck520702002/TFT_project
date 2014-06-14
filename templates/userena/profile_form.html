@@ -30,95 +30,15 @@
     <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
     <li class="last"><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
   </ul>
+
   {% csrf_token %}
   <div class="panel panel-default">
-                        <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
-                            <div class="panel-body">
-                                <form class="form-horizontal">
-                                <fieldset>
-                                <div class="form-group"><!--FIRST NAME-->
-                                    <label for="id_first_name" class="col-lg-2 control-label">First Name</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="id_first_name" name="first_name" maxlength="30" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="form-group"><!--FIRST NAME-->
-                                    <label for="id_last_name" class="col-lg-2 control-label">Last Name</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="id_last_name"  name="last_name"maxlength="30" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group"><!--帳號名稱-->
-                                    <label for="id_account" class="col-lg-2 control-label">帳號名稱</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="id_account" maxlength="30" name="account" placeholder="Account Name">
-                                    </div>
-                                </div>
-                                <div class="form-group"><!--密碼-->
-                                    <label for="inputPassword" class="col-lg-2 control-label">密碼</label>
-                                        <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="inputPassword" placeholder="Password">
-                                        </div>
-                                </div>
-                                <div class="form-group"><!--電話-->
-                                    <label for="id_phone_number" class="col-lg-2 control-label">聯絡電話</label>
-                                        <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="id_phone_number" maxlength="30" name="phone_number" placeholder="">
-                                        </div>
-                                </div>
-                                <div class="form-group"><!--地區-->
-                                    <label for="id_school" class="col-lg-2 control-label">服務地區</label>
-                                        <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="id_school" maxlength="30" name="school" placeholder="ex.台南小學">
-                                        </div>
-                                </div>
-                                <div class="form-group"><!--簡介-->
-                                    <label for="id_description" class="col-lg-2 control-label">簡介</label>
-                                    <div class="col-lg-10">
-                                        <textarea class="form-control" rows="3" id="id_description" name="description"></textarea>
-                                        <span class="help-block">更新自己的履歷或簡介，讓大家更認識你吧!</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-10 col-lg-offset-2">
-                                        <button class="btn btn-default">取消</button>
-                                        <input type="submit" value="{% trans "確定更新" %}" />
-                                        <!--<button type="submit" class="btn btn-primary">確定更新</button>-->
-                                    </div>
-                                </div>  
-<!--
-    <p><label for="id_first_name">First name:</label> 
-      <input id="id_first_name" maxlength="30" name="first_name" type="text">
-    </p>
-    <p><label for="id_last_name">Last name:</label> 
-      <input id="id_last_name" maxlength="30" name="last_name" type="text">
-    </p>
-  
-    <p><label for="id_mugshot">Mugshot:</label> 
-      <input id="id_mugshot" name="mugshot" type="file"> 
-      <span class="helptext">A personal image displayed in your profile.</span>
-    </p>
-    
-    <p><label for="id_description">Description:</label> 
-      <input id="id_description" maxlength="30" name="description" type="text">
-    </p>
-    <p><label for="id_school">School:</label> 
-      <input id="id_school" maxlength="30" name="school" type="text">
-    </p>
-    <p><label for="id_phone_number">Phone number:</label> 
-      <input id="id_phone_number" maxlength="30" name="phone_number" type="text">
-    </p>
-    <p><label for="id_account">Account:</label> 
-      <input id="id_account" maxlength="30" name="account" type="text">
-    </p>
-                                </fieldset>
-                                </form>
-                            </div>
-                        </div>    
--->
+      <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
+        <div class="panel-body">
+                {{ form.as_p }}             
+        </div> 
 
-    <!--{{ form.as_p }}-->
-
-  <!--<input type="submit" value="{% trans "Save changes" %}" />-->
+      <input type="submit" value="{% trans "Save changes" %}" />
+  </div>    
 </form>
 {% endblock %}

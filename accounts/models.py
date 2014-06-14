@@ -12,14 +12,12 @@ class Category(models.Model):
 		return self.name
 
 class MyProfile(UserenaBaseProfile):
-    user = models.OneToOneField(User,
-    							unique=True,
-    							verbose_name=_('user'),
-    							related_name='my_profile') 
+    user = models.OneToOneField(User) 
     description = models.CharField(_('description'),max_length=30) 
     school = models.CharField(max_length=30)       
     phone_number = models.CharField(max_length=30) 
-    account = models.CharField(max_length=30) 
+    account = models.CharField(max_length=30)  
+    password =  models.CharField(max_length=30)      
     category = models.ForeignKey(Category)
 
      
