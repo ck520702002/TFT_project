@@ -1,27 +1,8 @@
-{% extends 'temp_base.html' %}
+{% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
 
-{% block title %}{% trans "編輯個人資訊｜TFT支持系統" %}{% endblock %}
-
-<html lang="en">
-<head>
-  {% load static from staticfiles %}
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <!-- Bootstrap -->
-  <link rel="shortcut icon" href="{% static 'img/TFTslogo.gif' %}" type="image/jpg">
-  <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-  <meta charset="utf-8">
-  <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
-
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="{% static "js/bootstrap.min.js" %}"></script>
-
-</head>
-
-
-{% block title1 %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
 {% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
 
 {% block content %}
@@ -39,10 +20,8 @@
         </ul>
       {% endif %}
     {% endblock %}
-  </div>
 
-{% block content2 %}
-  <div class="panel-heading">＃的個人資料頁面</div>
+  <div class="panel-heading">{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}</div>
     <div class="panel-body">
         <form class="form-horizontal">
         <fieldset>
@@ -52,10 +31,10 @@
               <dd>{{ profile.user.get_full_name }}</dd>
             {% endif %}
         </div>
-        <div class="form-group"><!--信箱-->
+        <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">帳號</label>
             {% if profile.account %}
-              <dd>{{ profile.account}}</dd>
+              <dd>{{ profile.account }}</dd>
             {% endif %}
         </div>
 
@@ -67,18 +46,22 @@
         </div>
         <div class="form-group"><!--電話-->
             <label for="inputphone" class="col-lg-2 control-label">聯絡電話</label>
-            <dd>{{ profile.phone_number }}</dd>
+            {% if profile.phone_number %}
+              <dd>{{ profile.phone_number }}</dd>
+            {% endif %}
         </div>
         <div class="form-group"><!--地區-->
             <label for="inputplace" class="col-lg-2 control-label">服務地區</label>
             {% if profile.school %}
               <dd>{{ profile.school }}</dd>
-            {% endif %}    
+            {% endif %}
         </div>
         <div class="form-group"><!--簡介-->
             <label for="textArea" class="col-lg-2 control-label">簡介</label>
             <div class="col-lg-10">
-                <dd>{{ profile.description }}</dd>
+                {% if profile.school %}
+                  <dd>{{ profile.description }}</dd>
+                {% endif %}
                 <span class="help-block">更新自己的履歷或簡介，讓大家更認識你吧!</span>
             </div>
         </div>
@@ -86,32 +69,4 @@
         </fieldset>
         </form>
     </div>
-                       
-   
-          {% block profile_definition_list %}
-            {% if profile.user.get_full_name %}
-              <dt>{% trans "Name" %}</dt>
-              <dd>{{ profile.user.get_full_name }}</dd>
-            {% endif %}
-            {% if profile.user.email and not hide_email %}
-              <dt>{% trans "Email" %}</dt>
-              <dd>{{ profile.user.email }}</dd>
-            {% endif %}
-            {% if profile.age %}
-              <dt>{% trans "Age" %}</dt>
-              <dd>{{ profile.age }}</dd>
-            {% endif %}
-            {% if profile.website %}
-              <dt>{% trans "Website" %}</dt>
-              <dd>{{ profile.website|urlize }}</dd>
-            {% endif %}
-            {% if profile.about_me %}
-              <dt>{% trans "About me" %}</dt>
-              <dd>{{ profile.about_me }}</dd>
-            {% endif %}
-          {% endblock %}
-        </dl>
-      {% endblock %}
-    </div>
-  </div>
-{% endblock %}
+{% endblock %}   
