@@ -109,8 +109,6 @@
 						<li>
                             <a href="discuss.html"><i class="fa fa-discuss fa-fw"></i>討論區</a>
                         </li>
-
-  
 						<div class="btn-group">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 							檔案區
@@ -123,7 +121,6 @@
 								<li><a tabindex="-1" href="#">教學成果</a></li>
 							</ul>
 						</div>
-
 						<div class="btn-group"> 
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 							教師資訊
@@ -134,34 +131,23 @@
 								<li><a tabindex="-1" href="#">其他領域</a></li>
 							</ul>
 						</div>
-
                     </ul>
-					
                     <!-- /#side-menu -->
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-			
-
             <!--/span-->
             <div class="col-xs-9 col-sm-7">
                 {% block content %}
                 {% endblock %}
             </div>
-            
-
             <!--/span-->
 			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 				<div class="row-fluid">
                     <div class="span4">
-                       
 						      <label class="control-label" for="textarea">公告欄</label>     
-						<img src="../static/img/blackboardjpg.jpg">
-							
-						
-						
+						<img src="{% static "img/blackboardjpg.jpg"%}">
 						</img>
-						
 						<br/>
 						<div class="controls">
 									<textarea style="width:300px" class="form-control input-xlarge" id="textarea" rows="1"placeholder="Post the Announcement"></textarea>
