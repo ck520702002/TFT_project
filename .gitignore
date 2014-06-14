@@ -4,7 +4,10 @@
 
 db.sqlite3
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> jean's-branch
 *.pydevproject
 .project
 .metadata
