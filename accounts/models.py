@@ -20,5 +20,8 @@ class MyProfile(UserenaBaseProfile):
     password =  models.CharField(max_length=30)      
     category = models.ForeignKey(Category)
     name =  models.CharField(max_length=30)   
+<<<<<<< HEAD
 
+=======
+>>>>>>> FETCH_HEAD
 
