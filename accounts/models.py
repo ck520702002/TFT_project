@@ -17,18 +17,7 @@ class MyProfile(UserenaBaseProfile):
     school = models.CharField(max_length=30)       
     phone_number = models.CharField(max_length=30) 
     account = models.CharField(max_length=30)  
-<<<<<<< HEAD
-    password =  models.CharField(max_length=30)  
-    name =  models.CharField(max_length=30)   
-=======
     password =  models.CharField(max_length=30)      
-<<<<<<< HEAD
     category = models.ForeignKey(Category)
-
-     
->>>>>>> origin/master
-
-=======
     name =  models.CharField(max_length=30)   
->>>>>>> jean's-branch
 
