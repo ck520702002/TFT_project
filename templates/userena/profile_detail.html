@@ -20,8 +20,8 @@
         </ul>
       {% endif %}
     {% endblock %}
-
-  <div class="panel-heading">{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}</div>
+<div class="panel panel-default">
+      <div class="panel-heading"><h4>{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %} 的基本資料</h4></div>
     <div class="panel-body">
         <form class="form-horizontal">
         <fieldset>
@@ -57,11 +57,12 @@
                 {% if profile.school %}
                   <dd>{{ profile.description }}</dd>
                 {% endif %}
-                <span class="help-block">更新自己的履歷或簡介，讓大家更認識你吧!</span>
             </div>
         </div>
       
         </fieldset>
+        </div>
+  </div>
         </form>
     </div>
 {% endblock %}   
