@@ -4,10 +4,6 @@
 
 db.sqlite3
 
-<<<<<<< HEAD
-
-=======
->>>>>>> jean's-branch
 *.pydevproject
 .project
 .metadata
@@ -220,4 +216,8 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+<<<<<<< HEAD
+*.sqlite3
+=======
 db.sqlite3
+>>>>>>> FETCH_HEAD
