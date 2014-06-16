@@ -1,31 +1,62 @@
-{% extends 'userena/base_userena.html' %}
+
+
+{% extends 'landing_base.html' %}
 {% load i18n %}
+{% load url from future %}
+{% block title %}
+  {% trans "註冊｜TFT支持系統" %}
+{% endblock %}
+{% block meta %}
+  {% load static from staticfiles %}
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+{% endblock %}
 
-{% block title %}{% trans "Signup" %}{% endblock %}
 
-{% block content %}
-<form action="" method="post">
-  {% csrf_token %}
+
+{% block body %}
+<div class = "container" align = "center" color="#FFFFFF" style="width:250px">
+  <div align = "center">
+  <form action="" method="post" class="form-signup">
+    {% csrf_token %}
+
   <fieldset>
-    <legend>{% trans "Signup" %}</legend>
     {{ form.non_field_errors }}
-    {% for field in form %}
-    {{ field.errors }}
-    {% comment %} Displaying checkboxes differently {% endcomment %}
-    {% if field.name == 'tos' %}
-    <p class="checkbox">
-    <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-    </p>
-    {% else %}
     <p>
-    {{ field.label_tag }} 
-    {{ field }}
+        <input style="margin-left:5px;width:230px" class="required" id="id_username" maxlength="75" name="username" type="text" placeholder="name">
+        {{ field.errors }}
     </p>
-    {% endif %}
-    {% endfor %}
+    <p>
+        <input style="margin-left:5px;width:230px" class="required" id="id_email" maxlength="75" name="email" type="text" placeholder="email">
+        {{ field.errors }}
+    </p>
+    <p>
+        <input style="margin-left:5px;width:230px" class="required" id="id_password1" maxlength="75" name="password1" type="password" placeholder="password">
+        {{ field.errors }}
+    </p>
+    <p>
+        <input style="margin-left:5px;width:230px" class="required" id="id_password2" maxlength="75" name="password2" type="password" placeholder="repeat password">
+        {{ field.errors }}
+    </p>
+    <p>
+      <div align="center">
+        <select style="width:230px" id="id_category" name="category">
+        <option value="核心人員">核心人員</option>
+        <option value="一般志工">一般志工</option>
+        <option value="TFT教師">TFT教師</option>
+        <option value="儲備教師">儲備教師</option>
+        <option value="教學督導">教學督導</option>
+        </select>
+      </div>
+      <br/>
+    </p>
+
   </fieldset>
-  <input type="submit" value="{% trans "Signup"%}" />
-</form>
+    <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "送出" %}" style="margin-left:5px;width:230px"/>
+  </form>
+
+</div>
+</div>
 {% endblock %}
 
 
