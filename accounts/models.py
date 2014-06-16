@@ -16,8 +16,6 @@ class MyProfile(UserenaBaseProfile):
     description = models.CharField(_('description'),max_length=30) 
     school = models.CharField(max_length=30)       
     phone_number = models.CharField(max_length=30) 
-    account = models.CharField(max_length=30)  
-    password =  models.CharField(max_length=30)      
     category = models.ForeignKey(Category)
     name =  models.CharField(max_length=30)   
 

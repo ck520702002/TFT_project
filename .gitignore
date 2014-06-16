@@ -216,10 +216,11 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-<<<<<<< HEAD
+
 *.sqlite3
-=======
+
+
+
 db.sqlite3
->>>>>>> FETCH_HEAD
 
 db.sqlite3

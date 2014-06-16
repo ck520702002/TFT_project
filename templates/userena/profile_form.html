@@ -35,8 +35,11 @@
   <div class="panel panel-default">
       <div class="panel-heading"><h4>{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</h4></div>
         <div class="panel-body">
+
         <p><label for="id_name" class="col-lg-2 control-label">姓名:</label> 
           <div class="col-lg-10"><input id="id_name" class="form-control" maxlength="30" name="name" type="text" value="" placeholder="Name"></div></p>   
+        
+        
         <p><label for="id_school" class="col-lg-2 control-label">服務學校:</label> 
           <div class="col-lg-10"><input id="id_school" class="form-control" maxlength="30" name="school" type="text" value="" placeholder="ex.台南國小"></div></p>
         <p><label for="id_phone_number" class="col-lg-2 control-label">聯絡電話:</label> 
