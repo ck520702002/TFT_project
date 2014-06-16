@@ -1,22 +1,26 @@
-{% extends 'userena/base_userena.html' %}
+{% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
 
-{% block content_title %}<h2>{% blocktrans with user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
+{% block title %}{% trans "Change email" %}{% endblock %}
 
 {% block content %}
 <form action="" method="post">
-  <ul id="box-nav">
-    <li class="first"><a href="{% url 'userena_profile_detail' user.username %}"><span>{% trans 'View profile' %}</span></a></li>
-    <li><a href="{% url 'userena_profile_edit' user.username %}">{% trans "Edit profile" %}</a></li>
-    <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
-    <li class="last selected"><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
-  </ul>
-  {% csrf_token %}
-  <fieldset>
-    <legend>{% trans "Change email address" %}</legend>
-    {{ form.as_p }}
-  </fieldset>
-  <input type="submit" value="{% trans "Change email" %}" />
+<div class="panel panel-default">
+      <div class="panel-heading"><h4>更改{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %} 的email</h4></div>
+        <div class="panel-body">
+             
+            <fieldset>
+             
+              {% csrf_token %}
+              
+              {{ form.as_p }}
+              
+            </fieldset>
+            <input type ="button" class="btn" onclick="history.back()" value="取消"></input>
+            <input class="btn btn-primary"type="submit" value="{% trans "確定更改" %}" />
+            
+        </div>
+</div>
 </form>
 {% endblock %}
