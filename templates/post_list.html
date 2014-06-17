@@ -3,11 +3,20 @@
 {% load url from future %}
 
 {% block content %}
+<div class="control-group">
+<label class="control-label" for="textarea">留言板</label>
+	<div class="controls">
+		<textarea id="id_title" name="title" type="text" value="" class="form-control" placeholder="文章標題"rows="1"></textarea>
+	    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3"></textarea>
+	</div>  
+	 <input style="margin-left:175px" type="submit" class="btn btn-primary" value="送出">
+</div>
 	<label class="control-label" for="textarea">文章列表</label>
 {% for post in object_list %}
 <ul>
-
-    <li><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></li>
+	<label class="control-label" for="textarea"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a> <br>{{ post.time }}</label>
+    
 </ul>
 {% endfor %}
+
 {% endblock%}
