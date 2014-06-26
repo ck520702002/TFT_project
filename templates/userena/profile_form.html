@@ -24,16 +24,10 @@
 {% block content %}
 
 <form action="" enctype="multipart/form-data" method="post">
-  <ul id="box-nav">
-    <li class="first"><a href="{% url 'userena_profile_detail' user.username %}"><span>{% trans 'View profile' %}</span></a></li>
-    <li class="selected"><a href="{% url 'userena_profile_edit' user.username %}">{% trans "Edit profile" %}</a></li>
-    <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
-    <li class="last"><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
-  </ul>
 
   {% csrf_token %}
   <div class="panel panel-default">
-      <div class="panel-heading"><h4>{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</h4></div>
+      <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
         <div class="panel-body">
 
         <p><label for="id_name" class="col-lg-2 control-label">姓名:</label> 
@@ -56,7 +50,7 @@
           </select> <span class="helptext">Designates who can view your profile.</span></p>
         <p><label for="id_description" class="col-lg-2 control-label">簡介:</label> 
           <div class="col-lg-10"><textarea id="id_description" name="description" type="text" value="" class="form-control" placeholder="更新自己的履歷或簡介，讓大家更認識你吧!"rows="3"></textarea></p>
-          <input type ="button" class="btn" onclick="history.back()" value="取消"></input>
+          <button class="btn" type="button"><a href="{% url 'userena_profile_detail' user.username %}">取消</a></button>
           <input type="submit" class="btn btn-primary" value="確定更新">
         </div>
   </div>
