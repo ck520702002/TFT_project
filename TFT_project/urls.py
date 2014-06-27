@@ -1,9 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from posts.views import PostView,DiscussPost
+from posts.views import PostView,ShowPost
 from userena import views as userena_views
-admin.autodiscover()
-
 from views import IndexView
 
 urlpatterns = patterns('',
@@ -16,5 +14,5 @@ urlpatterns = patterns('',
 	
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	url(r'^posts/', include('posts.urls',namespace = "post")),
-	url(r'^discuss/', DiscussPost.as_view())
+	url(r'^discuss/', ShowPost.as_view())
 )
