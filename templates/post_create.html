@@ -50,12 +50,5 @@
 	</div>
 
 	</div>
-<div class = "span4">
-	<label class="control-label" for="textarea">文章列表</label>
-	{% for post in object_list %}
-	<ul>
-		<label class="control-label" for="textarea"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a> <br>{{ post.time }}</label>
-	</ul>
-	{% endfor %}
-</div>
+
 {% endblock %}
