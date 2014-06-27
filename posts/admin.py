@@ -3,4 +3,4 @@ from posts.models import Post
 from accounts.models import MyProfile
 # Register your models here.
 
-admin.site.register(Post,MyProfile)
+#admin.site.register(Post,MyProfile)
