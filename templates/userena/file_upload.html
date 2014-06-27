@@ -1,0 +1,10 @@
+<form id="upload_file_form" action="{% url myWeb.packweb.views.save_form %}"
+method="post"  enctype="multipart/form-data">
+    {%csrf_token%}
+<table>
+    <tr><td name="date">上傳日期：{% now "Y-m-d" %}</td></tr>
+    <tr><td>檔案描述：<input type="text" name="content"></td></tr>
+    <tr><td>上傳檔案：<input type="file" name="file"></td></tr>
+    <tr><td> <input id="post" type="button" value="送出" /> </td></tr>
+</table>
+</form>
