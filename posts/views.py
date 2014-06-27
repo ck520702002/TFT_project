@@ -10,9 +10,9 @@ class PostView(CreateView,ListView):
 	model = Post
 	template_name = 'post_create.html'
 
-class ShowPost(ListView):
+class DiscussPost(ListView):
 	model = Post
-	template_name = 'post_list.html'
+	template_name = 'discuss.html'
 
 class PostDetail(DetailView):
 	model = Post
