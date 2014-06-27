@@ -10,6 +10,7 @@ class Post(models.Model):
 
 	title = models.CharField(max_length=10)
 	context = models.CharField(max_length=500)
+
 	time = datetime.datetime.now()
 #	author = models.ForeignKey(MyProfile)
 	tag = models.CharField(max_length=500)

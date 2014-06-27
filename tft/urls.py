@@ -7,9 +7,10 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'tft.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+	url(r'^results/$', views.ShowView),
 	url(r'^accounts/', include('userena.urls')),
 	url(r'^admin/', include(admin.site.urls)),
+	url(r'^posts/$', PostView.as_view()),
 	url(r'^discuss/$', DiscussPost.as_view())
 
 )
