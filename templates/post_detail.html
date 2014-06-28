@@ -1,6 +1,13 @@
-<h1>{{ post.title }}</h1>
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+<label class="control-label" for="textarea">{{ post.title }}</label>
 
 <ul>
 {{ post.context }}
 </ul>
-<a href="/posts/list/" >GO back to list?</a>
+
+<a href="/posts/list/" style="margin-left:175px" type="submit" class="btn btn-primary">回文章列表</a>
+{% endblock%}
