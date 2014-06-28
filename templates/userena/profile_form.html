@@ -22,38 +22,26 @@
 </head>
 
 {% block content %}
-
-<form action="" enctype="multipart/form-data" method="post">
-
-  {% csrf_token %}
-  <div class="panel panel-default">
+<div class="panel panel-default">
       <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
         <div class="panel-body">
-
-        <p><label for="id_name" class="col-lg-2 control-label">姓名:</label> 
-          <div class="col-lg-10"><input id="id_name" class="form-control" maxlength="30" name="name" type="text" value="" placeholder="Name"></div></p>   
-        
-        
-        <p><label for="id_school" class="col-lg-2 control-label">服務學校:</label> 
-          <div class="col-lg-10"><input id="id_school" class="form-control" maxlength="30" name="school" type="text" value="" placeholder="ex.台南國小"></div></p>
-        <p><label for="id_phone_number" class="col-lg-2 control-label">聯絡電話:</label> 
-          <div class="col-lg-10"><input id="id_phone_number" class="form-control" maxlength="30" name="phone_number" type="text" value="" placeholder="0912345678"></div></p>
-        <p><label for="id_category" class="col-lg-2 control-label">身份類別:</label> <select id="id_category" name="category">
-        <option value="">---------</option>
-        <option value="1" selected="selected">一般教師</option>
-        </select></p>
-        <p><label for="id_privacy" class="col-lg-2 control-label">隱私設定:</label>  
-          <select id="id_privacy" name="privacy">
-            <option value="open">Open</option>
-            <option value="registered" selected="selected">Registered</option>
-            <option value="closed">Closed</option>
-          </select> <span class="helptext">Designates who can view your profile.</span></p>
-        <p><label for="id_description" class="col-lg-2 control-label">簡介:</label> 
-          <div class="col-lg-10"><textarea id="id_description" name="description" type="text" value="" class="form-control" placeholder="更新自己的履歷或簡介，讓大家更認識你吧!"rows="3"></textarea></p>
-          <button class="btn" type="button"><a href="{% url 'userena_profile_detail' user.username %}">取消</a></button>
-          <input type="submit" class="btn btn-primary" value="確定更新">
-        </div>
-  </div>
-                
-</form>
+            <form action="" enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+                <input type="hidden" name="csrfmiddlewaretoken" value="Cbcz6eEiyVZlr8n7Cl59D4otuCFlJZsB">
+                <p><label for="id_name">Name:</label> <input id="id_name" maxlength="30" name="name" type="text" value=""></p>
+                <p><label for="id_privacy">Privacy:</label> <select id="id_privacy" name="privacy">
+                <option value="open">Open</option>
+                <option value="registered" selected="selected">Registered</option>
+                <option value="closed">Closed</option>
+                </select> <span class="helptext">Designates who can view your profile.</span></p>
+                <p><label for="id_school">School:</label> <input id="id_school" maxlength="30" name="school" type="text" value=""></p>
+                <p><label for="id_phone_number">Phone number:</label> <input id="id_phone_number" maxlength="30" name="phone_number" type="text" value=""></p>
+                <p><label for="id_category">Category:</label> <select id="id_category" name="category">
+                <option value="" selected="selected">---------</option>
+                </select></p>
+                <p><label for="id_description">Description:</label> <input id="id_description" maxlength="30" name="description" type="text" value=""></p>
+              <input type="submit" value="{% trans "Save changes" %}" />
+            </form>
+          </form>
+</div>
 {% endblock %}
