@@ -19,6 +19,11 @@
         <form class="form-horizontal">
         <fieldset>
         <div class="form-group">
+            <label for="your_name" class="col-lg-2 control-label">Your name</label>
+              <dd>{{ current_name }}</dd>
+        </div>
+        
+        <div class="form-group">
             <label for="inputName" class="col-lg-2 control-label">姓名</label>
             {% if profile.name %}
               <dd>{{ profile.name }}</dd>

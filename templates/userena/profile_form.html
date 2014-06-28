@@ -28,7 +28,14 @@
             <form action="" enctype="multipart/form-data" method="post">
               {% csrf_token %}
                 {{ form.as_p }}
-              <input type="submit" value="{% trans "Save changes" %}" />
+              <!--<input type="submit" value="{% trans "Save changes" %}" />-->
+            </form>
+            <br/><p>以下是測試</p><br/>
+            <form action="{% url 'userena_profile_detail' user.username %}" method="post">
+              {% csrf_token %}
+              <label for="your_name">Your name: </label>
+              <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+              <input type="submit" value="OK">
             </form>
         </div>
 </div>
