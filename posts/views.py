@@ -12,7 +12,7 @@ class PostView(CreateView,ListView):
 
 class ShowPost(ListView):
 	model = Post
-	template_name = 'post_list.html'
+	template_name = 'discuss.html'
 
 class PostDetail(DetailView):
 	model = Post

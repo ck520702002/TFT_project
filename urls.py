@@ -16,4 +16,5 @@ urlpatterns = patterns('',
 	
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	url(r'^posts/', include('posts.urls',namespace = "post"))
+	url(r'^discuss/', ShowPost.as_view())
 )
