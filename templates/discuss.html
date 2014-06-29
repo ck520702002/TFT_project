@@ -266,6 +266,7 @@
 												</tr>
 											</thead>
 											<tbody>
+												{% for post in object_list %}
 												{% if post.tag1 == "教學日誌" %}
 												<tr>
 													<td width="15%">
@@ -275,6 +276,7 @@
 													<td width="15%" > {{ post.time }}</td>
 												</tr>
 												{%endif%}
+												{%endfor%}
 											</tbody>
 										</table>  
 									</div> 
@@ -299,6 +301,7 @@
 												</tr>
 											</thead>
 											<tbody>
+												{%for post in object_list%}
 												{% if post.tag1 == "教學週誌" %}
 												<tr>
 													<td width="15%">
@@ -308,6 +311,7 @@
 													<td width="15%" > {{ post.time }}</td>
 												</tr>
 												{%endif%}
+												{%endfor%}
 											</tbody>
 										</table>  
 									</div> 
