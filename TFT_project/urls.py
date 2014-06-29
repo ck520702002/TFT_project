@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from posts.views import PostView,ShowPost
+from posts.views import PostView,ShowPost,ShowFile
 from userena import views as userena_views
 from views import IndexView
 from views import IndexView
@@ -19,5 +19,6 @@ urlpatterns = patterns('',
 
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	url(r'^posts/', include('posts.urls',namespace = "post")),
-	url(r'^discuss/', ShowPost.as_view())
+	url(r'^discuss/', ShowPost.as_view()),
+    url(r'^files/', ShowFile.as_view())
 )

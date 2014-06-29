@@ -18,4 +18,8 @@ class PostDetail(DetailView):
 	model = Post
 	template_name = 'post_detail.html'
 
+class ShowFile(ListView):
+	model = Post
+	template_name = 'files.html'
+
 
