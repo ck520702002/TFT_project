@@ -34,24 +34,19 @@
 									</thead>
 									<tbody>
                                     {% for post in object_list %}
+                                    {% if post.tag3 != "" %}
 										<tr>
 											<td width="15%">
-											{% if post.tag1 != "" %}{{ post.tag1 }} {%endif%}
-											{% if post.tag2 != "" %}{{ post.tag2 }} {%endif%}
-											{% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}
-											<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-												<div class="panel panel-default">
-												      
-												    	<div class="panel-body">
-															{{ post.context }}
-														</div>
-													</div>
-												</div>
+											{{ post.tag3 }} 
+											<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+													{{ post.context }}
+												</div>	
 											</td>
 											<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
 											<td width="15%" > {{ post.time }}</td>
 										</tr>
-									
+									{%endif%}
 									{% endfor %}
 									</tbody>
 									</table>
@@ -68,11 +63,15 @@
 										</thead>
 										<tbody>
 											{% for post in object_list %}
-												{% if post.tag1 != "" %}
+												{% if post.tag3 == "會議記錄" %}
 												<tr>
 													<td width="15%">
-													{{ post.tag1 }} 
-													<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></td>
+													{{ post.tag3 }} 
+													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ 	post.title }}</a><br>
+														<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+															{{ post.context }}
+														</div>	
+													</td>
 													<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
 													<td width="15%" > {{ post.time }}</td>
 												</tr>
@@ -94,11 +93,15 @@
 										</thead>
 										<tbody>
 											{% for post in object_list %}
-												{% if post.tag2 != "" %}
+												{% if post.tag3 != "教學企劃" %}
 												<tr>
 													<td width="15%">
-													{{ post.tag2 }} 
-													<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></td>
+													{{ post.tag3 }} 
+													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+														<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+															{{ post.context }}
+														</div>	
+													</td>
 													<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
 													<td width="15%" > {{ post.time }}</td>
 												</tr>
@@ -124,11 +127,15 @@
 											</thead>
 											<tbody>
 												{% for post in object_list %}
-												{% if post.tag1 == "教學日誌" %}
+												{% if post.tag3 == "教學檔案" %}
 												<tr>
 													<td width="15%">
-													{{ post.tag1 }} 
-													<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></td>
+													{{ post.tag3 }} 
+													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+													<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+														{{ post.context }}
+													</div>	
+													</td>
 													<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
 													<td width="15%" > {{ post.time }}</td>
 												</tr>
@@ -152,11 +159,15 @@
 										</thead>
 										<tbody>
 											{%for post in object_list%}
-											{% if post.tag1 == "教學週誌" %}
+											{% if post.tag3 == "教學成果" %}
 											<tr>
 												<td width="15%">
-												{{ post.tag1 }} 
-												<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></td>
+												{{ post.tag3 }} 
+												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+													{{ post.context }}
+												</div>	
+												</td>
 												<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
 												<td width="15%" > {{ post.time }}</td>
 											</tr>
