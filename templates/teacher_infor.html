@@ -1,0 +1,99 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
+{% block content_title %}{% endblock %}
+
+{% block content %}
+  <div class="white-box">
+    {% block profile_navigation %}
+      {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
+      {% if user.username == profile.user.username %}
+      {% endif %}
+    {% endblock %}
+    		<div class="col-xs-9 col-sm-7">
+                <div class="row-fluid">
+                    <div class="span4">
+                        <br/>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">一對一mentor教師名單</div>
+                            <div class="panel-body">
+
+										<div style="width:80%" class="table">
+											
+											<table  class="table table-condensed" border="0">
+												<tr>
+													<td><strong>姓名</strong></td>
+													<td><strong>服務單位</strong></td>
+												</tr>
+												<br><br>
+												<tr>
+													<td>顏冠明</td>
+													<td>台東市康樂國小</td>	
+												</tr>
+												<tr>
+													<td>楊惠如</td>
+													<td>台東市寶桑國中</td>	
+												</tr>
+												<tr>
+													<td>余青彥</td>
+													<td>台東市寶桑國中</td>	
+												</tr>
+												<tr>
+													<td>胡錦秀</td>
+													<td>高雄市莊敬國小</td>	
+												</tr>
+												<tr>
+													<td>蔡佩芬</td>
+													<td>高雄市民權國小</td>	
+												</tr>
+												<tr>
+													<td>王瑀玲</td>
+													<td>高雄市民權國小</td>	
+												</tr>
+												<tr>
+													<td>蔡雅泰</td>
+													<td>高雄市民權國小</td>	
+												</tr>
+												<tr>
+													<td>林淑熹</td>
+													<td>台南市崑山國小</td>	
+												</tr>
+												<tr>
+													<td>胡哲瑋</td>
+													<td>新竹實驗小學</td>	
+												</tr>
+												<tr>
+													<td>侯慧芳</td>
+													<td>台北市文化國小</td>	
+												</tr>
+												<tr>
+													<td>張志全</td>
+													<td>臺南市佳興國小</td>	
+												</tr>
+												<tr>
+													<td>杜媛媛</td>
+													<td>台中市萬和國中</td>	
+												</tr>
+												<tr>
+													<td>王琇嫻</td>
+													<td>台中女中</td>	
+												</tr>
+												<tr>
+													<td>邱馨慧</td>
+													<td>台北市文化國小</td>	
+												</tr>
+												
+											</table>
+											
+											
+										</div>
+									</div>	
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+{% endblock %}  
