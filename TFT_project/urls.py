@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^accounts/signup', userena_views.signup,{'success_url':'/'}),
 	url(r'^accounts/', include('userena.urls')),
 	url(r'^admin/', include(admin.site.urls)),
+    url(r'^teacher_info/',include('userena.contrib.teacher_info.urls')),
 
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	url(r'^posts/', include('posts.urls',namespace = "post")),
