@@ -1,16 +1,18 @@
 {% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
+
 {% block content %}
 
 <form action="" method = "post">{% csrf_token%}
-
 <div class="control-group"> <!-- 輸入訊息-->
-	<label class="control-label" for="textarea">留言板</label>
+	<label class="control-label" for="textarea" >留言板</label>
 	<div class="controls">
-		<textarea id="id_title" name="title" type="text" value="" class="form-control" placeholder="文章標題"rows="1"></textarea>
+		<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1"></textarea>
 	    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3"></textarea>
-	</div>                        
+	    
+	</div> 
+	                     
 	<div class="span4"><!--tags and send msg-->
 	    <div class="btn-group">
 	        <select id="id_tag1" name="tag1" class="btn btn-primary"> 
@@ -18,7 +20,6 @@
 	        	<option id="id_tag1" name="tag1" value="心情分享">心情分享</option>
 	        	<option id="id_tag1" name="tag1" value="教學日誌">教學日誌</option>
 	        	<option id="id_tag1" name="tag1" value="教學週誌">教學週誌</option>
-
 	        </select>
 	        
 	        
@@ -51,7 +52,7 @@
 	    </div>
 	
 		<button style="margin-left:0px" type="button" class="btn btn-primary">選擇檔案</button>
-					
+		<input id="id_author" name="author" value={{user.username}} type="hidden">
 	    <input style="margin-left:175px" type="submit" class="btn btn-primary" value="送出">
 
 	</div>
@@ -59,7 +60,9 @@
 		<label class="control-label" for="textarea">文章列表</label>
 		{% for post in object_list %}
 		<ul>
-		    <li><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>{{ post.time }}<br>
+		    <li><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a>
+		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ post.author }}<br>
+		    	{{ post.time }}<br>
 		    {% if post.tag1 != "" %}{{ post.tag1 }} {%endif%}
 			{% if post.tag2 != "" %}{{ post.tag2 }} {%endif%}
 			{% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}</li>

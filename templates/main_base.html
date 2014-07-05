@@ -86,7 +86,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">{{ user.username }}</a>
           <ul id="g-account-menu" class="dropdown-menu" role="menu">
-            <li><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>個人檔案</a></li>
+            <li><a href="/accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$">個人檔案</a></li>
             
             <li><a href="index.html">登出</a></li>
           </ul>
@@ -105,7 +105,7 @@
                 <div class="list-group">
                     <ul class="nav" id="side-menu">
             <li>
-                            <a href=""><i class="fa fa-personal fa-fw"></i>我發過的東西</a>
+                            <a href="/pastpost"><i class="fa fa-personal fa-fw"></i>我發過的東西</a>
                         </li>
             <li>
                             <a href="/discuss"><i class="fa fa-discuss fa-fw"></i>討論區</a>

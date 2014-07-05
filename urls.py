@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from posts.views import PostView,ShowPost,ShowFile
+from posts.views import PostView,ShowPost,ShowFile,PastPost
 from userena import views as userena_views
 admin.autodiscover()
 
