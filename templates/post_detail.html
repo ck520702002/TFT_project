@@ -4,10 +4,10 @@
 
 {% block content %}
 <label class="control-label" for="textarea">{{ post.title }}</label>
- <textarea id="id_context" name="context" type="text" value="" class="form-control" rows="5">
+
+<ul>
 {{ post.context }}
-</textarea>
+</ul>
 
-
-<a href="/posts/list/" style="margin-left:500px" type="submit" class="btn btn-primary">回文章列表</a>
+<a href="/posts/list/" style="margin-left:175px" type="submit" class="btn btn-primary">回文章列表</a>
 {% endblock%}

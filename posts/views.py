@@ -19,4 +19,3 @@ class PostDetail(DetailView):
 	template_name = 'post_detail.html'
 
 
-

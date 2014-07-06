@@ -1,0 +1,26 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "Change email" %}{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+<div class="panel panel-default">
+      <div class="panel-heading"><h4>更改{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %} 的email</h4></div>
+        <div class="panel-body">
+             
+            <fieldset>
+             
+              {% csrf_token %}
+              
+              {{ form.as_p }}
+              
+            </fieldset>
+            <input type ="button" class="btn" onclick="history.back()" value="取消"></input>
+            <input class="btn btn-primary"type="submit" value="{% trans "確定更改" %}" />
+            
+        </div>
+</div>
+</form>
+{% endblock %}
