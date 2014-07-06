@@ -147,13 +147,19 @@
         <div class="row-fluid">
                     <div class="span4">
                   <label class="control-label" for="textarea">公告欄</label>     
-            <img src="{% static "img/blackboardjpg.jpg"%}">
-            </img>
-            <br/>
-            <div class="controls">
-                  <textarea style="width:300px" class="form-control input-xlarge" id="textarea" rows="1"placeholder="Post the Announcement"></textarea>
-                  <br/>
-            </div> 
+            <div style="width:300px" class="panel panel-default">
+                        
+                            <div class="panel-body">公告內容</div>
+                        </div>
+            
+                    <div class="controls">
+                        <textarea style="width:300px;"class="form-control input-xlarge" id="textarea" rows="1" placeholder="公告標題"></textarea>
+                        <br/>
+                    </div>                        
+                     <div class="controls">
+                        <textarea style="width:300px" class="form-control input-xlarge" id="textarea" rows="3"placeholder="公告內容"></textarea>
+                        <br/>
+                    </div>           
 
                         
                     </div>
