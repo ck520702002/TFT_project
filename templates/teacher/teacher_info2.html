@@ -2,9 +2,12 @@
 {% load i18n %}
 {% load url from future %}
 
-{% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
-{% block content_title %}{% endblock %}
-
+{% block title %}網路mentor｜TFT支持系統{% endblock %}
+{% block meta %}
+  {% load static from staticfiles %}
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+{% endblock %}
 {% block content %}
     {% block profile_navigation %}
       {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
@@ -16,7 +19,7 @@
             <!--/span-->
                         <br/>
                         <div class="panel panel-default">
-                            <div class="panel-heading">網路mentor教師資訊</div>
+                            <div class="panel-heading">網路mentor資訊</div>
                             <div class="panel-body">
 
 										<div style="width:100%" class="table">
