@@ -3,11 +3,13 @@
 {% load url from future %}
 
 {% block content %}
-<label class="control-label" for="textarea">{{ post.title }}</label>
+<div class="panel panel-default" style="word-break:break-all">
+      <div class="panel-heading"><b><font size="4">{{ post.title }}</font></b></div>
+    	<div class="panel-body">
+			{{ post.context }}
+		</div>
+	</div>
 
-<ul>
-{{ post.context }}
-</ul>
 
-<a href="/posts/list/" style="margin-left:175px" type="submit" class="btn btn-primary">回文章列表</a>
+<a href="/posts/"  type="submit" class="btn btn-primary">回前頁</a>
 {% endblock%}
