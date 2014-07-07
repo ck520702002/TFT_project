@@ -6,15 +6,19 @@
 {% block content_title %}{% endblock %}
 
 {% block content %}
+<!--
   <div class="white-box">
+-->
     {% block profile_navigation %}
       {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
       {% if user.username == profile.user.username %}
       {% endif %}
     {% endblock %}
-    		<div class="col-xs-9 col-sm-7">
+    		<!--
+    		<div class="col-xs-12 col-sm-7">
                 <div class="row-fluid">
                     <div class="span4">
+            -->    
                         <br/>
                         <div class="panel panel-default">
                             <div class="panel-heading">一對一mentor教師名單</div>
@@ -102,9 +106,11 @@
 										</div>
 									</div>	
 							</div>
+							<!--
                         </div>
                     </div>
                 </div>
+            
             </div>
-           
+           -->
 {% endblock %}  
