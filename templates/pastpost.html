@@ -1,0 +1,57 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+  <div class="white-box">
+    {% block profile_navigation %}
+      {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
+      {% if user.username == profile.user.username %}
+      {% endif %}
+    {% endblock %}
+    
+<div class="panel panel-default">
+      <div class="panel-heading">{{ user.username }} 的文章</div>
+    <div class="panel-body">
+
+        <div class="tabbable">
+            
+     
+                  <table class="table table-striped table-hover " >
+                    <thead>
+                      <tr>
+                        <th>分類</th>
+                        <th>標題</th>
+                        <th >作者</th>
+                        <th >時間</th>
+                      </tr>
+                    </thead>
+                  <tbody>
+                  {% for post in object_list %}
+                  {%if post.author == user.username%}
+                    <tr>
+                      <td >
+                      {% if post.tag1 != "" %}{{ post.tag1 }} {%endif%}
+                      {% if post.tag2 != "" %}{{ post.tag2 }} {%endif%}
+                      {% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}
+                      </td>
+                      <td width="30%" ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+                        <div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+                          {{ post.context }}
+                        </div>  
+                      </td>
+                      <td ><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+                      <td > {{ post.time }}</td>
+                    </tr>
+                  {% endif %}
+                  {% endfor %}
+                  </tbody>
+                  </table>
+           
+          </div>
+
+        </div>
+  </div>
+       
+    </div>
+{% endblock %}   
