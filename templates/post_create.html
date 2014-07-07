@@ -1,5 +1,64 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+
 <form action="" method = "post">{% csrf_token%}
-	{{form.as_p}}
-	<input type="submit" value="Create"/>
+
+<div class="control-group">
+	<label class="control-label" for="textarea">留言板</label>
+	<div class="controls">
+		<textarea id="id_title" name="title" type="text" value="" class="form-control" placeholder="文章標題"rows="1"></textarea>
+	    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3"></textarea>
+	</div>                        
+
+	<div class="span4"><!--tags and send msg-->
+	    <div class="btn-group">
+	        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">分享<span class="caret"></span></a>
+	        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+	            <li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="心情分享"></li>
+	            <li><input type="text" class="btn btn-primary" id="id_tag" name="tag"value="教學日誌"></li>
+	            <li><input type="text" class="btn btn-primary" id="id_tag" name="tag"value="教學週誌"></li>
+	           
+	        </ul>
+	    </div>
+
+	    <div class="btn-group">
+	        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">提問<span class="caret"></span></a>
+	        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="教學方法"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="班級經營"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="學生輔導"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="學校行政"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="年級/科目"></li>
+	        </ul>
+	    </div>
+
+		<div class="btn-group">
+	        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">檔案上傳<span class="caret"></span></a>
+	        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="會議記錄"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="教學企劃"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="教材檔案"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="學校行政"></li>
+	        	<li><input type="text" class="btn btn-primary" id="id_tag" name="tag" value="教學成果"></li>
+				
+	        </ul>
+	    </div>
+	   
+		<button style="margin-left:0px" class="btn btn-primary" type="button">選擇檔案</button>
+
+	    <input style="margin-left:0px" type="submit" class="btn btn-primary" value="送出">
+</div>
+
+<div class = "span4">
+	<label class="control-label" for="textarea">文章列表</label>
+	{% for post in object_list %}
+	<ul>
+		<label class="control-label" for="textarea"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a> <br>{{ post.time }} <br>{{ post.tag }}</label>
+	</ul>
+	{% endfor %}
+</div>
 </form>
 
+{% endblock %}
