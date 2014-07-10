@@ -29,8 +29,7 @@
         <div class="form-group"><!--email-->
             <label for="inputphone" class="col-lg-2 control-label">email</label>
             {% if profile.user.email and not hide_email %}
-              <dd>{{ profile.user.email }}<a href="{% url 'userena_email_change' user.username %}">{% trans "（更改登入信箱）" %}</a></dd>
-              <dd></dd>
+              
             {% endif %}
         </div>
         <div class="form-group"><!--電話-->

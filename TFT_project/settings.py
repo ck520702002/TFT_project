@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'accounts',
     'easy_thumbnails',
     'guardian',
-    'posts'
+    'posts',
+    'filesManagement',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -63,6 +64,22 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#     'django.template.loaders.eggs.Loader',
+)
+
 
 ROOT_URLCONF = 'TFT_project.urls'
 
@@ -93,6 +110,16 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/media/'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 SITE_ID = 1
@@ -104,12 +131,11 @@ AUTH_PROFILE_MODULE = 'accounts.MyProfile'
 LOGIN_REDIRECT_URL = ''
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
-USERENA_REDIRECT_ON_SIGNOUT = '/'
+USERENA_REDIRECT_ON_SIGNOUT = '/accounts/signin/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 USERENA_ACTIVATION_REQUIRED = False
 USERENA_DEFAULT_PRIVACY = 'open'
 USERENA_SIGNIN_AFTER_SIGNUP = True
-
 
 
 
