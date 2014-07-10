@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.css"/>
+    <meta charset="utf-8">
+    <title>個人頁面｜TFT支持系統</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../static/img/TFTslogo.gif" type="image/png">
+
+    <!-- Le styles -->
+    <link href="/Content/bootstrap/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="/Content/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/Scripts/bootstrap/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Images/bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Images/bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Images/bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/Images/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/Images/bootstrap/ico/favicon.png">
+</head>
+
+<body>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+ 
+<div id="top-nav" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-toggle"></span>
+      </button>
+      <a class="navbar-brand" href="home.html">TFT支持系統</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input style="width:240px" type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">搜尋</button><ul class="nav navbar-nav navbar-right"></ul>
+            </form>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">帳號名稱</a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a href="personal_info.html">編輯個人檔案</a></li>
+            <li><a href="index.html">登出</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div><!-- /container -->
+</div>
+
+
+
+    <div class="container">
+        <div class="row row-offcanvas-left row-offcanvas row-offcanvas-right">
+            <div class="col-xs-1 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+                <div class="list-group">
+                    <ul class="nav" id="side-menu">
+						<li>
+                            <a href="personal_article.html"><i class="fa fa-personal fa-fw"></i>個人頁面</a>
+                        </li>
+						<li>
+                            <a href="discuss.html"><i class="fa fa-discuss fa-fw"></i>討論區</a>
+                        </li>
+
+  
+						<div class="btn-group">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							檔案區
+							<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li><a tabindex="-1" href="#">會議記錄</a></li>
+								<li><a tabindex="-1" href="#">教學企劃</a></li>
+								<li><a tabindex="-1" href="#">教材檔案</a></li>
+								<li><a tabindex="-1" href="#">教學成果</a></li>
+							</ul>
+						</div>
+
+						<div class="btn-group"> 
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							教師資訊
+							<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li><a tabindex="-1" href="#">特教輔導</a></li>
+								<li><a tabindex="-1" href="#">其他領域</a></li>
+							</ul>
+						</div>
+
+                    </ul>
+					
+                    <!-- /#side-menu -->
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+			
+
+            <!--/span-->
+            <div class="col-xs-9 col-sm-7">
+                <div class="control-group"> <!-- 輸入訊息-->
+                    <label class="control-label" for="textarea">留言板</label>
+                    <div class="controls">
+                        <textarea class="form-control input-xlarge" id="textarea" rows="3"></textarea>
+                        <br/>
+                    </div>                        
+                    <div class="span4"><!--tags and send msg-->
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">分享<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a tabindex="-1" href="#">心情分享</a></li>
+                                <li><a tabindex="-1" href="#">教學日誌</a></li>
+                                <li><a tabindex="-1" href="#">教學週誌</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">提問<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a tabindex="-1" href="#">教學方法</a></li>
+                                <li><a tabindex="-1" href="#">班級經營</a></li>
+                                <li><a tabindex="-1" href="#">學生輔導</a></li>
+                                <li><a tabindex="-1" href="#">學校行政</a></li>
+                                <li><a tabindex="-1" href="#">年級/科目</a></li>
+                            </ul>
+                        </div>
+						
+						<div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">檔案上傳<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li><a tabindex="-1" href="#">會議記錄</a></li>
+                                <li><a tabindex="-1" href="#">教學企劃</a></li>
+                                <li><a tabindex="-1" href="#">教材檔案</a></li>
+                                <li><a tabindex="-1" href="#">學校行政</a></li>
+                                <li><a tabindex="-1" href="#">教學成果</a></li>
+                            </ul>
+                        </div>
+
+		
+									
+									<button style="margin-left:0px" type="button">選擇檔案</button></textarea>
+									
+                    
+								
+						
+                        <button style="margin-left:175px" class="btn btn-primary" type="button">送出</button>
+                    </div>
+                    
+                </div>
+		
+		<br/>
+
+	<div class="span4">
+	<div class="table">
+		<table  class="table table-striped table-hover">
+			<tr>
+				<td><strong>母分類</strong></td>
+				<td><strong>子分類</strong></td>
+				<td><strong>標題</strong></td>
+				<td><strong>日期</strong></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-danger btn-block btn-primary" typle="button">提問</button></td>
+				<td><button class="btn btn-primary btn-block btn-primary" typle="button">班級經營</button></td>
+				<td>要如何使班上和諧?<button style="margin-left:90px"><img src="../static/img/edit.jpg"></button>
+									  <button><img src="../static/img/delete.jpg"></button></td>
+				<td>2014/05/28</td>
+			</tr>
+		</table>
+		</div>
+	</div>	
+           
+        </div> <!--??-->
+		
+		
+
+            <!--/span-->
+			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+				<div class="row-fluid">
+                    <div class="span4">
+                       
+						      <label class="control-label" for="textarea">公告欄</label>     
+						<img src="../static/img/blackboardjpg.jpg">
+						<br/>
+						<div class="controls">
+									<textarea style="width:300px" class="form-control input-xlarge" id="textarea" rows="1"placeholder="Post the Announcement"></textarea>
+									<br/>
+						</div> 
+						
+                        
+                    </div>
+                </div>
+			</div>
+        </div>
+        <!--/row-->
+
+        
+        <footer>
+            <p>&copy; Teach For Taiwan 2014</p>
+        </footer>
+
+    </div>
+    <!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bundles/bootstrapSourceJS?v=XkouIldXq_pPzIiEbylJIGwgBv2qYDSef1Dnn06aIkQ1"></script>
+
+
+</body>
+</html>
