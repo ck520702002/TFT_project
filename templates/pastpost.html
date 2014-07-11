@@ -30,7 +30,7 @@
                   {% for post in object_list %}
                   {%if post.author == user.username%}
                     <tr>
-                      <td >
+                      <td width="35%">
                       {% if post.tag1 != "" %}{{ post.tag1 }} {%endif%}
                       {% if post.tag2 != "" %}{{ post.tag2 }} {%endif%}
                       {% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}
@@ -40,8 +40,8 @@
                           {{ post.context }}
                         </div>  
                       </td>
-                      <td ><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
-                      <td > {{ post.time }}</td>
+                      <td width="%"><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+                      <td width="35%"> {{ post.time }}</td>
                     </tr>
                   {% endif %}
                   {% endfor %}

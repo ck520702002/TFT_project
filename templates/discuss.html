@@ -6,81 +6,54 @@
 
 {%block content%}
 <!--jean-->
-
-<form action="" method = "post">{% csrf_token%}
-	<div class="control-group"> <!-- 輸入訊息-->
-		<label class="control-label" for="textarea" >留言板</label>
-		<div class="controls">
-			<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1"></textarea>
-		    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3"></textarea>
-		    
-		</div> 
-		                     
-		<div class="span4"><!--tags and send msg-->
-			<select name="entry.2126163091" id="entry_2126163091" aria-label="123  " class="valid">
-				<option value=""></option>
-				<option value="選項 1">選項 1</option> 
-				<option value="選項 2">選項 2</option>
-			</select>
-
-		    <div class="btn-group">
-		        <select id="id_tag1" name="tag1" class="btn btn-primary"> 
-		        	<option id="id_tag1" name="tag1" value="">分享</option>
-		        	<option id="id_tag1" name="tag1" value="心情分享">心情分享</option>
-		        	<option id="id_tag1" name="tag1" value="教學日誌">教學日誌</option>
-		        	<option id="id_tag1" name="tag1" value="教學週誌">教學週誌</option>
-		        </select>
-		        
-		        
-		    </div>
-		    
-		    <div class="btn-group">
-
-		        <select id="id_tag2" name="tag2" class="btn btn-primary" >
-		        	<option id="id_tag2" name="tag2" value="">提問</option>
-		        	<option id="id_tag2" name="tag2" value="教學方法">教學方法</option>
-		        	<option id="id_tag2" name="tag2" value="班級經營">班級經營</option>
-		        	<option id="id_tag2" name="tag2" value="學生輔導">學生輔導</option>
-		        	<option id="id_tag2" name="tag2" value="班級經營">學校行政</option>
-		        	<option id="id_tag2" name="tag2" value="學生輔導">年級/科目</option>
-		        </select>
-
-		    </div>
-			
-			<div class="btn-group">
-
-		        <select id="id_tag3" name="tag3" class="btn btn-primary">
-		        	<option id="id_tag3" name="tag3" value="">檔案上傳</option>
-		        	<option id="id_tag3" name="tag3" value="教學方法">會議記錄</option>
-		        	<option id="id_tag3" name="tag3" value="班級經營">教學企劃</option>
-		        	<option id="id_tag3" name="tag3" value="學生輔導">教材檔案</option>
-		        	<option id="id_tag3" name="tag3" value="班級經營">學校行政</option>
-		        	<option id="id_tag3" name="tag3" value="學生輔導">教學成果</option>
-		        </select>
-		        
-		    </div>
-		
-			<button style="margin-left:0px" type="button" class="btn btn-primary">選擇檔案</button>
-			<input id="id_author" name="author" value={{user.username}} type="hidden">
-		    <input style="margin-left:175px" type="submit" class="btn btn-primary" value="送出">
-
-		</div>
+<div class="panel panel-default">
+    <div class="panel-heading">發表文章</div>
+    <div class="panel-body">
+		<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
+			<div class="control-group"> <!-- 輸入訊息-->
+				<!--<label class="control-label" for="textarea" >留言板</label>-->
+				<div class="controls">
+					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1"></textarea><br/>
+				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3"></textarea>
+				    
+				</div> 
+				                     
+				<div class="span4"><!--tags and send msg-->
+					<label class="control-lebel" for="tag">分享標籤:</label>
+					<select id="id_tag1" name="tag1" class="btn btn-warning"> 
+				        	<option id="id_tag1" name="tag1" value=""></option>
+				        	<option id="id_tag1" name="tag1" value="心情分享">心情分享</option>
+				        	<option id="id_tag1" name="tag1" value="教學日誌">教學日誌</option>
+				        	<option id="id_tag1" name="tag1" value="教學週誌">教學週誌</option>
+				    </select>
+				    &nbsp;
+				    <label class="control-lebel" for="tag">提問標籤:</label>
+				    <select id="id_tag2" name="tag2" class="btn btn-success" >
+				        	<option id="id_tag2" name="tag2" value=""></option>
+				        	<option id="id_tag2" name="tag2" value="教學方法">教學方法</option>
+				        	<option id="id_tag2" name="tag2" value="班級經營">班級經營</option>
+				        	<option id="id_tag2" name="tag2" value="行為輔導">行為輔導</option>
+				        	<option id="id_tag2" name="tag2" value="特教輔導">特教輔導</option>
+				        	<option id="id_tag2" name="tag2" value="班級經營">學校行政</option>
+				        	<option id="id_tag2" name="tag2" value="親師溝通">親師溝通</option>
+				    </select>
+				    &nbsp;
+					<input id="id_author" name="author" value={{user.username}} type="hidden">
+				    <input style="margin-top:10px" type="submit" class="btn btn-primary" value="送出">
+				</div>
+			</div>
+		</form>
 	</div>
-
-</form>
-
+</div>
 
 <!--discuss_origin-->
 <div class="control-group">
             <!--/span-->
-
-
                 <div class="row-fluid">
                     <div class="span4">
-                        <h3 id="tabs">討論區</h3>
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#A" data-toggle="tab">綜合</a></li>
-                            <li class=""><a href="#B" data-toggle="tab">心情</a></li>
+                            <li class=""><a href="#B" data-toggle="tab">分享</a></li>
                             <li class=""><a href="#C" data-toggle="tab">提問</a></li>
                             <li class=""><a href="#D" data-toggle="tab">日誌</a></li>
                             <li class=""><a href="#E" data-toggle="tab">周誌</a></li>
@@ -91,19 +64,22 @@
                                 	<table class="table table-striped table-hover " >
                                 	<thead>
 										<tr>
-											<th width="15%">分類</th>
-											<th>標題</th>
-											<th width="15%">作者</th>
-											<th width="15%">時間</th>
+											<th width="20%">分類</th>
+											<th width="50%">標題</th>
+											<th width="5%">作者</th>
+											<th width="25%">時間</th>
 										</tr>
 									</thead>
 									<tbody>
                                     {% for post in object_list %}
 										<tr>
 											<td width="15%">
-											{% if post.tag1 != "" %}{{ post.tag1 }} {%endif%}
-											{% if post.tag2 != "" %}{{ post.tag2 }} {%endif%}
-											{% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}
+											{% if post.tag1 != "" %}
+												<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
+											{%endif%}
+											{% if post.tag2 != "" %}
+												<button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag2 }} </button>
+											{%endif%}
 											</td>
 											<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
 												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
@@ -122,33 +98,79 @@
 									<table class="table table-striped table-hover ">
 										<thead>
 											<tr>
-												<th width="15%">分類</th>
-												<th>標題</th>
-												<th width="15%">作者</th>
-												<th width="15%">時間</th>
+												<th width="20%">分類</th>
+												<th width="50%">標題</th>
+												<th width="5%">作者</th>
+												<th width="25%">時間</th>
 											</tr>
 										</thead>
 										<tbody>
 											{% for post in object_list %}
+											<tr>
 												{% if post.tag1 != "" %}
-												<tr>
-													<td width="15%">
-													{{ post.tag1 }} 
-													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-													{{ post.context }}
-												</div>	
-											</td>
-													<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
-													<td width="15%" > {{ post.time }}</td>
-												</tr>
+												<td width="15%">
+													{% if post.tag1 != "" %}
+													<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
+													{%endif%}
+												</td>
+												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+													<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+														{{ post.context }}
+													</div>	
+												</td>
+												<td width="15%"><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+												<td width="15%" > {{ post.time }}</td>
 												{%endif%}
+											</tr>
 											{% endfor %}
-											
 										</tbody>
 									</table> 
 								</div>
 								<div class="tab-pane" id="C">
+									<table class="table table-striped table-hover ">
+										<thead>
+											<tr>
+												<th width="20%">分類</th>
+												<th width="50%">標題</th>
+												<th width="5%">作者</th>
+												<th width="25%">時間</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for post in object_list %}
+											<tr>
+												{% if post.tag2 != "" %}
+												<td width="15%">
+													{% if post.tag2 != "" %}
+													<button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag2 }} </button>
+													{%endif%}
+												</td>
+												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+													{{ post.context }}
+												</div>	
+											</td>
+											<td width="15%"><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+											<td width="15%" > {{ post.time }}</td>
+												{%endif%}
+											</tr>
+											{% endfor %}
+										
+											  <!--<td width="9%"><button class="btn btn-success btn-block btn-primary" typle="button">已解決</button></td>
+											  <td width="9%"><button class="btn btn-danger btn-block btn-primary" typle="button">待解決</button></td>
+											  -->
+										</tbody>
+									</table> 
+								</div>
+								
+								<div class="tab-pane" id="D">
+									<!--<div id="timeline"> 
+										<ul id="dates"> 
+											<li><a href="#6">6月</a></li> 
+											<li><a href="#7">7月</a></li> 
+											<li><a href="#8">8月</a></li>
+										</ul> 
+									</div>-->
 									<table class="table table-striped table-hover ">
 										<thead>
 											<tr>
@@ -160,103 +182,60 @@
 										</thead>
 										<tbody>
 											{% for post in object_list %}
-												{% if post.tag2 != "" %}
-												<tr>
-													<td width="15%">
-													{{ post.tag2 }} 
-													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-													{{ post.context }}
-												</div>	
-											</td>
-													<td width="15%"><a href="personal_info.html">Kevin</a></td>
-													<td width="15%" > {{ post.time }}</td>
-												</tr>
-												{%endif%}
-											{% endfor %}
-										
-											  <!--<td width="9%"><button class="btn btn-success btn-block btn-primary" typle="button">已解決</button></td>
-											  <td width="9%"><button class="btn btn-danger btn-block btn-primary" typle="button">待解決</button></td>
-											  -->
+											{% if post.tag1 == "教學日誌" %}
+											<tr>
+												<td width="15%">
+													<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button> 
+												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+											<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+												{{ post.context }}
+											</div>	
+										</td>
+												<td width="15%"><a href="personal_info.html">{{user.username}}</a></td>
+												<td width="15%" > {{ post.time }}</td>
+											</tr>
+											{%endif%}
+											{%endfor%}
 										</tbody>
-									</table> 
-								</div>
-								
-								<div class="tab-pane" id="D">
-									<div id="timeline"> 
-										<ul id="dates"> 
-											<li><a href="#6">6月</a></li> 
-											<li><a href="#7">7月</a></li> 
-											<li><a href="#8">8月</a></li>
-										</ul> 
-										
-										<table class="table table-striped table-hover ">
-											<thead>
-												<tr>
-													<th width="15%">分類</th>
-													<th>標題</th>
-													<th width="15%">作者</th>
-													<th width="15%">時間</th>
-												</tr>
-											</thead>
-											<tbody>
-												{% for post in object_list %}
-												{% if post.tag1 == "教學日誌" %}
-												<tr>
-													<td width="15%">
-													{{ post.tag1 }} 
-													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-													{{ post.context }}
-												</div>	
-											</td>
-													<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
-													<td width="15%" > {{ post.time }}</td>
-												</tr>
-												{%endif%}
-												{%endfor%}
-											</tbody>
-										</table>  
-									</div> 
+									</table>
 								</div>
 								
 								
 								<div class="tab-pane" id="E">
-									<div id="timeline"> 
+									<!--<div id="timeline"> 
 										<ul id="dates"> 
 											<li><a href="#6">6月</a></li> 
 											<li><a href="#7">7月</a></li> 
 											<li><a href="#8">8月</a></li>
 										</ul> 
-										
-										<table class="table table-striped table-hover ">
-											<thead>
-												<tr>
-													<th width="15%">分類</th>
-													<th>標題</th>
-													<th width="15%">作者</th>
-													<th width="15%">時間</th>
-												</tr>
-											</thead>
-											<tbody>
-											{%for post in object_list%}
-											{% if post.tag1 == "教學週誌" %}
-												<tr>
-													<td width="15%">
-													{{ post.tag1 }} 
-													<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-														<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-															{{ post.context }}
-														</div>	
-													</td>
-													<td width="15%"><a href="personal_info.html">Kevin Wu</a></td>
-													<td width="15%" > {{ post.time }}</td>
-												</tr>
-												{%endif%}
-												{%endfor%}
-											</tbody>
-										</table>  
-									</div> 
+									</div>-->
+									<table class="table table-striped table-hover ">
+										<thead>
+											<tr>
+												<th width="15%">分類</th>
+												<th>標題</th>
+												<th width="15%">作者</th>
+												<th width="15%">時間</th>
+											</tr>
+										</thead>
+										<tbody>
+										{%for post in object_list%}
+										{% if post.tag1 == "教學週誌" %}
+											<tr>
+												<td width="15%">
+													<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
+												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+													<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+														{{ post.context }}
+													</div>	
+												</td>
+												<td width="15%"><a href="personal_info.html">{{user.username}}</a></td>
+												<td width="15%" > {{ post.time }}</td>
+											</tr>
+											{%endif%}
+											{%endfor%}
+										</tbody>
+									</table>
 								</div>
 							</div> <!-- /tabbable -->
 						</div>

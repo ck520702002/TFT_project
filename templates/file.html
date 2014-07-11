@@ -6,20 +6,31 @@
 
 {% block content %}
     <!-- Upload form. Note enctype attribute! -->
-    <h3 id="tabs">檔案上傳區</h3>
-    <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p>{{ form.non_field_errors }}</p>
-    <p> {{ form.docfile.help_text }}</p>
-    <p>
-        {{ form.docfile.errors }}
-        {{ form.docfile }}
-        <input id="id_author" name="author" value={{user.username}} type="hidden">
-        <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
-    </p>
-    </form>
-      
-
+<div class="panel panel-default">
+    <div class="panel-heading">檔案上傳</div>
+    <div class="panel-body">
+        <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.docfile.help_text }}
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+            <input id="id_author" name="author" value={{user.username}} type="hidden">
+            </br>
+            <label class="control-label" for="tag">檔案分類標籤:</label>
+            <select id="id_tag3" name="tag3" class="btn">
+                <option id="id_tag3" name="tag3" value=""></option>
+                <option id="id_tag3" name="tag3" value="教學方法">會議記錄</option>
+                <option id="id_tag3" name="tag3" value="班級經營">教學企劃</option>
+                <option id="id_tag3" name="tag3" value="學生輔導">教材檔案</option>
+                <option id="id_tag3" name="tag3" value="班級經營">學校行政</option>
+                <option id="id_tag3" name="tag3" value="學生輔導">教學成果</option>
+            </select>
+            &nbsp;
+            <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
+        </form>
+    </div>
+</div>
     <table  class="table table-striped table-hover">
     <tr>
         <td><strong>母分類</strong></td>
@@ -33,7 +44,9 @@
     
         {% for document in documents %}
         <tr>
-            <td><button class="btn btn-warning btn-block btn-primary" typle="button">會議記錄</button></td>
+            <td>{% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}
+                <button class="btn btn-warning btn-block btn-primary" typle="button">會議記錄</button>
+            </td>
             <td><button class="btn btn-success btn-block btn-primary" typle="button">台南小學</button></td>
             <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
             <td>{{document.author}}</td>
