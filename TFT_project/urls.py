@@ -42,4 +42,8 @@ urlpatterns = patterns('',
     #    {'edit_profile_form': EditProfileFormExtra},
     #    name='userena_profile_edit'),
 
+
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+

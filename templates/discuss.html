@@ -10,8 +10,7 @@
     <div class="panel-heading">發表文章</div>
     <div class="panel-body">
 		<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
-			<div class="control-group"> <!-- 輸入訊息-->
-				<!--<label class="control-label" for="textarea" >留言板</label>-->
+			<div class="control-group">
 				<div class="controls">
 					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1"></textarea><br/>
 				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3"></textarea>
