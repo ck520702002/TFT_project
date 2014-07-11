@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from posts.views import PostView,ShowPost,PastPost
+from posts.views import PostView,ShowPost,PastPostDiscuss,PastPostFile
 from userena import views as userena_views
 from views import IndexView
 from django.conf.urls.static import static
@@ -30,7 +30,8 @@ urlpatterns = patterns('',
 	url(r'^posts/', include('posts.urls',namespace = "post")),
 	#url(r'^discuss/', ShowPost.as_view()),
     
-    url(r'^pastpost/', PastPost.as_view()),
+    url(r'^pastpost_discuss/', PastPostDiscuss.as_view()),
+    url(r'^pastpost_file/', PastPostFile.as_view()),
     url(r'^teacher/oneonone', TeacherInfoOneOnOneView.as_view()),
     url(r'^teacher/nwmentor', TeacherInfoNwMentorView.as_view()),
 

@@ -100,9 +100,16 @@
             <div class="col-xs-1 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
                 <div class="list-group">
                     <ul class="nav" id="side-menu">
-            <li>
-                            <a href="/pastpost"><i class="fa fa-personal fa-fw"></i>我發過的東西</a>
-                        </li>
+            <div class="btn-group"> 
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              我發過的東西
+              <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                <li><a tabindex="-1" href="/pastpost_discuss">文章</a></li>
+                <li><a tabindex="-1" href="/pastpost_file">檔案</a></li>
+              </ul>
+            </div>
             <li>
                             <a href="/posts/list"><i class="fa fa-discuss fa-fw"></i>討論區</a>
                         </li>

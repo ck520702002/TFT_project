@@ -24,8 +24,12 @@ class ShowFile(ListView):
 	model = Post
 	template_name = 'files.html'
 
-class PastPost(ListView):
+class PastPostDiscuss(ListView):
 	model = Post
-	template_name = 'pastpost.html'
+	template_name = 'pastpost_discuss.html'
+
+class PastPostFile(ListView):
+	model = Post
+	template_name = 'pastpost_file.html'
 
 
