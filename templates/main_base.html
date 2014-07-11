@@ -76,18 +76,11 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input style="width:240px" type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">搜尋</button><ul class="nav navbar-nav navbar-right"></ul>
-            </form>
-        </li>
+        
         <li class="dropdown">
           <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">{{ user.username }}</a>
           <ul id="g-account-menu" class="dropdown-menu" role="menu">
             <li><a href="{% url 'userena_profile_detail' user.username %}">個人檔案</a></li>
-
             
             <li><a href="index.html">登出</a></li>
           </ul>
@@ -109,7 +102,7 @@
                             <a href="/pastpost"><i class="fa fa-personal fa-fw"></i>我發過的東西</a>
                         </li>
             <li>
-                            <a href="/discuss"><i class="fa fa-discuss fa-fw"></i>討論區</a>
+                            <a href="/posts/list"><i class="fa fa-discuss fa-fw"></i>討論區</a>
                         </li>
             <div class="btn-group">
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -148,7 +141,6 @@
         <div class="row-fluid">
                     <div class="span4">
                   <label class="control-label" for="textarea">公告欄</label>     
-
             <div style="width:300px" class="panel panel-default">
                         
                             <div class="panel-body">公告內容</div>

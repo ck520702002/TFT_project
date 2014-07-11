@@ -27,17 +27,8 @@
         <div class="panel-body">
             <form action="" enctype="multipart/form-data" method="post">
               {% csrf_token %}
-              <div class="form-group">
                 {{ form.as_p }}
-              </div>
-
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button class="btn btn-default" float="left">取消</button>
-                        <input type="submit" class="btn btn-primary" value="{% trans "確定更新" %}" />
-                    </div>
-                </div>
-              
+              <input type="submit" value="{% trans "Save changes" %}" />
             </form>
         </div>
 </div>

@@ -6,6 +6,7 @@
 
 {% block content %}
     <!-- Upload form. Note enctype attribute! -->
+    <h3 id="tabs">檔案上傳區</h3>
     <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p>{{ form.non_field_errors }}</p>
@@ -13,8 +14,9 @@
     <p>
         {{ form.docfile.errors }}
         {{ form.docfile }}
+        <input id="id_author" name="author" value={{user.username}} type="hidden">
+        <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
     </p>
-    <p><input type="submit" value="送出" class="btn btn-primary" /></p>
     </form>
       
 
@@ -34,8 +36,8 @@
             <td><button class="btn btn-warning btn-block btn-primary" typle="button">會議記錄</button></td>
             <td><button class="btn btn-success btn-block btn-primary" typle="button">台南小學</button></td>
             <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
-            <td>陳毅</td>
-            <td>2014/05/28</td>
+            <td>{{document.author}}</td>
+            <td>{{document.time}}</td>
         </tr>
         {% endfor %}
     </table>

@@ -56,24 +56,6 @@
 	    <input style="margin-left:175px" type="submit" class="btn btn-primary" value="送出">
 
 	</div>
-<<<<<<< HEAD
-	<div class="span4">
-		<label class="control-label" for="textarea">文章列表</label>
-		{% for post in object_list %}
-		<ul>
-		    <li><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a>
-		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ post.author }}<br>
-		    	{{ post.time }}<br>
-		    {% if post.tag1 != "" %}{{ post.tag1 }} {%endif%}
-			{% if post.tag2 != "" %}{{ post.tag2 }} {%endif%}
-			{% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}</li>
-		</ul>
-		{% endfor %}
-	</div>
-	</div>
-</form>
-{% endblock %}
-=======
 	</div>
 	{% for post in object_list %}
 										<tr>
@@ -94,4 +76,3 @@
 									{% endfor %}
 </form>
 {% endblock %}
->>>>>>> jean's-branch
