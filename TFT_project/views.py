@@ -16,3 +16,6 @@ class TeacherInfoOneOnOneView(TemplateView):
 
 class TeacherInfoNwMentorView(TemplateView):
     template_name = 'teacher/teacher_info2.html'	
+
+class HomePageView(TemplateView):
+	template_name = 'home.html'

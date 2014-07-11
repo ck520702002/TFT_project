@@ -8,12 +8,14 @@ from django.conf import settings
 #from TFT_project.views import name
 from TFT_project.views import TeacherInfoOneOnOneView
 from TFT_project.views import TeacherInfoNwMentorView
+from TFT_project.views import HomePageView
 
 #from filesManagement.views import ShowFile
 
 
 urlpatterns = patterns('',
     # Examples:
+    url(r'^home/', HomePageView.as_view()),
     url(r'^$', IndexView.as_view(), name='main_base.html'),
     # url(r'^blog/', include('blog.urls')), 
     url(r'^accounts/(?P<username>[\.\w-]+)/password/$', userena_views.password_change,
@@ -35,7 +37,6 @@ urlpatterns = patterns('',
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	#url(r'^files/', ShowFile.as_view()),
     url(r'^files/', include('filesManagement.urls')),
-
     #url(r'^accounts/(?P<username>[\.\w-]+)/edit/$',
     #    'userena.views.profile_edit',
     #    {'edit_profile_form': EditProfileFormExtra},
