@@ -1,0 +1,56 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+<!DOCTYPE html>
+
+{%block content%}
+<!--discuss_origin-->
+<div class="control-group">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="tabbable">
+            	<table class="table table-striped table-hover " >
+	            	<thead>
+						<tr>
+							<th width="20%">分類</th>
+							<th width="50%">標題</th>
+							<th width="10%">作者</th>
+							<th width="20%">時間</th>
+						</tr>
+					</thead>
+					<tbody>
+		                {% for post in object_list %}
+							<tr>
+								<td width="15%">
+								{% if post.tag1 != "" %}
+									<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
+								{%endif%}
+								{% if post.tag2 != "" %}
+									<button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag2 }} </button>
+								{%endif%}
+								</td>
+								<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+									<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+										{{ post.context }}
+									</div>	
+								</td>
+								<td width="15%"><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+								<td width="15%" > {{ post.time }}</td>
+							</tr>				
+						{% endfor %}
+					</tbody>
+				</table>
+            </div>
+		</div>
+	</div>
+</div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bundles/bootstrapSourceJS?v=XkouIldXq_pPzIiEbylJIGwgBv2qYDSef1Dnn06aIkQ1"></script>
+
+
+</body>
+</html>
+{% endblock %}
