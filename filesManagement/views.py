@@ -22,9 +22,16 @@ def list(request):
         form = DocumentForm() # A empty, unbound form
 
     # Load documents for the list page
-    documents = Document.objects.all()
-    for document in documents:
+    tmp_documents = Document.objects.all()
+    documents = []
+    for document in tmp_documents:
         document.docfile.name = os.path.basename(document.docfile.name)
+        documents.insert(0, document)
+    #for document in testdocs:
+    #    document.docfile.name = os.path.basename(document.docfile.name)
+
+    #for document in documents:
+    #    document.docfile.name = os.path.basename(document.docfile.name)
 
     # Render list page with the documents and the form
     return render_to_response(
