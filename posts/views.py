@@ -45,4 +45,6 @@ class PastPostFile(ListView):
 	model = Post
 	template_name = 'pastpost_file.html'
 
-
+class PostEdit(ListView):
+	model = Post
+	template_name = 'post_edit.html'

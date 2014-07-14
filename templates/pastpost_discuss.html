@@ -49,14 +49,14 @@
                         {%endif%}
                       </td>
                       <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-                        <div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
                           {{ post.context }}
                         </div>  
                       </td>
                       <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
                       <td> {{ post.time }}</td>
-                      <td><a href="#"><!--<img src={"% static "img/edit.jpg" %}">-->編輯</img></a></td>
-                      <td><a href="javascript:cancel()"><!--<img src={"% static "img/delete.jpg" %}">-->刪除</a></td>
+                      <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
+                      <td><a href="javascript:cancel()">刪除</a></td>
                     </tr>
                   {% endif %}
                   {% endfor %}
