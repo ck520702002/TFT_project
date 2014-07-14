@@ -21,42 +21,39 @@
         <div class="form-group">
             <label for="inputName" class="col-lg-2 control-label">姓名</label>
             {% if profile.name %}
-              <dd>{{ profile.name }}</dd>
+              <p>{{ profile.name }}</p>
             {% endif %}
         </div>
         
 
-        <div class="form-group"><!--email-->
+        <!--<div class="form-group">
             <label for="inputphone" class="col-lg-2 control-label">email</label>
             {% if profile.user.email and not hide_email %}
-              
+              <dd></dd>
             {% endif %}
-        </div>
+        </div>-->
+
         <div class="form-group"><!--電話-->
             <label for="inputphone" class="col-lg-2 control-label">聯絡電話</label>
             {% if profile.phone_number %}
-              <dd>{{ profile.phone_number }}</dd>
+              <p>{{ profile.phone_number }}</p>
             {% endif %}
         </div>
         <div class="form-group"><!--地區-->
             <label for="inputplace" class="col-lg-2 control-label">服務地區</label>
             {% if profile.school %}
-              <dd>{{ profile.school }}</dd>
+              <p>{{ profile.school }}</p>
             {% endif %}
         </div>
         <div class="form-group"><!--簡介-->
             <label for="textArea" class="col-lg-2 control-label">簡介</label>
-            <div class="col-lg-10">
-                {% if profile.school %}
-                  <dd>{{ profile.description }}</dd>
-                {% endif %}
-            </div>
+            {% if profile.school %}
+              <p>{{ profile.description }}</p>
+            {% endif %}
         </div>
         <div class="form-group"><!--更改密碼-->
             <label for="textArea" class="col-lg-2 control-label">更改密碼</label>
-            <div class="col-lg-10">
-              <a href="{% url 'userena_password_change' user.username %}">{% trans "前往更改密碼" %}</a>
-            </div>
+            <p><a href="{% url 'userena_password_change' user.username %}">{% trans "前往更改密碼" %}</a></p>
         </div>
       
         </fieldset>

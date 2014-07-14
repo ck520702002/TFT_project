@@ -8,8 +8,16 @@
       {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
       {% if user.username == profile.user.username %}
       {% endif %}
-    {% endblock %}
-    
+{% endblock %}
+
+<script>
+  function cancel() {
+    answer = confirm("你確定要刪除此文章嗎？");
+    if (answer)
+      location.href="#";
+  }
+</script>
+
 <div class="panel panel-default">
       <div class="panel-heading">{{ user.username }} 的檔案</div>
     <div class="panel-body">
@@ -22,17 +30,16 @@
                       <tr>
                         <th>分類</th>
                         <th>標題</th>
-                        <th >作者</th>
-                        <th >時間</th>
-                        <th >編輯</th>
-                        <th >刪除</th>
+                        <th>作者</th>
+                        <th>時間</th>
+                        <th>刪除</th>
                       </tr>
                     </thead>
                   <tbody>
                   {% for post in object_list %}
                   {%if post.author == user.username%}
                     <tr>
-                      <td width="35%">
+                      <td>
                         {% if post.tag1 != "" %}
                         <button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
                         {%endif%}
@@ -40,13 +47,14 @@
                         <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag2 }} </button>
                         {%endif%}
                       </td>
-                      <td width="30%" ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+                      <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
                         <div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
                           {{ post.context }}
                         </div>  
                       </td>
-                      <td width="%"><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
-                      <td width="35%"> {{ post.time }}</td>
+                      <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+                      <td> {{ post.time }}</td>
+                      <td><a href="javascript:cancel()">刪除</a></td>
                     </tr>
                   {% endif %}
                   {% endfor %}
