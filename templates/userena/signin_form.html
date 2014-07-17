@@ -34,7 +34,7 @@
   </fieldset>
 
     <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "登入" %}" style="margin-left:5px;width:230px"/>
-    <input class="btn btn-warning btn btn-large btn-block" type="submit" value="{% trans "註冊" %}" style="margin-left:5px;width:230px"/>
+    <a href="/accounts/signup"><input class="btn btn-warning btn btn-large btn-block" type="button" value="{% trans "註冊" %}" style="margin-top:5px;margin-left:5px;width:230px"/></a>
     <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" color="#000000" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
     {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
   </form>
