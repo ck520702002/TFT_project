@@ -42,33 +42,251 @@
         </form>
     </div>
 </div>
-    <table  class="table table-striped table-hover">
-    <tr>
-        <td><strong>母分類</strong></td>
-        <td><strong>子分類</strong></td>
-        <td><strong>標題</strong></td>
-        <td><strong>作者</strong></td>
-        <td><strong>日期</strong></td>
-    </tr>
-
-    {% if documents %}
-    
-        {% for document in documents %}
-        <tr>
-            <td>
-                <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
-            </td>
-            <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-            <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
-            <td>{{document.author.user}}</td>
-            <td>{{document.time}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% else %}
-    <p>No documents.</p>
-    {% endif %}     
+  
  
+
+<div class="control-group">
+            <!--/span-->
+                <div class="row-fluid">
+                    <div class="span4">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#A" data-toggle="tab">綜合</a></li>
+                            <li class=""><a href="#B" data-toggle="tab">會議記錄</a></li>
+                            <li class=""><a href="#C" data-toggle="tab">教學企劃</a></li>
+                            <li class=""><a href="#D" data-toggle="tab">教材檔案</a></li>
+                            <li class=""><a href="#E" data-toggle="tab">學校行政</a></li>
+                            <li class=""><a href="#F" data-toggle="tab">教學成果</a></li>
+                        </ul>
+                        <div class="tabbable">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="A">
+                                    <table  class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>母分類</strong></td>
+                                        <td><strong>子分類</strong></td>
+                                        <td><strong>標題</strong></td>
+                                        <td><strong>作者</strong></td>
+                                        <td><strong>日期</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if documents %}
+    
+                                    {% for document in documents %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
+                                        </td>
+                                        <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>No documents.</p>
+                                    {% endif %} 
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="B">
+                                    <table  class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>母分類</strong></td>
+                                        <td><strong>子分類</strong></td>
+                                        <td><strong>標題</strong></td>
+                                        <td><strong>作者</strong></td>
+                                        <td><strong>日期</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if documents %}
+    
+                                    {% for document in documents %}
+                                    {% if document.doctypeTag == "會議記錄" %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
+                                        </td>
+                                        <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>No documents.</p>
+                                    {% endif %} 
+                                    </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane" id="C">
+                                    <!--<div id="timeline"> 
+                                        <ul id="dates"> 
+                                            <li><a href="#6">6月</a></li> 
+                                            <li><a href="#7">7月</a></li> 
+                                            <li><a href="#8">8月</a></li>
+                                        </ul> 
+                                    </div>-->
+                                    <table  class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>母分類</strong></td>
+                                        <td><strong>子分類</strong></td>
+                                        <td><strong>標題</strong></td>
+                                        <td><strong>作者</strong></td>
+                                        <td><strong>日期</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if documents %}
+    
+                                    {% for document in documents %}
+                                    {% if document.doctypeTag == "教學企劃" %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
+                                        </td>
+                                        <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>No documents.</p>
+                                    {% endif %}  
+                                    </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="D">
+                                    <!--<div id="timeline"> 
+                                        <ul id="dates"> 
+                                            <li><a href="#6">6月</a></li> 
+                                            <li><a href="#7">7月</a></li> 
+                                            <li><a href="#8">8月</a></li>
+                                        </ul> 
+                                    </div>-->
+                                    <table  class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>母分類</strong></td>
+                                        <td><strong>子分類</strong></td>
+                                        <td><strong>標題</strong></td>
+                                        <td><strong>作者</strong></td>
+                                        <td><strong>日期</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if documents %}
+    
+                                    {% for document in documents %}
+                                    {% if document.doctypeTag == "教材檔案" %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
+                                        </td>
+                                        <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>No documents.</p>
+                                    {% endif %}  
+                                    </tbody>
+                                    </table>
+                                </div>
+                                
+                                
+                                <div class="tab-pane" id="E">
+                                    <table  class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>母分類</strong></td>
+                                        <td><strong>子分類</strong></td>
+                                        <td><strong>標題</strong></td>
+                                        <td><strong>作者</strong></td>
+                                        <td><strong>日期</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if documents %}
+    
+                                    {% for document in documents %}
+                                    {% if document.doctypeTag == "學校行政" %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
+                                        </td>
+                                        <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>No documents.</p>
+                                    {% endif %}  
+                                    </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane" id="F">
+                                    <table  class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>母分類</strong></td>
+                                        <td><strong>子分類</strong></td>
+                                        <td><strong>標題</strong></td>
+                                        <td><strong>作者</strong></td>
+                                        <td><strong>日期</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if documents %}
+    
+                                    {% for document in documents %}
+                                    {% if document.doctypeTag == "教學成果" %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
+                                        </td>
+                                        <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>No documents.</p>
+                                    {% endif %}  
+                                    </tbody>
+                                    </table>
+                                </div>
+
+                            </div> <!-- /tabbable -->
+                        </div>
+                    </div>
+                </div> <!--??-->
+
+
+            <!--/span-->
+            
+        </div>
+
+
+
 {% endblock %}
 
 		
