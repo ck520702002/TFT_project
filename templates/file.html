@@ -15,16 +15,27 @@
             {{ form.docfile.help_text }}
             {{ form.docfile.errors }}
             {{ form.docfile }}
-            <input id="id_author" name="author" value={{user.username}} type="hidden">
             </br>
             <label class="control-label" for="tag">檔案分類標籤:</label>
-            <select id="id_tag3" name="tag3" class="btn">
-                <option id="id_tag3" name="tag3" value=""></option>
-                <option id="id_tag3" name="tag3" value="教學方法">會議記錄</option>
-                <option id="id_tag3" name="tag3" value="班級經營">教學企劃</option>
-                <option id="id_tag3" name="tag3" value="學生輔導">教材檔案</option>
-                <option id="id_tag3" name="tag3" value="班級經營">學校行政</option>
-                <option id="id_tag3" name="tag3" value="學生輔導">教學成果</option>
+            <select id="id_doctypeTag" name="doctypeTag" class="btn">
+                <option  value=""></option>
+                <option  value="會議記錄">會議記錄</option>
+                <option  value="教學企劃">教學企劃</option>
+                <option  value="教材檔案">教材檔案</option>
+                <option  value="學校行政">學校行政</option>
+                <option  value="教學成果">教學成果</option>
+            </select>
+            <label class="control-label" for="tag">學校:</label>
+            <select id="id_schoolnameTag" name="schoolnameTag" class="btn">
+                <option  value=""></option>
+                <option  value="仁光國小">仁光國小</option>
+                <option  value="甲中國小">甲中國小</option>
+                <option  value="新山國小">新山國小</option>
+                <option  value="內角國小">內角國小</option>
+                <option  value="廣原國小">廣原國小</option>
+                <option  value="瑞源國小">瑞源國小</option>
+                <option  value="萬安國小">萬安國小</option>
+                <option  value="永安國小">永安國小</option>
             </select>
             &nbsp;
             <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
@@ -44,12 +55,12 @@
     
         {% for document in documents %}
         <tr>
-            <td>{% if post.tag3 != "" %}{{ post.tag3 }} {%endif%}
-                <button class="btn btn-warning btn-block btn-primary" typle="button">會議記錄</button>
+            <td>
+                <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
             </td>
-            <td><button class="btn btn-success btn-block btn-primary" typle="button">台南小學</button></td>
+            <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
             <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
-            <td>{{document.author}}</td>
+            <td>{{document.author.user}}</td>
             <td>{{document.time}}</td>
         </tr>
         {% endfor %}

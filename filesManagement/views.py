@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from filesManagement.models import Document
 from filesManagement.forms import DocumentForm
 from django.views.generic.list import ListView
+from accounts.models import MyProfile
 import os
 def list(request):
     # Handle file upload
@@ -14,6 +15,9 @@ def list(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.author = MyProfile.objects.get(user=request.user)
+            newdoc.doctypeTag = request.POST['doctypeTag']
+            newdoc.schoolnameTag = request.POST['schoolnameTag']
             newdoc.save()
 
             # Redirect to the document list after POST
