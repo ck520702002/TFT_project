@@ -7,6 +7,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from userena.utils import signin_redirect, get_profile_model, get_user_model
+from django.shortcuts import redirect
+from accounts.models import MyProfile
 
 class PostView(CreateView,ListView):
 	model = Post
@@ -29,6 +31,15 @@ class ShowPost(CreateView,ListView):
 			documents.insert(0, document)
 		context['posts'] = documents
 		return context
+	def post(self, request, *args, **kwargs):
+		newdoc = Post()
+		newdoc.title = request.POST['title']
+		newdoc.context = request.POST['context']
+		newdoc.tag1 = request.POST['tag1']
+		newdoc.author = MyProfile.objects.get(user=request.user)
+		newdoc.save()
+		return redirect("/posts/list")
+
 class PostDetail(DetailView):
 	model = Post
 	template_name = 'post_detail.html'

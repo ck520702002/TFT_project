@@ -10,10 +10,11 @@ class Post(models.Model):
 	context = models.CharField(max_length=500)
 	#time = datetime.datetime.now()
 	time = models.DateTimeField(auto_now = True)
+	#only use tag1 now
 	tag1 = models.CharField(max_length=10,blank=True)
 	tag2 = models.CharField(max_length=10,blank=True)
 	tag3 = models.CharField(max_length=10,blank=True)
-	author = models.CharField(max_length=10,blank=True)
+	author = models.ForeignKey("accounts.MyProfile")
 	
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return  self.title
