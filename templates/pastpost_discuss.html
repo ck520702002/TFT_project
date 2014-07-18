@@ -37,8 +37,7 @@
                       </tr>
                     </thead>
                   <tbody>
-                  {% for post in object_list %}
-                  {%if post.author == user.username%}
+                  {% for post in posts %}
                     <tr>
                       <td>
                         {% if post.tag1 != "" %}
@@ -58,7 +57,6 @@
                       <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
                       <td><a href="javascript:cancel()">刪除</a></td>
                     </tr>
-                  {% endif %}
                   {% endfor %}
                   </tbody>
                   </table>

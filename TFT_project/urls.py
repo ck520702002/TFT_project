@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from posts.views import PostView,ShowPost,PastPostDiscuss,PastPostFile
+from posts.views import PostView,ShowPost,PastPostDiscuss
+from filesManagement.views import PastPostFile
 from userena import views as userena_views
 from views import IndexView
 from django.conf.urls.static import static

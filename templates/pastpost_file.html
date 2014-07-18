@@ -36,27 +36,16 @@
                       </tr>
                     </thead>
                   <tbody>
-                  {% for post in object_list %}
-                  {%if post.author == user.username%}
+                  {% for post in documents %}
                     <tr>
                       <td>
-                        {% if post.tag1 != "" %}
-                        <button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
-                        {%endif%}
-                        {% if post.tag2 != "" %}
-                        <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag2 }} </button>
-                        {%endif%}
+                        <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
                       </td>
-                      <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
-                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-                          {{ post.context }}
-                        </div>  
-                      </td>
-                      <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+                      <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.docfile.name }}</a><br></td>
+                      <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{post.author.user}}</a></td>
                       <td> {{ post.time }}</td>
                       <td><a href="javascript:cancel()">刪除</a></td>
                     </tr>
-                  {% endif %}
                   {% endfor %}
                   </tbody>
                   </table>

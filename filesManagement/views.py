@@ -8,6 +8,7 @@ from filesManagement.models import Document
 from filesManagement.forms import DocumentForm
 from django.views.generic.list import ListView
 from accounts.models import MyProfile
+from django.shortcuts import render
 import os
 def list(request):
     # Handle file upload
@@ -44,4 +45,13 @@ def list(request):
     )
 
 class ShowFile(ListView):
-    template_name = 'files.html'    
+    template_name = 'files.html'  
+
+class PastPostFile(ListView):
+    template_name = 'pastpost_file.html'  
+    def get(self, request, *args, **kwargs):
+        newdoc = Document.objects.filter(author = request.user).order_by("-time")
+        for post in newdoc:
+            post.docfile.name = os.path.basename(post.docfile.name)
+        print str(newdoc.count())
+        return render(request, self.template_name, {'documents': newdoc})
