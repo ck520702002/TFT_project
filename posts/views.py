@@ -17,7 +17,6 @@ class PostView(CreateView,ListView):
 class ShowPost(CreateView,ListView):
 	model = Post
 	#context_object_name = 'posts'
-	queryset = Post.objects.all()
 	template_name = 'discuss.html'
 	'''def get_queryset(self):
         self.post = get_object_or_404(Post, name=self.args[0])
@@ -26,10 +25,7 @@ class ShowPost(CreateView,ListView):
     # Call the base implementation first to get a context
 		context = super(ShowPost, self).get_context_data(**kwargs)
     # Add in the publisher
-		documents = []
-		for document in self.queryset:
-			documents.insert(0, document)
-		context['posts'] = documents
+		context['posts'] = Post.objects.all().order_by("-time")
 		return context
 	def post(self, request, *args, **kwargs):
 		newdoc = Post()

@@ -26,11 +26,10 @@ def list(request):
         form = DocumentForm() # A empty, unbound form
 
     # Load documents for the list page
-    tmp_documents = Document.objects.all()
-    documents = []
-    for document in tmp_documents:
+    documents = Document.objects.all().order_by("-time")
+    for document in documents:
         document.docfile.name = os.path.basename(document.docfile.name)
-        documents.insert(0, document)
+        #documents.insert(0, document)
     #for document in testdocs:
     #    document.docfile.name = os.path.basename(document.docfile.name)
 
