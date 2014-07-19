@@ -13,6 +13,7 @@ from TFT_project.views import HomePageView
 from accounts.views import profile_edit
 from accounts.views import ProfileView
 
+from django.contrib.auth.decorators import login_required
 #from filesManagement.views import ShowFile
 
 
@@ -48,7 +49,7 @@ urlpatterns = patterns('',
     #    'userena.views.profile_edit',
     #    {'edit_profile_form': EditProfileFormExtra},
     #    name='userena_profile_edit'),
-    url(r'^$', IndexView.as_view(), name='main_base.html'),
+    url(r'^$', login_required(HomePageView.as_view()), name='main_base.html'),
 
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
