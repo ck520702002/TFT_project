@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView
 from userena.utils import signin_redirect, get_profile_model, get_user_model
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from accounts.models import MyProfile
 
 class PostView(CreateView,ListView):
@@ -51,7 +52,11 @@ class PastPostDiscuss(ListView):
 	def get(self, request, *args, **kwargs):
 		newdoc = Post.objects.filter(author = request.user).order_by("-time")
 		return render(request, self.template_name, {'posts': newdoc})		
-
+	def post(self, request, *args, **kwargs):
+		msgId = request.POST.get('post', None)
+		msgToDel = get_object_or_404(Post, pk = msgId)
+		msgToDel.delete()
+		return redirect("/pastpost_discuss")
 class PostEdit(ListView):
 	model = Post
 	template_name = 'post_edit.html'

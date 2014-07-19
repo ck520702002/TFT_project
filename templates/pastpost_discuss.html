@@ -11,10 +11,12 @@
 {% endblock %}
 
 <script>
-  function cancel() {
+  function cancel(input) {
     answer = confirm("你確定要刪除此文章嗎？");
-    if (answer)
-      location.href="#";
+    if (answer){
+      document.forms["deletefile"].elements.post.value = input;
+      document.forms["deletefile"].submit();
+    }
   }
 </script>
     
@@ -37,15 +39,16 @@
                       </tr>
                     </thead>
                   <tbody>
+                    <form name="deletefile" method="post" >{% csrf_token %}
                   {% for post in posts %}
                     <tr>
                       <td>
-                        {% if post.tag1 != "" %}
+                      {% if post.tag1 == "心情分享" or post.tag1 == "教學日誌" or post.tag1 == "教學週誌"%}
                         <button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
-                        {%endif%}
-                        {% if post.tag2 != "" %}
-                        <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag2 }} </button>
-                        {%endif%}
+                      {%endif%}
+                      {% if post.tag1 == "教學方法" or post.tag1 == "班級經營" or post.tag1 == "行為輔導" or post.tag1 == "特教輔導" or post.tag1 == "學校行政" or post.tag1 == "親師溝通" %}
+                        <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag1 }} </button>
+                      {%endif%}
                       </td>
                       <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
                         <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
@@ -55,9 +58,11 @@
                       <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
                       <td> {{ post.time }}</td>
                       <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
-                      <td><a href="javascript:cancel()">刪除</a></td>
+                      <td><a href="#" onClick="cancel({{post.pk}})">刪除</a></td>
                     </tr>
                   {% endfor %}
+                    <input type="hidden" id="post" name="post" value="" />
+                    </form>
                   </tbody>
                   </table>
            

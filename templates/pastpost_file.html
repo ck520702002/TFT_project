@@ -12,7 +12,7 @@
 
 <script>
   function cancel(input) {
-    answer = confirm("你確定要刪除此文章嗎？");
+    answer = confirm("你確定要刪除此檔案嗎？");
     if (answer){
       //document.getElementById['file'].value = input;
       document.forms["deletefile"].elements.file.value = input;
@@ -56,7 +56,7 @@
                     </tr>
                   {% endfor %}
                     <input type="hidden" id="file" name="file" value="" />
-                  </form>
+                    </form>
                   </tbody>
                   </table>
            
