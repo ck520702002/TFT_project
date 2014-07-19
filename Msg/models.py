@@ -10,3 +10,13 @@ class Message(models.Model):
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return  self.context
+
+
+class Bulletin(models.Model):
+    title = models.CharField(max_length=50)
+    context = models.CharField(max_length=500)
+    time = models.DateTimeField(auto_now = True)
+    info_url = models.URLField(max_length=500)
+    author = models.ForeignKey("accounts.MyProfile")
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return  self.title
