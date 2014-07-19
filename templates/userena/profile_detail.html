@@ -20,7 +20,11 @@
         <fieldset>
         <div class="form-group">
             <label for="inputName" class="col-lg-2 control-label">姓名</label>
+            {% if profile.user.last_name == "" and profile.user.first_name == "" %}
+              </br>
+            {% else %}
               <p>{{ profile.user.last_name }}{{ profile.user.first_name }}</p>
+            {% endif %}
         </div>
         
 
@@ -32,39 +36,44 @@
         </div>-->
         <div class="form-group"><!--帳號-->
             <label for="inputphone" class="col-lg-2 control-label">帳號</label>
-            {% if profile.user %}
+            {% if profile.user != "" %}
               <p>{{ profile.user }}</p>
+            {% else %}
+             </br>
             {% endif %}
         </div>
         <div class="form-group"><!--email-->
             <label for="inputphone" class="col-lg-2 control-label">E-Mail</label>
-            {% if profile.user.email %}
+            {% if profile.user.email != "" %}
               <p>{{ profile.user.email }}</p>
+            {% else %}
+             </br>
             {% endif %}
         </div>
         <div class="form-group"><!--電話-->
             <label for="inputphone" class="col-lg-2 control-label">聯絡電話</label>
-            {% if profile.phone_number %}
+            {% if profile.phone_number != "" %}
               <p>{{ profile.phone_number }}</p>
+            {% else %}
+             </br>
             {% endif %}
         </div>
         <div class="form-group"><!--地區-->
             <label for="inputplace" class="col-lg-2 control-label">服務地區</label>
-            {% if profile.school %}
+            {% if profile.school  != "" %}
               <p>{{ profile.school }}</p>
+            {% else %}
+             </br>
             {% endif %}
         </div>
         <div class="form-group"><!--簡介-->
             <label for="textArea" class="col-lg-2 control-label">簡介</label>
-            {% if profile.school %}
+            {% if profile.school  != "" %}
               <p>{{ profile.description }}</p>
+            {% else %}
+             </br>
             {% endif %}
         </div>
-        <div class="form-group"><!--更改密碼-->
-            <label for="textArea" class="col-lg-2 control-label">更改密碼</label>
-            <p><a href="{% url 'userena_password_change' user.username %}">{% trans "前往更改密碼" %}</a></p>
-        </div>
-      
         </fieldset>
         </div>
   </div>

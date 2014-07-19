@@ -46,7 +46,7 @@
                         <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
                       </td>
                       <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.docfile.name }}</a><br></td>
-                      <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{post.author.user}}</a></td>
+                      <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
                       <td> {{ post.time }}</td>
 
                       <td>

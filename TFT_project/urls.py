@@ -11,6 +11,7 @@ from TFT_project.views import TeacherInfoOneOnOneView
 from TFT_project.views import TeacherInfoNwMentorView
 from TFT_project.views import HomePageView
 from accounts.views import profile_edit
+from accounts.views import ProfileView
 
 #from filesManagement.views import ShowFile
 
@@ -26,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^accounts/(?P<username>[\.\w-]+)/password/$', userena_views.password_change,
         {'success_url':'/'}),
     url(r'^accounts/signup', userena_views.signup,{'success_url':'/'}),
+    url(r'^accounts/view/(?P<pk>\d+)', ProfileView.as_view()),
 	url(r'^accounts/', include('userena.urls')),
     #url(r'^accounts/(?P<username>[\.\w-]+)/$',name.get_name ),
 	url(r'^admin/', include(admin.site.urls)),
@@ -47,6 +49,7 @@ urlpatterns = patterns('',
     #    'userena.views.profile_edit',
     #    {'edit_profile_form': EditProfileFormExtra},
     #    name='userena_profile_edit'),
+    
 
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

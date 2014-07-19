@@ -55,7 +55,7 @@
                           {{ post.context }}
                         </div>  
                       </td>
-                      <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{user.username}}</a></td>
+                      <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
                       <td> {{ post.time }}</td>
                       <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
                       <td><a href="#" onClick="cancel({{post.pk}})">刪除</a></td>

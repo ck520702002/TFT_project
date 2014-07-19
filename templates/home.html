@@ -43,7 +43,7 @@
 						<!--for file-->
 						<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.docfile.name }}</a><br></td>
 						{%endif%}
-						<td width="15%"><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{post.author.user}}</a></td>
+						<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
 						<td width="15%" > {{ post.time }}</td>
 					</tr>
 				

@@ -35,7 +35,7 @@ class HomePageView(TemplateView):
 
 		datalist = sorted(chain(list(context['documents']), list(context['posts'])),key=lambda instance: instance.time, reverse = True)
 		context['alldata'] = datalist
-		print str(context['documents'].count())
-		print str(context['posts'].count())
-		print str(len(datalist))
+		#print str(context['documents'].count())
+		#print str(context['posts'].count())
+		#print str(len(datalist))
 		return context	
