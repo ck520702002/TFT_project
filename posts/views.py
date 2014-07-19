@@ -60,7 +60,6 @@ class PastPostDiscuss(ListView):
 class PostEdit(ListView):
 	template_name = 'post_edit.html'
 	def get(self, request, *args, **kwargs):
-		print self.editId
 		msg = get_object_or_404(Post, pk = kwargs['pk'])
 		return render(request, self.template_name, {'post': msg})		
 	def post(self, request, *args, **kwargs):
