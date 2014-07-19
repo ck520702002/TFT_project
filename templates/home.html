@@ -1,6 +1,7 @@
 {% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
+{% load filename %}
 
 <!DOCTYPE html>
 
@@ -41,7 +42,7 @@
 						<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br></td>
 						{%else%}
 						<!--for file-->
-						<td ><a href="{{ post.docfile.url }}" >{{ post.docfile.name }}</a><br></td>
+						<td ><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a><br></td>
 						{%endif%}
 						<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
 						<td width="15%" > {{ post.time }}</td>

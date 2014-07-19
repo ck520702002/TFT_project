@@ -30,8 +30,8 @@ class HomePageView(TemplateView):
     # Add in the publisher
 		context['documents'] = Document.objects.all().order_by("-time")
 		context['posts'] = Post.objects.all().order_by("-time")
-		for data in context['documents']:
-			data.docfile.name = os.path.basename(data.docfile.name)
+		#for data in context['documents']:
+			#data.docfile.name = os.path.basename(data.docfile.name)
 
 		datalist = sorted(chain(list(context['documents']), list(context['posts'])),key=lambda instance: instance.time, reverse = True)
 		context['alldata'] = datalist

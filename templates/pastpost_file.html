@@ -1,6 +1,7 @@
 {% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
+{% load filename %}
 
 {% block content %}
   <div class="white-box">
@@ -45,7 +46,7 @@
                       <td>
                         <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
                       </td>
-                      <td><a href="{{ post.docfile.url }}" >{{ post.docfile.name }}</a><br></td>
+                      <td><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a><br></td>
                       <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
                       <td> {{ post.time }}</td>
 

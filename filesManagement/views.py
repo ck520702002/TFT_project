@@ -30,14 +30,8 @@ def list(request):
 
     # Load documents for the list page
     documents = Document.objects.all().order_by("-time")
-    for document in documents:
-        document.docfile.name = os.path.basename(document.docfile.name)
-        #documents.insert(0, document)
-    #for document in testdocs:
-    #    document.docfile.name = os.path.basename(document.docfile.name)
-
     #for document in documents:
-    #    document.docfile.name = os.path.basename(document.docfile.name)
+        #document.docfile.name = os.path.basename(document.docfile.name)
 
     # Render list page with the documents and the form
     return render_to_response(
@@ -53,8 +47,8 @@ class PastPostFile(ListView):
     template_name = 'pastpost_file.html'  
     def get(self, request, *args, **kwargs):
         newdoc = Document.objects.filter(author = request.user).order_by("-time")
-        for post in newdoc:
-            post.docfile.name = os.path.basename(post.docfile.name)
+        #for post in newdoc:
+            #post.docfile.name = os.path.basename(post.docfile.name)
         print str(newdoc.count())
         return render(request, self.template_name, {'documents': newdoc})
     def post(self, request, *args, **kwargs):

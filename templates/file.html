@@ -1,6 +1,7 @@
 {% extends 'main_base.html' %}
 {% load i18n %}
-{% load url from future %}s
+{% load url from future %}
+{% load filename %}
 
 {% block title %}{% trans "Files" %}{% endblock %}
 
@@ -79,7 +80,7 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>
@@ -111,7 +112,7 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>
@@ -152,7 +153,7 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>
@@ -193,7 +194,7 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>
@@ -228,7 +229,7 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>
@@ -262,7 +263,7 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>
