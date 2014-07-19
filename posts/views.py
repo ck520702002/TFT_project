@@ -11,6 +11,8 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from accounts.models import MyProfile
+from Msg.models import Message
+from posts.models import Post
 
 class PostView(CreateView,ListView):
 	model = Post
@@ -41,6 +43,22 @@ class ShowPost(CreateView,ListView):
 class PostDetail(DetailView):
 	model = Post
 	template_name = 'post_detail.html'
+	def get(self, request, *args, **kwargs):
+		newdoc = Post.objects.filter(author = request.user).order_by("-time")
+		searchPost = Post.objects.get(pk=kwargs['pk'])
+		allmsg = Message.objects.filter(belong_post=searchPost).order_by("-time")
+		print allmsg
+		return render(request, self.template_name, {'post':searchPost, 'allmsg': allmsg})	
+
+	def post(self, request, *args, **kwargs):
+		newmsg = Message()
+		newmsg.context = request.POST['context']
+		newmsg.author = MyProfile.objects.get(user=request.user)
+		newmsg.belong_post = Post.objects.get(pk = request.POST['postid'])
+		newmsg.save()
+		print "qam debug"
+		print "postid"+request.POST['postid']
+		return redirect("/posts/list/"+request.POST['postid']+"/detail")
 
 class ShowFile(ListView):
 	model = Post

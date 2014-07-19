@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'guardian',
     'posts',
     'filesManagement',
+    'Msg',
 )
 
 AUTHENTICATION_BACKENDS = (
