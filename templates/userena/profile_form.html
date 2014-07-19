@@ -28,13 +28,14 @@
             <form action="" enctype="multipart/form-data" method="post">
               {% csrf_token %}
                 <fieldset>
-              {% for item in form %}
-              <div class="form-group">
+                  {{form.as_p}}
+                <!--{% for item in form %}
+                <div class="form-group">
                 <label for="inputPassword" class="col-lg-2 control-label">{{item.label}}</label>
-                {{item}}
-              </div>
-              {% endfor %}
-            </fieldset>  
+                  {{item}}
+                </div>
+                {% endfor %}-->
+                </fieldset>  
                 <!--{% for field in form %}
                     {{field.name}}
                 {% endfor %}-->

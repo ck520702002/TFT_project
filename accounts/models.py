@@ -15,7 +15,7 @@ class Category(models.Model):
 
 class MyProfile(UserenaBaseProfile):
     user = models.OneToOneField(User) 
-    email = models.EmailField(max_length=40)
+    #email = models.EmailField(max_length=40)
     phone_number = models.CharField(max_length=30) 
     school = models.CharField(max_length=30)       
     description = models.CharField(_('description'),max_length=30) 
