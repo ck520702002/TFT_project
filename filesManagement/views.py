@@ -8,7 +8,9 @@ from filesManagement.models import Document
 from filesManagement.forms import DocumentForm
 from django.views.generic.list import ListView
 from accounts.models import MyProfile
+from django.shortcuts import redirect
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 import os
 def list(request):
     # Handle file upload
@@ -55,3 +57,9 @@ class PastPostFile(ListView):
             post.docfile.name = os.path.basename(post.docfile.name)
         print str(newdoc.count())
         return render(request, self.template_name, {'documents': newdoc})
+    def post(self, request, *args, **kwargs):
+        docId = request.POST.get('file', None)
+        docToDel = get_object_or_404(Document, pk = docId)
+        docToDel.docfile.delete()
+        docToDel.delete()
+        return redirect("/pastpost_file")

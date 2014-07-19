@@ -11,10 +11,13 @@
 {% endblock %}
 
 <script>
-  function cancel() {
+  function cancel(input) {
     answer = confirm("你確定要刪除此文章嗎？");
-    if (answer)
-      location.href="#";
+    if (answer){
+      //document.getElementById['file'].value = input;
+      document.forms["deletefile"].elements.file.value = input;
+      document.forms["deletefile"].submit();
+    }
   }
 </script>
 
@@ -36,6 +39,7 @@
                       </tr>
                     </thead>
                   <tbody>
+                    <form name="deletefile" method="post" >{% csrf_token %}
                   {% for post in documents %}
                     <tr>
                       <td>
@@ -44,9 +48,15 @@
                       <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.docfile.name }}</a><br></td>
                       <td><a href='accounts/(?P<username>(?!signout|signup|signin)[\\.\\w-]+)/$'>{{post.author.user}}</a></td>
                       <td> {{ post.time }}</td>
-                      <td><a href="javascript:cancel()">刪除</a></td>
+
+                      <td>
+                        <!--<a href="javascript: cancel({{post.pk}})">刪除</a>-->
+                        <a href="#" onClick="cancel({{post.pk}})">刪除</a>
+                      </td>
                     </tr>
                   {% endfor %}
+                    <input type="hidden" id="file" name="file" value="" />
+                  </form>
                   </tbody>
                   </table>
            
