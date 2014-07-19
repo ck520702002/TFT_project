@@ -6,12 +6,47 @@
 <div class="panel panel-default" style="word-break:break-all">
     <div class="panel-heading">編輯文章</div>
 	<div class="panel-body">
-		<textarea id="id_context" name="context" type="text" value="" class="form-control" rows="20"></textarea>
-		<br/>
-		<div align="right">
-            <button type="button" class="btn btn-default" onclick="history.back()">取消</button>
-            <input type="submit" class="btn btn-primary" value="{% trans "確定更新" %}" />
-        </div>
+		<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
+			<div class="control-group">
+				<div class="controls">
+					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1">{{post.title}}</textarea><br/>
+				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="20">{{post.context}}</textarea>
+				</div> 
+				                    
+				<div class="span4">
+					<label  class="control-label" for="tag">請選擇分類：</label>
+					<select required class="btn" id="id_tag1" name="tag1">
+						<option value></option>
+					    <optgroup label="分享"> 
+					        <option id="id_tag1" name="tag1" value="心情分享" 
+					        {% if post.tag1 == "心情分享" %} selected="selected" {% endif %}>心情分享</option>
+					        <option id="id_tag1" name="tag1" value="教學日誌"
+					        {% if post.tag1 == "教學日誌" %} selected="selected" {% endif %}>教學日誌</option>
+					        <option id="id_tag1" name="tag1" value="教學週誌"
+					        {% if post.tag1 == "教學週誌" %} selected="selected" {% endif %}>教學週誌</option>
+					    <optgroup label="提問"> 
+					        <option id="id_tag2" name="tag2" value="教學方法"
+					        {% if post.tag1 == "教學方法" %} selected="selected" {% endif %}>教學方法</option>
+				        	<option id="id_tag2" name="tag2" value="班級經營"
+				        	{% if post.tag1 == "班級經營" %} selected="selected" {% endif %}>班級經營</option>
+				        	<option id="id_tag2" name="tag2" value="行為輔導"
+				        	{% if post.tag1 == "行為輔導" %} selected="selected" {% endif %}>行為輔導</option>
+				        	<option id="id_tag2" name="tag2" value="特教輔導"
+				        	{% if post.tag1 == "特教輔導" %} selected="selected" {% endif %}>特教輔導</option>
+				        	<option id="id_tag2" name="tag2" value="學校行政"
+				        	{% if post.tag1 == "學校行政" %} selected="selected" {% endif %}>學校行政</option>
+				        	<option id="id_tag2" name="tag2" value="親師溝通"
+				        	{% if post.tag1 == "親師溝通" %} selected="selected" {% endif %}>親師溝通</option>
+					</select>
+				    <div align="right">
+            			<button type="button" class="btn btn-default" onclick="history.back()">取消</button>
+            			<input type="hidden" id="post" name="post" value="{{post.pk}}" />
+            			<input type="submit" class="btn btn-primary" value="{% trans "確定更新" %}" />
+        			</div>
+				</div>
+			</div>
+		</form>
+
 	</div>
 </div>
 

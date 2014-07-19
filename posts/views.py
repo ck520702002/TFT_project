@@ -58,5 +58,17 @@ class PastPostDiscuss(ListView):
 		msgToDel.delete()
 		return redirect("/pastpost_discuss")
 class PostEdit(ListView):
-	model = Post
 	template_name = 'post_edit.html'
+	def get(self, request, *args, **kwargs):
+		print self.editId
+		msg = get_object_or_404(Post, pk = kwargs['pk'])
+		return render(request, self.template_name, {'post': msg})		
+	def post(self, request, *args, **kwargs):
+		msgId = request.POST.get('post', None)
+		msgToEdit = get_object_or_404(Post, pk = msgId)
+		#msgToEdit.update(title = request.POST['title'], context = request.POST['context'], tag1 = request.POST['tag1'])
+		msgToEdit.title = request.POST['title']
+		msgToEdit.context = request.POST['context']
+		msgToEdit.tag1 = request.POST['tag1']
+		msgToEdit.save()
+		return redirect("/pastpost_discuss")
