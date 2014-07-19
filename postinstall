@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rm db.sqlite3
+python manage.py syncdb
+python manage.py check_permissions
+python manage.py runserver
