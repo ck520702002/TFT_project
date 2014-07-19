@@ -12,12 +12,17 @@ class Category(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class MyProfile(UserenaBaseProfile):
-    name =  models.CharField(max_length=30)  
-    user = models.OneToOneField(User) 
-    description = models.CharField(_('description'),max_length=30) 
-    school = models.CharField(max_length=30)       
-    phone_number = models.CharField(max_length=30) 
-    #category = models.ForeignKey(Category, blank=True, null=True)
-     
 
+class MyProfile(UserenaBaseProfile):
+    user = models.OneToOneField(User) 
+    email = models.EmailField(max_length=40)
+    phone_number = models.CharField(max_length=30) 
+    school = models.CharField(max_length=30)       
+    description = models.CharField(_('description'),max_length=30) 
+    category = models.ForeignKey(Category, blank=True, null=True)
+    #name =  models.CharField(max_length=30)   
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)
+    #your_school = forms.CharField(label='Your school', max_length=100)
+    #your_description = forms.CharField(label='Your description')

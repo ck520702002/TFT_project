@@ -23,23 +23,30 @@
 
 {% block content %}
 <div class="panel panel-default">
-  <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
-    <div class="panel-body">
-        <form action="" enctype="multipart/form-data" method="post">
-          {% csrf_token %}
-            <fieldset>
+      <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
+        <div class="panel-body">
+            <form action="" enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+                <fieldset>
               {% for item in form %}
               <div class="form-group">
                 <label for="inputPassword" class="col-lg-2 control-label">{{item.label}}</label>
                 {{item}}
               </div>
               {% endfor %}
-            </fieldset>              
-        </form>
-        <div align="right">
-            <button type="button" class="btn btn-default" onclick="history.back()">取消</button>
-            <input type="submit" class="btn btn-primary" value="{% trans "確定更新" %}" />
+            </fieldset>  
+                <!--{% for field in form %}
+                    {{field.name}}
+                {% endfor %}-->
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-default">取消</button>
+                        <input type="submit" class="btn btn-primary" value="{% trans "確定更新" %}" />
+                    </div>
+                </div>
+              
+            </form>
         </div>
-    </div>
 </div>
 {% endblock %}
