@@ -20,9 +20,7 @@
         <fieldset>
         <div class="form-group">
             <label for="inputName" class="col-lg-2 control-label">姓名</label>
-            {% if profile.name %}
-              <p>{{ profile.name }}</p>
-            {% endif %}
+              <p>{{ profile.user.last_name }}{{ profile.user.first_name }}</p>
         </div>
         
 
