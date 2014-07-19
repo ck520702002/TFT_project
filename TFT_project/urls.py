@@ -19,7 +19,6 @@ from accounts.views import ProfileView
 urlpatterns = patterns('',
     # Examples:
     url(r'^home/', HomePageView.as_view()),
-    url(r'^$', IndexView.as_view(), name='main_base.html'),
     # url(r'^blog/', include('blog.urls')), 
     url(r'^accounts/(?P<username>[\.\w-]+)/edit/$',
         profile_edit,
@@ -49,7 +48,7 @@ urlpatterns = patterns('',
     #    'userena.views.profile_edit',
     #    {'edit_profile_form': EditProfileFormExtra},
     #    name='userena_profile_edit'),
-    
+    url(r'^$', IndexView.as_view(), name='main_base.html'),
 
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

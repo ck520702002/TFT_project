@@ -44,7 +44,7 @@
                   {% for post in documents %}
                     <tr>
                       <td>
-                        <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
+                        <button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
                       </td>
                       <td><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a><br></td>
                       <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
