@@ -49,7 +49,7 @@ class HomePageView(TemplateView):
 		found_file = None
 		if ('search' in request.POST) and request.POST['search'].strip():
 			searchText = request.POST['search']
-		print searchText
+		#print searchText
 		entry_query = get_query(searchText, ['context', 'title'])
 		found_msg = Post.objects.filter(entry_query).order_by('-time')
 		entry_query = get_query(searchText, ['docfile'])
