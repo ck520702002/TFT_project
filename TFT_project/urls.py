@@ -16,16 +16,14 @@ from accounts.views import ProfileView
 from django.contrib.auth.decorators import login_required
 #from filesManagement.views import ShowFile
 
+admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
     url(r'^home/', HomePageView.as_view()),
     # url(r'^blog/', include('blog.urls')), 
-    url(r'^accounts/(?P<username>[\.\w-]+)/edit/$',
-        profile_edit,
-        name='userena_profile_edit'),
-    url(r'^accounts/(?P<username>[\.\w-]+)/password/$', userena_views.password_change,
-        {'success_url':'/'}),
+    url(r'^accounts/(?P<username>[\.\w-]+)/edit/$', profile_edit, name='userena_profile_edit'),
+    url(r'^accounts/(?P<username>[\.\w-]+)/password/$', userena_views.password_change, {'success_url':'/'}),
     url(r'^accounts/signup', userena_views.signup,{'success_url':'/'}),
     url(r'^accounts/view/(?P<pk>\d+)', ProfileView.as_view()),
 	url(r'^accounts/', include('userena.urls')),

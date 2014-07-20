@@ -21,8 +21,3 @@ class MyProfile(UserenaBaseProfile):
     description = models.CharField(_('description'),max_length=30) 
     category = models.ForeignKey(Category, blank=True, null=True)
     #name =  models.CharField(max_length=30)   
-
-class NameForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=100)
-    #your_school = forms.CharField(label='Your school', max_length=100)
-    #your_description = forms.CharField(label='Your description')
