@@ -49,11 +49,12 @@ class HomePageView(TemplateView):
 		found_file = None
 		if ('search' in request.POST) and request.POST['search'].strip():
 			searchText = request.POST['search']
-		print searchText
-		entry_query = get_query(searchText, ['context', 'title'])
-		found_msg = Post.objects.filter(entry_query).order_by('-time')
-		entry_query = get_query(searchText, ['docfile'])
-		found_file = Document.objects.filter(entry_query).order_by('-time')
-		datalist = sorted(chain(list(found_msg), list(found_file)),key=lambda instance: instance.time, reverse = True)
+			entry_query = get_query(searchText, ['context', 'title'])
+			found_msg = Post.objects.filter(entry_query).order_by('-time')
+			entry_query = get_query(searchText, ['docfile'])
+			found_file = Document.objects.filter(entry_query).order_by('-time')
+			datalist = sorted(chain(list(found_msg), list(found_file)),key=lambda instance: instance.time, reverse = True)
+		else:
+			datalist = []
 		#datalist = found_msg
 		return render(request, self.template_name, {'alldata':datalist})
