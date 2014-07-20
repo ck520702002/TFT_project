@@ -39,7 +39,11 @@
 						</td>
 						{% if post.tag1 != null %}
 						<!--for post-->
-						<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br></td>
+						<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+                          {{ post.context }}
+                        </div>  
+                      	</td>
 						{%else%}
 						<!--for file-->
 						<td ><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a><br></td>
