@@ -15,6 +15,7 @@ from accounts.views import ProfileView
 
 from django.contrib.auth.decorators import login_required
 #from filesManagement.views import ShowFile
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 admin.autodiscover()
 
@@ -52,5 +53,6 @@ urlpatterns = patterns('',
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
+# Add media and static files
+urlpatterns += staticfiles_urlpatterns()
 
