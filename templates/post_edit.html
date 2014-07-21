@@ -10,7 +10,7 @@
 			<div class="control-group">
 				<div class="controls">
 					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1">{{post.title}}</textarea><br/>
-				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="20">{{post.context}}</textarea>
+				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="20">{{post.context|linebreaks}}</textarea>
 				</div> 
 				                    
 				<div class="span4">
