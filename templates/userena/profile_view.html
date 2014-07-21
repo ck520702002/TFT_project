@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="panel panel-default" style="word-break:break-all">
-    <div class="panel-heading"><b><font size="4">{{ post.title }}</font></b></div>
+    <div class="panel-heading">{{ profile.user}}的基本資料</div>
 	<div class="panel-body">
 		<fieldset>
         <div class="form-group">
@@ -65,7 +65,7 @@
         </div>
     	</fieldset>
 		<br/>
-		<input style="margin-top:10px" type="submit" class="btn btn-primary" onclick="history.back()" value="回前頁">
+		<input style="margin-top:10px" type="submit" class="btn btn-default" onclick="history.back()" value="回前頁">
 	</div>
 </div>
 

@@ -12,48 +12,48 @@
         <div class="span4">
             <div class="tabbable">
             	<table class="table table-striped table-hover " >
-            	<thead>
-					<tr>
+	            	<thead>
+						<tr>
 							<th width="15%">分類</th>
 							<th>標題</th>
 							<th width="15%">作者</th>
 							<th width="15%">時間</th>
-					</tr>
-				</thead>
-				<tbody>
-                {% for post in alldata %}
-					<tr>
-						<td width="15%">
-						{% if post.tag1 != null %}
-						<!--for post-->
-						{% if post.tag1 == "心情分享" or post.tag1 == "教學日誌" or post.tag1 == "教學週誌"%}
-							<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button>
-						{%endif%}
-						{% if post.tag1 == "教學方法" or post.tag1 == "班級經營" or post.tag1 == "行為輔導" or post.tag1 == "特教輔導" or post.tag1 == "學校行政" or post.tag1 == "親師溝通" %}
-							<button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag1 }} </button>
-						{%endif%}
-						{%else%}
-						<!--for file-->
-							<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
-						{%endif%}
-						</td>
-						{% if post.tag1 != null %}
-						<!--for post-->
-						<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a><br>
-                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-                          {{ post.context |linebreaks}}
-                        </div>  
-                      	</td>
-						{%else%}
-						<!--for file-->
-						<td ><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a><br></td>
-						{%endif%}
-						<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
-						<td width="15%" > {{ post.time }}</td>
-					</tr>
-				
-				{% endfor %}
-				</tbody>
+						</tr>
+					</thead>
+					<tbody>
+	                {% for post in alldata %}
+						<tr>
+							<td width="15%">
+							{% if post.tag1 != null %}
+								<!--for post-->
+								{% if post.tag1 == "心情分享" or post.tag1 == "教學日誌" or post.tag1 == "教學週誌"%}
+									<button class="btn btn-warning" type="button">{{ post.tag1 }}</button>
+								{%endif%}
+								{% if post.tag1 == "教學方法" or post.tag1 == "班級經營" or post.tag1 == "行為輔導" or post.tag1 == "特教輔導" or post.tag1 == "學校行政" or post.tag1 == "親師溝通" %}
+									<button class="btn btn-success btn-block btn-primary" type="button">{{ post.tag1 }} </button>
+								{%endif%}
+								{%else%}
+								<!--for file-->
+									<button class="btn btn-info btn-block btn-primary" type="button">{{ post.doctypeTag }} </button>
+								{%endif%}
+							</td>
+							{% if post.tag1 != null %}
+							<!--for post-->
+							<td width="40%"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
+		                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+		                          {{ post.context |linebreaks}}
+		                        </div>  
+	                      	</td>
+							{%else%}
+							<!--for file-->
+							<td width="40%"><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a></td>
+							{%endif%}
+							<td width="5%" ><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
+							<td width="30%" > {{ post.time }}</td>
+						</tr>
+					
+					{% endfor %}
+					</tbody>
 				</table>
             </div>
 		</div>

@@ -43,16 +43,15 @@
                     <form name="deletefile" method="post" >{% csrf_token %}
                   {% for post in documents %}
                     <tr>
-                      <td>
-                        <button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.doctypeTag }} </button>
+                      <td width="15%">
+                        <button class="btn btn-info btn-block btn-primary" type="button">{{ post.doctypeTag }} </button>
                       </td>
-                      <td><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a><br></td>
-                      <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
-                      <td> {{ post.time }}</td>
-
+                      <td><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a></td>
+                      <td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
+                      <td width="15%"> {{ post.time }}</td>
                       <td>
                         <!--<a href="javascript: cancel({{post.pk}})">刪除</a>-->
-                        <a href="#" onClick="cancel({{post.pk}})">刪除</a>
+                        <a onClick="cancel({{post.pk}})">刪除</a>
                       </td>
                     </tr>
                   {% endfor %}
