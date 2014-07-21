@@ -39,9 +39,9 @@
 						</td>
 						{% if post.tag1 != null %}
 						<!--for post-->
-						<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+						<td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a><br>
                         <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-                          {{ post.context }}
+                          {{ post.context |linebreaks}}
                         </div>  
                       	</td>
 						{%else%}

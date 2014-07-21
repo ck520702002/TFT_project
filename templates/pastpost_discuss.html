@@ -50,9 +50,9 @@
                         <button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag1 }} </button>
                       {%endif%}
                       </td>
-                      <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a><br>
+                      <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a><br>
                         <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-                          {{ post.context }}
+                          {{ post.context |linebreaks}}
                         </div>  
                       </td>
                       <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
