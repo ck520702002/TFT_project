@@ -4,9 +4,9 @@
 
 {% block content %}
 <div class="panel panel-default" style="word-break:break-all">
-    <div class="panel-heading"><b><font size="4">{{ post.title }}</font></b></div>
+    <div class="panel-heading"><b><font size="4">{{ post.title |linebreaks}}</font></b></div>
 	<div class="panel-body">
-		{{ post.context }}
+		{{ post.context |linebreaks}}
 		<br/>
 		<hr>
 		<h5>{{user.username}}:</h5>
@@ -21,8 +21,8 @@
 				<tbody>
 					{% for msg in allmsg %}
 					<tr>
-						<td width="13%" align="right"><b>{{msg.author.user}}</b></td>
-						<td>{{msg.context}}</td>
+						<td width="13%" align="right">{{msg.author.user}}</td>
+						<td>{{msg.context|linebreaks}}</td>
 						<td width="30%">{{msg.time}}</td>
 					</tr>
 					{% endfor %}
