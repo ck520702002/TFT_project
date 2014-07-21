@@ -23,52 +23,47 @@
 <div class="panel panel-default">
       <div class="panel-heading">{{ user.username }} 的文章</div>
     <div class="panel-body">
-
         <div class="tabbable">
-            
-     
-                  <table class="table table-striped table-hover " >
-                    <thead>
-                      <tr>
-                        <th>分類</th>
-                        <th>標題</th>
-                        <th>作者</th>
-                        <th>時間</th>
-                        <th>編輯</th>
-                        <th>刪除</th>
-                      </tr>
-                    </thead>
-                  <tbody>
-                    <form name="deletefile" method="post" >{% csrf_token %}
-                  {% for post in posts %}
-                    <tr>
-                      <td>
-                      {% if post.tag1 == "心情分享" or post.tag1 == "教學日誌" or post.tag1 == "教學週誌"%}
-                        <button class="btn btn-warning btn-block btn-primary" type="button">{{ post.tag1 }}</button>
-                      {%endif%}
-                      {% if post.tag1 == "教學方法" or post.tag1 == "班級經營" or post.tag1 == "行為輔導" or post.tag1 == "特教輔導" or post.tag1 == "學校行政" or post.tag1 == "親師溝通" %}
-                        <button class="btn btn-success btn-block btn-primary" type="button">{{ post.tag1 }} </button>
-                      {%endif%}
-                      </td>
-                      <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
-                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-                          {{ post.context |linebreaks}}
-                        </div>  
-                      </td>
-                      <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
-                      <td> {{ post.time }}</td>
-                      <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
-                      <td><a onClick="cancel({{post.pk}})">刪除</a></td>
-                    </tr>
-                  {% endfor %}
-                    <input type="hidden" id="post" name="post" value="" />
-                    </form>
-                  </tbody>
-                  </table>
-           
+          <table class="table table-striped table-hover " >
+            <thead>
+              <tr>
+                  <th>分類</th>
+                  <th>標題</th>
+                  <th>作者</th>
+                  <th>時間</th>
+                  <th>編輯</th>
+                  <th>刪除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <form name="deletefile" method="post" >{% csrf_token %}
+            {% for post in posts %}
+              <tr>
+                <td>
+                {% if post.tag1 == "心情分享" or post.tag1 == "教學日誌" or post.tag1 == "教學週誌"%}
+                  <button class="btn btn-warning btn-block btn-primary" type="button">{{ post.tag1 }}</button>
+                {%endif%}
+                {% if post.tag1 == "教學方法" or post.tag1 == "班級經營" or post.tag1 == "行為輔導" or post.tag1 == "特教輔導" or post.tag1 == "學校行政" or post.tag1 == "親師溝通" %}
+                  <button class="btn btn-success btn-block btn-primary" type="button">{{ post.tag1 }} </button>
+                {%endif%}
+                </td>
+                <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
+                  <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+                    {{ post.context |linebreaks}}
+                  </div>  
+                </td>
+                <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
+                <td> {{ post.time }}</td>
+                <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
+                <td><a onClick="cancel({{post.pk}})">刪除</a></td>
+              </tr>
+            {% endfor %}
+              <input type="hidden" id="post" name="post" value="" />
+              </form>
+            </tbody>
+          </table>
           </div>
-
-        </div>
+    </div>
   </div>
        
     </div>
