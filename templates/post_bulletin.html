@@ -1,0 +1,37 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+<!DOCTYPE html>
+
+{%block content%}
+<!--jean-->
+<div class="panel panel-default">
+    <div class="panel-heading">發表公告</div>
+    <div class="panel-body">
+    <form action="/posts/bulletin/create/" method = "post" padding-bottom="10px">{% csrf_token%}
+      <div class="control-group">
+        <div class="controls">
+          <textarea id="id_title" name="title" type="text"  class="form-control" placeholder="公告標題"rows="1"></textarea><br/>
+          <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="公告內容"rows="3"></textarea><br/>
+          <textarea id="id_infourl" name="infourl" type="text" value="" class="form-control" placeholder="公告網址"rows="3"></textarea><br/>
+        </div> 
+        <br/> 
+        <div class="span4" align="right">
+          <input  align="right" type="submit" class="btn btn-danger" value="送出">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bundles/bootstrapSourceJS?v=XkouIldXq_pPzIiEbylJIGwgBv2qYDSef1Dnn06aIkQ1"></script>
+
+
+</body>
+</html>
+{% endblock %}

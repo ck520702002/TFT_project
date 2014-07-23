@@ -21,6 +21,16 @@ class Post(models.Model):
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return  self.title
 
+
+class Bulletin(models.Model):
+    title = models.CharField(max_length=50)
+    context = models.CharField(max_length=500)
+    time = models.DateTimeField(auto_now = True)
+    info_url = models.URLField(max_length=500)
+    author = models.ForeignKey("accounts.MyProfile")
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return  self.title
+
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                     normspace=re.compile(r'\s{2,}').sub):

@@ -154,25 +154,15 @@
                           </tr>
                         </thead>
                         <tbody>
+                          {% for bulletin in bulletins%}
                           <tr>
-                              <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}公告標題test</a></td>
+                              <td><a href="/posts/bulletin/{{ bulletin.id }}/detail" >{{ bulletin.title }}</a></td>
                           </tr>
+                          {% endfor %}
                         </tbody>
                       </table>
                     </div>
-                    <div class="controls">
-                      <form action="" method = "post" padding-bottom="10px">{% csrf_token%}
-                        <textarea style="width:300px;"class="form-control input-xlarge" id="textarea" rows="1" placeholder="公告標題"></textarea>
-                        <br/>
-                        </div>                        
-                        <div class="controls">
-                          <textarea style="width:300px" class="form-control input-xlarge" id="textarea" rows="3" placeholder="公告內容"></textarea> 
-                          <textarea style="width:300px" class="form-control input-xlarge" id="textarea" rows="3" placeholder="公告url"></textarea> 
-                            <input style="margin-top:10px" type="submit" class="btn btn-danger" value="送出">
-                          <br/>
-                        </div>  
-                      </form>         
-                    </div>
+        
                   </div>
             </div>
         </div>

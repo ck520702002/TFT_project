@@ -11,6 +11,7 @@ from accounts.models import MyProfile
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from posts.models import Bulletin
 import os
 def list(request):
     # Handle file upload
@@ -36,7 +37,7 @@ def list(request):
     # Render list page with the documents and the form
     return render_to_response(
         'file.html',
-        {'documents': documents, 'form': form},
+        {'documents': documents, 'form': form, 'bulletins' : Bulletin.objects.all().order_by("-time")},
         context_instance=RequestContext(request)
     )
 
@@ -50,7 +51,7 @@ class PastPostFile(ListView):
         #for post in newdoc:
             #post.docfile.name = os.path.basename(post.docfile.name)
         print str(newdoc.count())
-        return render(request, self.template_name, {'documents': newdoc})
+        return render(request, self.template_name, {'documents': newdoc, 'bulletins' : Bulletin.objects.all().order_by("-time")})
     def post(self, request, *args, **kwargs):
         docId = request.POST.get('file', None)
         docToDel = get_object_or_404(Document, pk = docId)

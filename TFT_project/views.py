@@ -5,6 +5,7 @@ import os
 from itertools import chain
 from django.shortcuts import render
 from posts.models import get_query
+from posts.models import Bulletin
 
 class IndexView(TemplateView):
 	template_name = "main_base.html"
@@ -42,7 +43,7 @@ class HomePageView(TemplateView):
 		documents = Document.objects.all().order_by("-time")
 		posts = Post.objects.all().order_by("-time")
 		datalist = sorted(chain(list(documents), list(posts)),key=lambda instance: instance.time, reverse = True)
-		return render(request, self.template_name, {'alldata':datalist})
+		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
 	def post(self, request, *args, **kwargs):
 		searchText = ''
 		found_msg = None
@@ -57,4 +58,4 @@ class HomePageView(TemplateView):
 		else:
 			datalist = []
 		#datalist = found_msg
-		return render(request, self.template_name, {'alldata':datalist})
+		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
