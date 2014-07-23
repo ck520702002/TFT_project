@@ -1,11 +1,12 @@
-from django.views.generic.base import TemplateView
+from django.views.generic import TemplateView, CreateView, ListView
 from posts.models import Post
 from filesManagement.models import Document
 import os
 from itertools import chain
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from posts.models import get_query
 from posts.models import Bulletin
+from accounts.models import MyProfile
 
 class IndexView(TemplateView):
 	template_name = "main_base.html"
@@ -25,8 +26,9 @@ class TeacherInfoOneOnOneView(TemplateView):
 class TeacherInfoNwMentorView(TemplateView):
     template_name = 'teacher/teacher_info2.html'	
 
-class HomePageView(TemplateView):
+class HomePageView(CreateView, ListView):
 	template_name = 'home.html'
+	model = Post
 	def get_context_data(self, **kwargs):
     # Call the base implementation first to get a context
 		context = super(HomePageView, self).get_context_data(**kwargs)
@@ -59,3 +61,30 @@ class HomePageView(TemplateView):
 			datalist = []
 		#datalist = found_msg
 		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
+		# deal with search
+		if ('search' in request.POST):
+			if request.POST['search'].strip():
+				searchText = ''
+				found_msg = None
+				found_file = None
+				searchText = request.POST['search']
+				entry_query = get_query(searchText, ['context', 'title'])
+				found_msg = Post.objects.filter(entry_query).order_by('-time')
+				entry_query = get_query(searchText, ['docfile'])
+				found_file = Document.objects.filter(entry_query).order_by('-time')
+				datalist = sorted(chain(list(found_msg), list(found_file)),key=lambda instance: instance.time, reverse = True)
+			else:
+				datalist = []
+			#datalist = found_msg
+			return render(request, self.template_name, {'alldata':datalist})
+		# deal with create announcement
+		elif ( 'announce_title' in request.POST and 'announce_text' in request.POST ):
+			newdoc = Post()
+			newdoc.title = request.POST['announce_title']
+			newdoc.context = request.POST['announce_text']
+			newdoc.tag1 = "announcement"
+			newdoc.author = MyProfile.objects.get(user=request.user)
+			newdoc.save()
+			return redirect("/home")
+
+

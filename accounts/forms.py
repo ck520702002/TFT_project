@@ -6,6 +6,10 @@ from userena.forms import SignupForm
 from userena import views as userena_views
 from userena.utils import get_profile_model
 
+from accounts.models import TFTGroup
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType
+
 class CustomEditProfileForm(userena_views.EditProfileForm):
     """ Base form used for fields that are always required """
 
@@ -33,12 +37,12 @@ class SignupFormExtra(SignupForm):
 
     """
     first_name = forms.CharField(label=_(u'First name'),
-                                 max_length=30,
-                                 required=False)
+                                     max_length=30,
+                                     required=False)
 
     last_name = forms.CharField(label=_(u'Last name'),
-                                max_length=30,
-                                required=False)
+                                    max_length=30,
+                                    required=False)
 
     def __init__(self, *args, **kw):
         """

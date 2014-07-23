@@ -154,17 +154,41 @@
                           </tr>
                         </thead>
                         <tbody>
+<<<<<<< HEAD
                           {% for bulletin in bulletins%}
                           <tr>
                               <td><a href="/posts/bulletin/{{ bulletin.id }}/detail" >{{ bulletin.title }}</a></td>
                           </tr>
+=======
+                          {% for announce in alldata %}<br>
+                            {% if announce.tag1 == "announcement" %}
+                            <a href="/posts/list/{{ post.id }}/detail" >公告：{{ announce.title }}</a>
+                            {% endif %}
+>>>>>>> 1f2239ef150d2cfe6ad664908fa416f767dfee26
                           {% endfor %}
                         </tbody>
                       </table>
                     </div>
+<<<<<<< HEAD
         
+=======
+                    <div class="controls">
+                      <form action="" method = "post" padding-bottom="10px">{% csrf_token%}
+                        <textarea name = "announce_title" style="width:300px;"class="form-control input-xlarge" id="announce_title" rows="1" placeholder="公告標題"></textarea>
+                        <br/>
+                        </div>                        
+                        <div class="controls">
+                          <textarea name = "announce_text"style="width:300px" class="form-control input-xlarge" id="annouce_text" rows="3" placeholder="公告內容"></textarea> 
+                            <input style="margin-top:10px" type="submit" class="btn btn-danger" value="送出">
+                          <br/>
+                        </div>  
+                      </form>         
+                    </div>
+>>>>>>> 1f2239ef150d2cfe6ad664908fa416f767dfee26
                   </div>
             </div>
+            {% block right_menu %}
+            {% endblock %}
         </div>
         <!--/row-->
     </div>

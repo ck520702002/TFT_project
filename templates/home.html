@@ -22,6 +22,7 @@
 					</thead>
 					<tbody>
 	                {% for post in alldata %}
+	                	{% if post.tag1 != "announcement" %}
 						<tr>
 							<td width="15%">
 							{% if post.tag1 != null %}
@@ -37,7 +38,7 @@
 									<button class="btn btn-info btn-block btn-primary" type="button">{{ post.doctypeTag }} </button>
 								{%endif%}
 							</td>
-							{% if post.tag1 != null %}
+							{% if post.tag1 != null%}
 							<!--for post-->
 							<td width="40%"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 		                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
@@ -51,6 +52,7 @@
 							<td width="5%" ><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
 							<td width="30%" > {{ post.time }}</td>
 						</tr>
+						{% endif %}
 					
 					{% endfor %}
 					</tbody>
