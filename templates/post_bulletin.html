@@ -12,8 +12,8 @@
     <form action="/posts/bulletin/create/" method = "post" padding-bottom="10px">{% csrf_token%}
       <div class="control-group">
         <div class="controls">
-          <textarea id="id_title" name="title" type="text"  class="form-control" placeholder="公告標題"rows="1"></textarea><br/>
-          <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="公告內容"rows="3"></textarea><br/>
+          <textarea id="id_title" name="title" type="text"  class="form-control" placeholder="公告標題"rows="1" required></textarea><br/>
+          <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="公告內容"rows="3" required></textarea><br/>
           <textarea id="id_infourl" name="infourl" type="text" value="" class="form-control" placeholder="公告網址"rows="3"></textarea><br/>
         </div> 
         <br/> 
