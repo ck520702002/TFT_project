@@ -10,7 +10,9 @@
 		<br/>
 		<hr>
 		<p><a href="http://{{data.info_url}}" >{{data.info_url}}</a></p>
+		{% if perms.posts.add_bulletin %}
 		<a href="/posts/bulletin/{{ data.id }}/edit" style="margin-top:10px" class="btn btn-primary" >編輯</a>
+		{% endif %}
 	</div>
 </div>
 
