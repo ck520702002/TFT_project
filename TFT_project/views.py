@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from posts.models import get_query
 from posts.models import Bulletin
 from accounts.models import MyProfile
+from accounts.models import TFTGroup
 
 class IndexView(TemplateView):
 	template_name = "main_base.html"
@@ -42,11 +43,15 @@ class HomePageView(CreateView, ListView):
 		#print str(len(datalist))
 		return context	
 	def get(self, request, *args, **kwargs):
+		if not request.user.has_perm('accounts.view_profile'):
+			return render(request, '401.html')
 		documents = Document.objects.all().order_by("-time")
 		posts = Post.objects.all().order_by("-time")
 		datalist = sorted(chain(list(documents), list(posts)),key=lambda instance: instance.time, reverse = True)
 		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
 	def post(self, request, *args, **kwargs):
+		if not request.user.has_perm('accounts.view_profile'):
+			return render(request, '401.html')
 		searchText = ''
 		found_msg = None
 		found_file = None

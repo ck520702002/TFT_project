@@ -15,6 +15,8 @@ from posts.models import Bulletin
 import os
 def list(request):
     # Handle file upload
+    if not request.user.has_perm('accounts.view_profile'):
+            return render(request, '401.html')
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -47,12 +49,16 @@ class ShowFile(ListView):
 class PastPostFile(ListView):
     template_name = 'pastpost_file.html'  
     def get(self, request, *args, **kwargs):
+        if not request.user.has_perm('accounts.view_profile'):
+            return render(request, '401.html')
         newdoc = Document.objects.filter(author = request.user).order_by("-time")
         #for post in newdoc:
             #post.docfile.name = os.path.basename(post.docfile.name)
         print str(newdoc.count())
         return render(request, self.template_name, {'documents': newdoc, 'bulletins' : Bulletin.objects.all().order_by("-time")})
     def post(self, request, *args, **kwargs):
+        if not request.user.has_perm('accounts.view_profile'):
+            return render(request, '401.html')
         docId = request.POST.get('file', None)
         docToDel = get_object_or_404(Document, pk = docId)
         docToDel.docfile.delete()
