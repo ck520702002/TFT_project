@@ -26,7 +26,7 @@ class CustomEditProfileForm(userena_views.EditProfileForm):
         self.fields['phone_number'].label = '聯絡電話'
         self.fields['school'].label = '服務地區'
         self.fields['description'].label = '簡介'
-        self.fields['category'].label = '個人權限'
+        #self.fields['category'].label = '個人權限'
         
 
 class SignupFormExtra(SignupForm):
