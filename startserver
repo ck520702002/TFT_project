@@ -1,0 +1,4 @@
+#!/bin/sh
+export LC_ALL=en_US.UTF-8
+pytho nmanage.py check_permissions
+python manage.py runserver
