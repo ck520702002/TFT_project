@@ -1,4 +1,4 @@
 #!/bin/sh
 export LC_ALL=en_US.UTF-8
-pytho manage.py check_permissions
+python manage.py check_permissions
 python manage.py runserver
