@@ -15,15 +15,48 @@
 
 
 {% block body %}
+
+<script type="text/javascript">
+/* code from qodo.co.uk */
+// create as many regular expressions here as you need:
+var digitsOnly = /[1234567890]/g;
+var integerOnly = /[0-9\.]/g;
+var alphaOnly = /[A-Za-z1234567890]/g;
+
+function restrictCharacters(myfield, e, restrictionType) {
+	if (!e) var e = window.event
+	if (e.keyCode) code = e.keyCode;
+	else if (e.which) code = e.which;
+	var character = String.fromCharCode(code);
+
+	// if they pressed esc... remove focus from field...
+	if (code==27) { this.blur(); return false; }
+	
+	// ignore if they are press other keys
+	// strange because code: 39 is the down key AND ' key...
+	// and DEL also equals .
+	if (!e.ctrlKey && code!=9 && code!=8 && code!=36 && code!=37 && code!=38 && (code!=39 || (code==39 && character=="'")) && code!=40) {
+		if (character.match(restrictionType)) {
+			return true;
+		} else {
+                        alert("please use english");
+			return true;
+		}
+		
+	}
+}
+
+</script>
+
 <div class = "container" align = "center" color="#FFFFFF" style="width:250px">
   <div align = "center">
-  <form action="" method="post" class="form-signup">
+  <form action="" method="post" class="form-signup"  accept-charset="ISO-8859-1">
     {% csrf_token %}
 
   <fieldset>
     {{ form.non_field_errors }}
     <p>
-        <input style="margin-left:5px;width:230px" class="required" id="id_username" maxlength="75" name="username" type="text" placeholder="name">
+        <input style="margin-left:5px;width:230px" class="required" id="id_username" maxlength="75" name="username" type="text" placeholder="ID,請輸入英文或數字"  onmousedown="alert('請輸入英文或數字')" ><!-- onkeypress="return restrictCharacters(this, event, alphaOnly);" -->
         {{ field.errors }}
     </p>
     <p>
