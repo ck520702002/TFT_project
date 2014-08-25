@@ -53,7 +53,7 @@ class PostDetail(DetailView):
 		newdoc = Post.objects.filter(author = request.user).order_by("-time")
 		searchPost = Post.objects.get(pk=kwargs['pk'])
 		allmsg = Message.objects.filter(belong_post=searchPost).order_by("-time")
-		print allmsg
+		#print allmsg
 		return render(request, self.template_name, {'post':searchPost, 'allmsg': allmsg, 'bulletins' : Bulletin.objects.all().order_by("-time")})	
 
 	def post(self, request, *args, **kwargs):
@@ -64,8 +64,9 @@ class PostDetail(DetailView):
 		newmsg.author = MyProfile.objects.get(user=request.user)
 		newmsg.belong_post = Post.objects.get(pk = request.POST['postid'])
 		newmsg.save()
-		print "qam debug"
-		print "postid"+request.POST['postid']
+		#print "qam debug"
+		#print "postid"+request.POST['postid']
+)
 		return redirect("/posts/list/"+request.POST['postid']+"/detail")
 
 class ShowFile(ListView):

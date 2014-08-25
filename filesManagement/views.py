@@ -54,7 +54,7 @@ class PastPostFile(ListView):
         newdoc = Document.objects.filter(author = request.user).order_by("-time")
         #for post in newdoc:
             #post.docfile.name = os.path.basename(post.docfile.name)
-        print str(newdoc.count())
+        #print str(newdoc.count())
         return render(request, self.template_name, {'documents': newdoc, 'bulletins' : Bulletin.objects.all().order_by("-time")})
     def post(self, request, *args, **kwargs):
         if not request.user.has_perm('accounts.view_profile'):

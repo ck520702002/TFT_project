@@ -22,5 +22,5 @@ class ProfileView(DetailView):
 
     def get(self, request, *args, **kwargs):
     	searchProfile = get_object_or_404(MyProfile, pk = kwargs['pk'])
-        print searchProfile.phone_number
+        #print searchProfile.phone_number
         return render(request, self.template_name, {'profile': searchProfile})
