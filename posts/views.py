@@ -66,7 +66,6 @@ class PostDetail(DetailView):
 		newmsg.save()
 		#print "qam debug"
 		#print "postid"+request.POST['postid']
-)
 		return redirect("/posts/list/"+request.POST['postid']+"/detail")
 
 class ShowFile(ListView):
