@@ -40,10 +40,10 @@
             {% for post in posts %}
               <tr>
                 <td>
-                {% if post.tag1 == "心情分享" or post.tag1 == "教學日誌" or post.tag1 == "教學週誌"%}
+                {% if post.tag1 == "心情札記" or post.tag1 == "教學日誌" or post.tag1 == "語文" or post.tag1 == "數學" or post.tag1 == "社會" or post.tag1 == "自然與生活科技" or post.tag1 == "藝術與人文" or post.tag1 == "健康與體育" or post.tag1 == "綜合學習領域" or post.tag1 == "低年級生活課程" or post.tag1 == "補救教學" or post.tag1 == "班級經營" or post.tag1 == "親師溝通" or post.tag1 == "個案輔導" or post.tag1 == "校務行政" %}
                   <button class="btn btn-warning btn-block btn-primary" type="button">{{ post.tag1 }}</button>
                 {%endif%}
-                {% if post.tag1 == "教學方法" or post.tag1 == "班級經營" or post.tag1 == "行為輔導" or post.tag1 == "特教輔導" or post.tag1 == "學校行政" or post.tag1 == "親師溝通" %}
+                {% if post.tag1 == "好書推薦" or post.tag1 == "研習講座" or post.tag1 == "教學資源" or post.tag1 == "聚會玩樂" or post.tag1 == "其他" %}
                   <button class="btn btn-success btn-block btn-primary" type="button">{{ post.tag1 }} </button>
                 {%endif%}
                 </td>
