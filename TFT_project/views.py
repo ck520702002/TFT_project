@@ -55,17 +55,6 @@ class HomePageView(CreateView, ListView):
 		searchText = ''
 		found_msg = None
 		found_file = None
-		if ('search' in request.POST) and request.POST['search'].strip():
-			searchText = request.POST['search']
-			entry_query = get_query(searchText, ['context', 'title'])
-			found_msg = Post.objects.filter(entry_query).order_by('-time')
-			entry_query = get_query(searchText, ['docfile'])
-			found_file = Document.objects.filter(entry_query).order_by('-time')
-			datalist = sorted(chain(list(found_msg), list(found_file)),key=lambda instance: instance.time, reverse = True)
-		else:
-			datalist = []
-		#datalist = found_msg
-		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
 		# deal with search
 		if ('search' in request.POST):
 			if request.POST['search'].strip():
@@ -73,9 +62,9 @@ class HomePageView(CreateView, ListView):
 				found_msg = None
 				found_file = None
 				searchText = request.POST['search']
-				entry_query = get_query(searchText, ['context', 'title'])
+				entry_query = get_query(searchText, ['context', 'title', 'tag1'])
 				found_msg = Post.objects.filter(entry_query).order_by('-time')
-				entry_query = get_query(searchText, ['docfile'])
+				entry_query = get_query(searchText, ['docfile', 'doctypeTag'])
 				found_file = Document.objects.filter(entry_query).order_by('-time')
 				datalist = sorted(chain(list(found_msg), list(found_file)),key=lambda instance: instance.time, reverse = True)
 			else:

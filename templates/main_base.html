@@ -160,6 +160,7 @@
                           {% for bulletin in bulletins%}
                           <tr>
                             <td><a href="/posts/bulletin/{{ bulletin.id }}/detail" >{{ bulletin.title }}</a></td>
+                            <td><a href="/posts/bulletin/{{ bulletin.id }}/detail" >{{ bulletin.time }}</a></td>
                           </tr>
                           {% endfor %}
                         </tbody>
