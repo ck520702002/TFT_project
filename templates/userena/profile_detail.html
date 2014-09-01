@@ -61,7 +61,7 @@
             {% endif %}
         </div>-->
         <div class="form-group"><!--地區-->
-            <label for="inputplace" class="col-lg-2 control-label">服務地區</label>
+            <label for="inputplace" class="col-lg-2 control-label">任職單位</label>
             {% if profile.school  != "" %}
               <p>{{ profile.school }}</p>
             {% else %}
@@ -76,6 +76,16 @@
              </br>
             {% endif %}
         </div>
+
+        <div class="form-group"><!--tft group-->
+            <label for="textArea" class="col-lg-2 control-label">群組類別</label>
+            {% if profile.authorized_groups  != "" %}
+              <p>{{ profile.authorized_groups }}</p>
+            {% else %}
+             </br>
+            {% endif %}
+        </div>
+
         <div class="form-group"><!--更改密碼-->
             <label for="textArea" class="col-lg-2 control-label">更改密碼</label>
             <p><a href="{% url 'userena_password_change' user.username %}">{% trans "前往更改密碼" %}</a></p>

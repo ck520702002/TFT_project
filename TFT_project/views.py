@@ -47,7 +47,8 @@ class HomePageView(CreateView, ListView):
 			return render(request, '401.html')
 		documents = Document.objects.all().order_by("-time")
 		posts = Post.objects.all().order_by("-time")
-		datalist = sorted(chain(list(documents), list(posts)),key=lambda instance: instance.time, reverse = True)
+		bulletins = Bulletin.objects.all().order_by("-time")
+		datalist = sorted(chain(list(documents), list(posts), list(bulletins)),key=lambda instance: instance.time, reverse = True)
 		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
@@ -61,12 +62,15 @@ class HomePageView(CreateView, ListView):
 				searchText = ''
 				found_msg = None
 				found_file = None
+				found_bulletin = None
 				searchText = request.POST['search']
 				entry_query = get_query(searchText, ['context', 'title', 'tag1'])
 				found_msg = Post.objects.filter(entry_query).order_by('-time')
 				entry_query = get_query(searchText, ['docfile', 'doctypeTag'])
 				found_file = Document.objects.filter(entry_query).order_by('-time')
-				datalist = sorted(chain(list(found_msg), list(found_file)),key=lambda instance: instance.time, reverse = True)
+				entry_query = get_query(searchText, ['title', 'context'])
+				found_bulletin = Bulletin.objects.filter(entry_query).order_by('-time')
+				datalist = sorted(chain(list(found_msg), list(found_file), list(found_bulletin)),key=lambda instance: instance.time, reverse = True)
 			else:
 				datalist = []
 			#datalist = found_msg

@@ -15,7 +15,7 @@ class CustomEditProfileForm(userena_views.EditProfileForm):
 
     class Meta:
         model = get_profile_model()
-        exclude = ['last_name', 'user', 'mugshot', 'privacy',  'first_name']
+        exclude = ['last_name', 'user', 'mugshot', 'privacy',  'first_name', 'authorized_groups']
     def __init__(self, *args, **kwargs):
         super(CustomEditProfileForm, self).__init__(*args, **kwargs)
         #self.fields['email'].widget.attrs['placeholder'] = self.fields['email'].label or 'email@address.nl'
@@ -24,7 +24,7 @@ class CustomEditProfileForm(userena_views.EditProfileForm):
         self.fields['last_name'].label = '姓'
         #self.fields['email'].label = '帳號'
         self.fields['phone_number'].label = '聯絡電話'
-        self.fields['school'].label = '服務地區'
+        self.fields['school'].label = '任職單位'
         self.fields['description'].label = '簡介'
         #self.fields['category'].label = '個人權限'
         

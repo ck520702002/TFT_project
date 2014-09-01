@@ -33,10 +33,13 @@
 								{% if post.tag1 == "好書推薦" or post.tag1 == "研習講座" or post.tag1 == "教學資源" or post.tag1 == "聚會玩樂" or post.tag1 == "其他" %}
 									<button class="btn btn-success btn-block btn-primary" type="button">{{ post.tag1 }} </button>
 								{%endif%}
-								{%else%}
+							{% elif  post.doctypeTag != null %}
 								<!--for file-->
-									<button class="btn btn-info btn-block btn-primary" type="button">{{ post.doctypeTag }} </button>
-								{%endif%}
+									<button class="btn btn-info btn-block btn-primary" type="button">{{ post.doctypeTag }} </button>	
+							{% else %}
+								<!--for bulletin-->
+									<button style="background-color:#9D37FF;" class="btn btn-info btn-block btn-primary" type="button">公告欄</button>
+							{%endif%}
 							</td>
 							{% if post.tag1 != null%}
 							<!--for post-->
@@ -45,10 +48,14 @@
 		                          {{ post.context |linebreaks}}
 		                        </div>  
 	                      	</td>
-							{%else%}
+							{% elif post.doctypeTag != null %}
 							<!--for file-->
 							<td width="40%"><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a></td>
-							{%endif%}
+							{% else %}
+							<!--for bulletin-->
+							<td width="40%"><a href="/posts/bulletin/{{ post.id }}/detail" >{{ post.title|linebreaks }}</a></td>
+
+							{% endif %}
 							<td width="5%" ><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
 							<td width="30%" > {{ post.time }}</td>
 						</tr>
