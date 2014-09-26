@@ -1,11 +1,20 @@
 {% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
-
+{% load static from staticfiles %}
 <!DOCTYPE html>
 
 {%block content%}
 <!--jean-->
+
+  <link rel="stylesheet" type="text/css" href="{% static "cleditor1_4_5/jquery.cleditor.css" %}"/>
+  <script type="text/javascript" src="{% static "cleditor1_4_5/jquery.min.js" %} "></script>
+  <script type="text/javascript" src="{% static "cleditor1_4_5/jquery.cleditor.min.js" %} "></script>
+  <script type="text/javascript">
+      $(document).ready(function () { $("#id_context").cleditor(); });
+  </script>
+
+
 <div class="panel panel-default">
     <div class="panel-heading">發表文章</div>
     <div class="panel-body">
@@ -13,8 +22,10 @@
 			<div class="control-group">
 				<div class="controls">
 					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1" required></textarea><br/>
-				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3" required></textarea>
-				</div> 
+					<textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="3" required></textarea>
+				</div>
+				    
+				
 				<br/> 
 				<div class="span4">
 					<label  class="control-label" for="tag">請選擇分類：</label>
