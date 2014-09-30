@@ -5,7 +5,6 @@ from filesManagement.views import PastPostFile
 from userena import views as userena_views
 from django.conf.urls.static import static
 from django.conf import settings
-#from TFT_project.views import name
 from TFT_project.views import TeacherInfoOneOnOneView
 from TFT_project.views import TeacherInfoNwMentorView
 from TFT_project.views import MyFileView, MyDocsView
@@ -20,7 +19,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^home/', HomePageView.as_view()),
+    url(r'^/', HomePageView.as_view()),
     # url(r'^blog/', include('blog.urls')), 
     url(r'^accounts/(?P<username>[\.\w-]+)/edit/$', profile_edit, name='userena_profile_edit'),
     url(r'^accounts/(?P<username>[\.\w-]+)/password/$', userena_views.password_change, {'success_url':'/'}),

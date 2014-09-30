@@ -7,7 +7,7 @@ import os
 class Folder(models.Model):
 	title = models.CharField(max_length=20,blank=False)
 	author = models.ForeignKey(User)
-	upper_folder = models.ForeignKey("Folder")
+	upper_folder = models.ForeignKey("Folder",null=True,blank=True)
 	def __unicode__(self):
 		return self.title
 

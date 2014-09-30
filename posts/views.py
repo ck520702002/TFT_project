@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from accounts.models import MyProfile
 from Msg.models import Message
 from posts.models import Post
-from posts.models import Bulletin
+
 
 class PostView(CreateView,ListView):
 	model = Post
@@ -32,7 +32,7 @@ class ShowPost(CreateView,ListView):
 			return render(request, '401.html')
 		searchPost = Post.objects.all().order_by("-time")
 
-		return render(request, self.template_name, {'posts':searchPost,'bulletins' : Bulletin.objects.all().order_by("-time")})	
+		return render(request, self.template_name, {'posts':searchPost,'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})	
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
@@ -54,7 +54,7 @@ class PostDetail(DetailView):
 		searchPost = Post.objects.get(pk=kwargs['pk'])
 		allmsg = Message.objects.filter(belong_post=searchPost).order_by("-time")
 		#print allmsg
-		return render(request, self.template_name, {'post':searchPost, 'allmsg': allmsg, 'bulletins' : Bulletin.objects.all().order_by("-time")})	
+		return render(request, self.template_name, {'post':searchPost, 'allmsg': allmsg, 'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})	
 
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
@@ -79,7 +79,8 @@ class PastPostDiscuss(ListView):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
 		newdoc = Post.objects.filter(author = request.user).order_by("-time")
-		return render(request, self.template_name, {'posts': newdoc, 'bulletins' : Bulletin.objects.all().order_by("-time")})		
+		bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+		return render(request, self.template_name, {'posts': newdoc, 'bulletins' : bulletins})		
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
@@ -94,7 +95,8 @@ class PostEdit(ListView):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
 		msg = get_object_or_404(Post, pk = kwargs['pk'])
-		return render(request, self.template_name, {'post': msg, 'bulletins' : Bulletin.objects.all().order_by("-time")})		
+		bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+		return render(request, self.template_name, {'post': msg, 'bulletins' : bulletins})		
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
@@ -108,47 +110,56 @@ class PostEdit(ListView):
 		return redirect("/pastpost_discuss")
 
 class PostBulletin(ListView):
-	template_name = 'post_bulletin.html'
+	template_name = 'post_bulletin_new.html'
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
-		bulletin = Bulletin.objects.filter(author = request.user).order_by("-time")
-		return render(request, self.template_name, {'bulletins': bulletin})	
+		searchPost = Post.objects.all().order_by("-time")
+		bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+
+		return render(request, self.template_name, {'posts':searchPost,'bulletins' : bulletins})	
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
-		newBulletin = Bulletin()
-		newBulletin.title = request.POST['title']
-		newBulletin.context = request.POST['context']
-		newBulletin.info_url = request.POST['infourl']
-		newBulletin.author = MyProfile.objects.get(user=request.user)
-		newBulletin.save()
-		return redirect("/posts/bulletin/create/")
+		newdoc = Post()
+		newdoc.title = request.POST['title']
+		newdoc.context = request.POST['context']
+		newdoc.tag1 = 'announcement'
+		newdoc.author = MyProfile.objects.get(user=request.user)
+		newdoc.save()
+		return redirect("/posts/list")
+
+class ShowBulletin(ListView):
+	model = Post
+	template_name = 'view_bulletin_list.html'
+	def get_context_data(self, **kwargs):
+		context = super(ShowBulletin, self).get_context_data(**kwargs)
+		context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+		return context
 
 class ViewBulletin(ListView):
 	template_name = 'view_bulletin.html'
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
-		bulletin = Bulletin.objects.filter(author = request.user).order_by("-time")
-		data = get_object_or_404(Bulletin, pk = kwargs['pk'])
-		return render(request, self.template_name, {'bulletins': bulletin,'data' : data})
+		bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+		data = get_object_or_404(Post, pk = kwargs['pk'])
+		return render(request, self.template_name, {'bulletins': bulletins,'data' : data})
 
 class EditBulletin(ListView):
-	template_name = 'edit_bulletin.html'
+	template_name = 'bulletin_edit.html'
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
-		bulletin = Bulletin.objects.filter(author = request.user).order_by("-time")
-		data = get_object_or_404(Bulletin, pk = kwargs['pk'])
-		return render(request, self.template_name, {'bulletins': bulletin,'data' : data})
+		bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+		data = get_object_or_404(Post, pk = kwargs['pk'])
+		return render(request, self.template_name, {'bulletins': bulletins,'data' : data})
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
-		newBulletin = get_object_or_404(Bulletin, pk = kwargs['pk'])
+		newBulletin = get_object_or_404(Post, pk = kwargs['pk'])
 		newBulletin.title = request.POST['title']
 		newBulletin.context = request.POST['context']
-		newBulletin.info_url = request.POST['infourl']
 		newBulletin.save()
 		return redirect("/posts/bulletin/"+kwargs['pk']+"/detail/")
 

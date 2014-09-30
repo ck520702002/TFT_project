@@ -5,7 +5,6 @@ import os
 from itertools import chain
 from django.shortcuts import render, redirect
 from posts.models import get_query
-from posts.models import Bulletin
 from accounts.models import MyProfile
 from accounts.models import TFTGroup
 
@@ -22,10 +21,18 @@ class IndexView(TemplateView):
 #            raise Http404
 
 class MyDocsView(TemplateView):
-    template_name = 'mydocs.html'
+	template_name = 'mydocs.html'
+	def get_context_data(self, **kwargs):
+		context = super(MyDocsView, self).get_context_data(**kwargs)
+		context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+		return context
 
 class MyFileView(TemplateView):
-    template_name = 'myfiles.html'
+	template_name = 'myfiles.html'
+	def get_context_data(self, **kwargs):
+		context = super(MyFileView, self).get_context_data(**kwargs)
+		context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+		return context
 
 class TeacherInfoOneOnOneView(TemplateView):
     template_name = 'teacher/teacher_info.html'
@@ -37,25 +44,19 @@ class HomePageView(CreateView, ListView):
 	template_name = 'home.html'
 	model = Post
 	def get_context_data(self, **kwargs):
-    # Call the base implementation first to get a context
 		context = super(HomePageView, self).get_context_data(**kwargs)
-    # Add in the publisher
-		#context['documents'] = Document.objects.all().order_by("-time")
-		#context['posts'] = Post.objects.all().order_by("-time")
-		#datalist = sorted(chain(list(context['documents']), list(context['posts'])),key=lambda instance: instance.time, reverse = True)
-		#context['alldata'] = datalist
-		#print str(context['documents'].count())
-		#print str(context['posts'].count())
-		#print str(len(datalist))
+		context['bulletins'] = Post.objects.filter(tag1='announcement').order_by("-time")
 		return context	
+
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
 		documents = Document.objects.all().order_by("-time")
 		posts = Post.objects.all().order_by("-time")
-		bulletins = Bulletin.objects.all().order_by("-time")
-		datalist = sorted(chain(list(documents), list(posts), list(bulletins)),key=lambda instance: instance.time, reverse = True)
-		return render(request, self.template_name, {'alldata':datalist, 'bulletins' : Bulletin.objects.all().order_by("-time")})
+		bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+		datalist = sorted(chain(list(documents), list(posts)),key=lambda instance: instance.time, reverse = True)
+		return render(request, self.template_name, {'alldata':datalist, 'bulletins':bulletins})
+	
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
