@@ -19,7 +19,13 @@ class IndexView(TemplateView):
 #        try:
 #            return response.render()
 #        except TemplateDoesNotExist:
-#            raise Http404()
+#            raise Http404
+
+class MyDocsView(TemplateView):
+    template_name = 'mydocs.html'
+
+class MyFileView(TemplateView):
+    template_name = 'myfiles.html'
 
 class TeacherInfoOneOnOneView(TemplateView):
     template_name = 'teacher/teacher_info.html'

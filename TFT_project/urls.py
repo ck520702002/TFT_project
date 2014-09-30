@@ -8,6 +8,7 @@ from django.conf import settings
 #from TFT_project.views import name
 from TFT_project.views import TeacherInfoOneOnOneView
 from TFT_project.views import TeacherInfoNwMentorView
+from TFT_project.views import MyFileView, MyDocsView
 from TFT_project.views import HomePageView
 from accounts.views import profile_edit
 from accounts.views import ProfileView
@@ -37,12 +38,16 @@ urlpatterns = patterns('',
     
     url(r'^pastpost_discuss/', PastPostDiscuss.as_view()),
     url(r'^pastpost_file/', PastPostFile.as_view()),
+    url(r'^myfiles/', MyFileView.as_view()),
+    url(r'^mydocs/', MyDocsView.as_view()),
     url(r'^teacher/oneonone', TeacherInfoOneOnOneView.as_view()),
     url(r'^teacher/nwmentor', TeacherInfoNwMentorView.as_view()),
+    
 
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	#url(r'^files/', ShowFile.as_view()),
     url(r'^files/', include('filesManagement.urls')),
+
     #url(r'^accounts/(?P<username>[\.\w-]+)/edit/$',
     #    'userena.views.profile_edit',
     #    {'edit_profile_form': EditProfileFormExtra},
