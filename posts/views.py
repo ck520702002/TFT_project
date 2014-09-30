@@ -109,8 +109,8 @@ class PostEdit(ListView):
 		msgToEdit.save()
 		return redirect("/pastpost_discuss")
 
-class PostBulletin(ListView):
-	template_name = 'post_bulletin_new.html'
+class CreateBulletin(ListView):
+	template_name = 'bulletin_create.html'
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
@@ -131,14 +131,14 @@ class PostBulletin(ListView):
 
 class ShowBulletin(ListView):
 	model = Post
-	template_name = 'view_bulletin_list.html'
+	template_name = 'bulletin_list.html'
 	def get_context_data(self, **kwargs):
 		context = super(ShowBulletin, self).get_context_data(**kwargs)
 		context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
 		return context
 
 class ViewBulletin(ListView):
-	template_name = 'view_bulletin.html'
+	template_name = 'bulletin_detail.html'
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
