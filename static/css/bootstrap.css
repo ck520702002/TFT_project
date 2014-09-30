@@ -5953,6 +5953,7 @@ button.close {
   display: none;
   overflow: auto;
   overflow-y: scroll;
+
 }
 
 .modal.fade .modal-dialog {
@@ -5976,6 +5977,7 @@ button.close {
   z-index: 1050;
   width: auto;
   margin: 10px;
+  background: #FFFFFF;
 }
 
 .modal-content {
