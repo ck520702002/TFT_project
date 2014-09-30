@@ -1,33 +1,86 @@
-<!--discuss_origin-->
-<div class="control-group">
-            <!--/span-->
-                <div class="row-fluid">
-                    <div class="span4">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#A" data-toggle="tab">專業進修</a></li>
-                            <li class=""><a href="#B" data-toggle="tab">教學網站</a></li>
-                            <li class=""><a href="#C" data-toggle="tab">相關機構</a></li>
-                        </ul>
-                        <div class="tabbable">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="A">
-                                	<table class="table table-striped table-hover " >
-                                	<thead>
-										<tr>
-												<th width="15%">網站名稱</th>
-												<th>網站網址</th>
-										</tr>
-									</thead>
-									</table>
-                                </div>
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
 
-							</div> <!-- /tabbable -->
-						</div>
-					</div>
-				</div> <!--??-->
+ 
+{% block title %}一對一mentor｜TFT支持系統{% endblock %}
 
-            <!--/span-->
-        </div>
+{% block content %}
+    {% block profile_navigation %}
+      {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
+      {% if user.username == profile.user.username %}
+      {% endif %}
+    {% endblock %}
+
+
+<div class="panel-heading"><h3>相關連結</h3></div>
+<div class="panel panel-default">
+        <div class="panel-heading">專業進修</div>
+        <div class="panel-body">
+            <div style="width:100%" class="table">
+                <table class="table table-striped table-hover" border="0" width="100%" height="60">
+                   <tbody>
+                        <tr>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td>456</td>
+                        </tr>
+                        <tr>
+                            <td>789</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>
+
+<div class="panel panel-default">
+        <div class="panel-heading">教學網站</div>
+        <div class="panel-body">
+            <div style="width:100%" class="table">
+                <table class="table table-striped table-hover" border="0" width="100%" height="60">
+                    
+                    <tbody>
+                        <tr>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td>456</td>
+                        </tr>
+                        <tr>
+                            <td>789</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>
+
+<div class="panel panel-default">
+        <div class="panel-heading">相關機構</div>
+        <div class="panel-body">
+            <div style="width:100%" class="table">
+                <table class="table table-striped table-hover" border="0" width="100%" height="60">
+                    
+                    <tbody>
+                        <tr>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td>456</td>
+                        </tr>
+                        <tr>
+                            <td>789</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>
+  
+  
+
 
     <!--/.fluid-container-->
 
@@ -35,13 +88,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/bundles/bootstrapSourceJS?v=XkouIldXq_pPzIiEbylJIGwgBv2qYDSef1Dnn06aIkQ1"></script>
+            
+{% endblock %}  
 
-<?php
-include_once "ckeditor/ckeditor.php";
-$CKEditor = new CKEditor();
-$CKEditor->basePath = 'ckeditor/';
-$CKEditor->replace("context");
-?>
-</body>
-</html>
-{% endblock %}
+
+   
