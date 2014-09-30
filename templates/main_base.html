@@ -15,8 +15,9 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="{% static "js/bootstrap.min.js" %}"></script>
   
- 
-  
+
+
+
   {% block meta %}
   {% endblock %} <!-- too add more stuff in child templates if needed -->
 {% block content_title %}{% endblock %}
@@ -157,11 +158,38 @@
                         </thead>
                         <tbody>
                           {% for bulletin in bulletins%}
+                          <!-- 原本的~~
                           <tr>
                             <td><a href="/posts/bulletin/{{ bulletin.id }}/detail" >{{ bulletin.title }}</a></td>
                             <td>{{ bulletin.author.user }}</td>
                             <td>{{ bulletin.time }}</td>
                           </tr>
+                          -->
+                          <tr>
+                            <td><a data-toggle="modal" href="#futrulai" >{{ bulletin.title }}</a></td>
+                                <div id="futrulai" class="modal fade" tabindex="-1"role="dialog" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h3>{{ bulletin.title }}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="wrap">
+                                          <div id="content" style="word-break:break-all">
+                                            {{ bulletin.context }}
+                                          </div>
+                                        </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" data-dismiss="modal" class="btn">Close</button> 
+                                    </div>
+                                </div>
+                                </div>
+                              
+                            <td>{{ bulletin.author.user }}</td>
+                            <td>{{ bulletin.time }}</td>
+                          </tr>
+
                           {% endfor %}
                         </tbody>
                       </table>
