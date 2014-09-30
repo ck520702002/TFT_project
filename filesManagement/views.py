@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
 from filesManagement.models import Document
 from filesManagement.forms import DocumentForm
 from django.views.generic.list import ListView
@@ -13,6 +12,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from posts.models import Bulletin
 import os
+
 def list(request):
     # Handle file upload
     if not request.user.has_perm('accounts.view_profile'):
@@ -43,6 +43,9 @@ def list(request):
         context_instance=RequestContext(request)
     )
 
+class ShowFolders(ListView):
+    template_name = 'myfolders.html'
+
 class ShowFile(ListView):
     template_name = 'files.html'  
 
@@ -64,3 +67,5 @@ class PastPostFile(ListView):
         docToDel.docfile.delete()
         docToDel.delete()
         return redirect("/pastpost_file")
+
+

@@ -17,10 +17,8 @@ class Post(models.Model):
 	tag2 = models.CharField(max_length=20,blank=True)
 	tag3 = models.CharField(max_length=20,blank=True)
 	author = models.ForeignKey("accounts.MyProfile")
-	
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return  self.title
-
 
 class Bulletin(models.Model):
     title = models.CharField(max_length=50)
