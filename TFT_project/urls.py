@@ -14,7 +14,8 @@ from accounts.views import ProfileView
 from django.contrib.auth.decorators import login_required
 #from filesManagement.views import ShowFile
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-    
+from TFT_project.views import LinkView
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -35,11 +36,11 @@ urlpatterns = patterns('',
 	#url(r'^discuss/', ShowPost.as_view()),
     url(r'^pastpost_discuss/', PastPostDiscuss.as_view()),
     url(r'^pastpost_file/', PastPostFile.as_view()),
+    url(r'^link', LinkView.as_view()),
     url(r'^myfiles/mydocs', MyDocsView.as_view()),
     url(r'^myfiles/', MyFileView.as_view()),
     url(r'^teacher/oneonone', TeacherInfoOneOnOneView.as_view()),
     url(r'^teacher/nwmentor', TeacherInfoNwMentorView.as_view()),
-
 	#url(r'^posts/', PostView.as_view(success_url = "results")),
 	#url(r'^files/', ShowFile.as_view()),
     url(r'^files/', include('filesManagement.urls')),

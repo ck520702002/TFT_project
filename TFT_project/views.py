@@ -19,13 +19,16 @@ class IndexView(TemplateView):
 #            return response.render()
 #        except TemplateDoesNotExist:
 #            raise Http404
-
+class LinkView(TemplateView):
+    template_name = 'link.html'
+    
 class MyDocsView(TemplateView):
 	template_name = 'mydocs.html'
 	def get_context_data(self, **kwargs):
 		context = super(MyDocsView, self).get_context_data(**kwargs)
 		context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
 		return context
+
 
 class MyFileView(TemplateView):
 	template_name = 'myfiles.html'

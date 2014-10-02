@@ -124,6 +124,9 @@
             <li>
                 <a href="/myfiles/">我的教學歷程檔案</a>
             </li>
+            <li>
+                <a href="link">相關連結</a>
+            </li>
             <!--<div class="btn-group"> 
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               mentor資訊
@@ -161,13 +164,36 @@
                         </thead>
                         <tbody>
                           {% for post in bulletins %}
-                          {% if post.tag1 == 'announcement' %}
+                            {% if post.tag1 == 'announcement' %}
+                            <tr>
+                              <td><a href="/posts/bulletin/{{ post.id }}/detail" >{{ post.title }}</a></td>
+                              <td>{{ post.author.user }}</td>
+                              <td>{{ post.time }}</td>
+                            </tr>
+                            {% endif %}
                           <tr>
-                            <td><a href="/posts/bulletin/{{ post.id }}/detail" >{{ post.title }}</a></td>
+                            <td><a data-toggle="modal" href="#futrulai"  >{{ post.title }}</a></td>
+                                <div id="futrulai" class="modal fade" tabindex="-1"role="dialog" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h3>{{ post.title }}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="wrap">
+                                          <div id="content" style="word-break:break-all">
+                                            {{ post.context }}
+                                          </div>
+                                        </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" data-dismiss="modal" class="btn">Close</button> 
+                                    </div>
+                                </div>
+                                </div>
                             <td>{{ post.author.user }}</td>
                             <td>{{ post.time }}</td>
                           </tr>
-                          {% endif %}
                           {% endfor %}
                         </tbody>
                       </table>
