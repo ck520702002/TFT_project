@@ -20,4 +20,4 @@ class Document(models.Model):
 	author = models.ForeignKey("accounts.MyProfile")
 	doctypeTag = models.CharField(max_length=10,blank=True)
 	schoolnameTag = models.CharField(max_length=10,blank=True)
-	folder = models.ForeignKey(Folder)
+	folder = models.ForeignKey(Folder,blank=True,null=True)

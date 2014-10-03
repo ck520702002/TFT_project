@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 	url(r'^list/(?P<pk>\d+)/edit/$', PostEdit.as_view()),
 	url(r'^bulletin/list/$', ShowBulletin.as_view()),
 	url(r'^bulletin/create/$', CreateBulletin.as_view()),
-	url(r'^bulletin/(?P<pk>\d+)/detail/$', PostDetail.as_view()),
+	#url(r'^bulletin/(?P<pk>\d+)/detail/$', PostDetail.as_view()),
 	url(r'^bulletin/(?P<pk>\d+)/edit/$', EditBulletin.as_view()),
 	#url(r'^$', PostView.as_view(success_url= "/posts/list" ), name="create" ),
  )

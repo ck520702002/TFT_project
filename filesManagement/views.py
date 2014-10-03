@@ -3,8 +3,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from filesManagement.models import Document
+from filesManagement.models import Document, Folder
 from filesManagement.forms import DocumentForm
+from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from accounts.models import MyProfile
 from django.shortcuts import redirect
@@ -43,11 +44,18 @@ def list(request):
         context_instance=RequestContext(request)
     )
 
-class ShowFolders(ListView):
-    template_name = 'myfolders.html'
+class ShowFolders(TemplateView):
+    template_name = 'folder_list.html'
+    def get(self, request, *args, **kwargs):
+        if not request.user.has_perm('accounts.view_profile'):
+            return render(request, '401.html')
+        folders = Folder.objects.filter(author = request.user)
+        bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+        import pdb;pdb.set_trace();
+        return render(request, self.template_name, {'folders': folders, 'bulletins' : bulletins})  
 
 class ShowFile(ListView):
-    template_name = 'files.html'  
+    model = Document
 
 class PastPostFile(ListView):
     template_name = 'pastpost_file.html'  
@@ -65,5 +73,20 @@ class PastPostFile(ListView):
         docToDel.docfile.delete()
         docToDel.delete()
         return redirect("/pastpost_file")
+
+class MyDocsView(TemplateView):
+    template_name = 'mydocs.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyDocsView, self).get_context_data(**kwargs)
+        context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+        return context
+
+
+class MyFileView(TemplateView):
+    template_name = 'myfiles.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyFileView, self).get_context_data(**kwargs)
+        context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+        return context
 
 

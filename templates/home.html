@@ -45,7 +45,9 @@
 							<!--for post-->
 							<td width="40%"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 		                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+		                          {% autoescape off %}
 		                          {{ post.context |linebreaks}}
+		                          {% endautoescape %}
 		                        </div>  
 	                      	</td>
 							{% elif post.doctypeTag != null %}

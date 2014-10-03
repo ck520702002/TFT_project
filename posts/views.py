@@ -31,10 +31,6 @@ class ShowPost(CreateView,ListView):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
 		searchPost = Post.objects.all().order_by("-time")
-		for p in searchPost:
-			p.context = p.context.decode('utf_8', 'strict')
-			p.save()
-
 		return render(request, self.template_name, {'posts':searchPost,'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})	
 	def post(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
