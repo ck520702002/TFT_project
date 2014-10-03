@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
 from filesManagement.models import Document
 from filesManagement.forms import DocumentForm
 from django.views.generic.list import ListView
@@ -11,8 +10,9 @@ from accounts.models import MyProfile
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from posts.models import Bulletin
+from posts.models import Post
 import os
+
 def list(request):
     # Handle file upload
     if not request.user.has_perm('accounts.view_profile'):
@@ -39,9 +39,12 @@ def list(request):
     # Render list page with the documents and the form
     return render_to_response(
         'file.html',
-        {'documents': documents, 'form': form, 'bulletins' : Bulletin.objects.all().order_by("-time")},
+        {'documents': documents, 'form': form, 'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")},
         context_instance=RequestContext(request)
     )
+
+class ShowFolders(ListView):
+    template_name = 'myfolders.html'
 
 class ShowFile(ListView):
     template_name = 'files.html'  
@@ -52,10 +55,8 @@ class PastPostFile(ListView):
         if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
         newdoc = Document.objects.filter(author = request.user).order_by("-time")
-        #for post in newdoc:
-            #post.docfile.name = os.path.basename(post.docfile.name)
-        #print str(newdoc.count())
-        return render(request, self.template_name, {'documents': newdoc, 'bulletins' : Bulletin.objects.all().order_by("-time")})
+        bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+        return render(request, self.template_name, {'documents': newdoc, 'bulletins' : bulletins})
     def post(self, request, *args, **kwargs):
         if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
@@ -64,3 +65,5 @@ class PastPostFile(ListView):
         docToDel.docfile.delete()
         docToDel.delete()
         return redirect("/pastpost_file")
+
+

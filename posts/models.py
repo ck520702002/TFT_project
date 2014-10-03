@@ -8,7 +8,7 @@ from django.db.models import Q
 
 class Post(models.Model):
 
-	title = models.CharField(max_length=10)
+	title = models.CharField(max_length=10,blank=False)
 	context = models.CharField(max_length=500)
 	#time = datetime.datetime.now()
 	time = models.DateTimeField(auto_now = True)
@@ -17,19 +17,8 @@ class Post(models.Model):
 	tag2 = models.CharField(max_length=20,blank=True)
 	tag3 = models.CharField(max_length=20,blank=True)
 	author = models.ForeignKey("accounts.MyProfile")
-	
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return  self.title
-
-
-class Bulletin(models.Model):
-    title = models.CharField(max_length=50)
-    context = models.CharField(max_length=500)
-    time = models.DateTimeField(auto_now = True)
-    info_url = models.URLField(max_length=500)
-    author = models.ForeignKey("accounts.MyProfile")
-    def __unicode__(self):  # Python 3: def __str__(self):
-        return  self.title
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,

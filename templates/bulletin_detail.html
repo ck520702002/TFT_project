@@ -1,0 +1,20 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+<div class="panel panel-default" style="word-break:break-all">
+    <div class="panel-heading"><b><font size="4">{{ data.title |linebreaks}}</font></b></div>
+	<div class="panel-body">
+		{{ data.context |linebreaks}}
+		<br/>
+		<hr>
+		<p><a href="http://{{data.info_url}}" >{{data.info_url}}</a></p>
+		{% if perms.posts.add_bulletin %}
+		<a href="/posts/bulletin/{{ data.id }}/edit" style="margin-top:10px" class="btn btn-primary" >編輯</a>
+		{% endif %}
+	</div>
+</div>
+
+
+{% endblock%}
