@@ -11,7 +11,7 @@ class Post(models.Model):
 	title = models.CharField(max_length=10,blank=False)
 	context = models.CharField(max_length=500)
 	#time = datetime.datetime.now()
-	time = models.DateTimeField(auto_now = True)
+	time = models.DateTimeField(auto_now=True)
 	#only use tag1 now
 	tag1 = models.CharField(max_length=20,blank=True)
 	tag2 = models.CharField(max_length=20,blank=True)

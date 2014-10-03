@@ -160,8 +160,8 @@
                           {% for post in bulletins %}
                             
                           <tr>
-                            <td><a data-toggle="modal" href="#futrulai"  >{{ post.title }}</a></td>
-                                <div id="futrulai" class="modal fade" tabindex="-1"role="dialog" aria-hidden="true">
+                            <td><a data-toggle="modal" href="#{{post.id}}"  >{{ post.title }}</a></td>
+                                <div id="{{post.id}}" class="modal fade" tabindex="-1"role="dialog" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
