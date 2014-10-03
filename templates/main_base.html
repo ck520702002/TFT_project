@@ -17,8 +17,9 @@
   
  
   
-  {% block meta %}
-  {% endblock %} <!-- too add more stuff in child templates if needed -->
+{% block meta %}
+{% endblock %} 
+
 {% block content_title %}{% endblock %}
 {% load static from staticfiles %}
 
@@ -44,13 +45,6 @@
       }
     </style>
     <link href="/Content/bootstrap/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="/Scripts/bootstrap/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Images/bootstrap/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Images/bootstrap/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Images/bootstrap/ico/apple-touch-icon-72-precomposed.png">
@@ -58,7 +52,7 @@
     <link rel="shortcut icon" href="/Images/bootstrap/ico/favicon.png">
 </head>
 
-{% block body%}
+{% block body %}
 {% endblock %}
 
 <body>
@@ -198,7 +192,6 @@
                         </tbody>
                       </table>
                     </div>
-        
                   </div>
             </div>
         </div>
