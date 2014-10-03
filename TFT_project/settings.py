@@ -49,7 +49,7 @@ INSTALLED_APPS = (
     'posts',
     'filesManagement',
     'Msg',
-)
+    )
 
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
@@ -119,6 +119,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
 STATICFILES_DIRS = (

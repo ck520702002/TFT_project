@@ -19,6 +19,7 @@
 					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1" required></textarea><br/>
 
 					<textarea id="context" name="context" type="text" value="" class="ckeditor" placeholder="說點話吧"rows="3" required></textarea>
+
 				</div>
 				    
 				
@@ -155,14 +156,14 @@
 											</tr>
 										</thead>
 										<tbody>
-											{% for post in posts %}
+											{% for post in searchPost %}
 											{% if post.tag1 == "教學日誌" %}
 											<tr>
 												<td width="15%">
 													<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button> 
 												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 											<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-												{{ post.context |linebreaks}}
+												{{post.context|linebreaks}}
 											</div>	
 										</td>
 												<td width="15%"><a href="/accounts/view/{{post.author.pk}}">{{post.author.user}}</a></td>
@@ -254,12 +255,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/bundles/bootstrapSourceJS?v=XkouIldXq_pPzIiEbylJIGwgBv2qYDSef1Dnn06aIkQ1"></script>
 
-<?php
-include_once "ckeditor/ckeditor.php";
-$CKEditor = new CKEditor();
-$CKEditor->basePath = 'ckeditor/';
-$CKEditor->replace("context");
-?>
 </body>
 </html>
 {% endblock %}
