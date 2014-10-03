@@ -170,7 +170,9 @@
                                     <div class="modal-body">
                                         <div id="wrap">
                                           <div id="content" style="word-break:break-all">
+                                            {% autoescape off%}
                                             {{ post.context }}
+                                            {% endautoescape%}
                                           </div>
                                         </div> 
                                     </div>
