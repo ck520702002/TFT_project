@@ -103,7 +103,9 @@
 											
 											<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+													{% autoescape off %}
 													{{ post.context|linebreaks}}
+													{% endautoescape %}
 												</div>	
 											</td>
 											<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
