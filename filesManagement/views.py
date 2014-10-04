@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404
 from posts.models import Post
 import os
 
-def list(request):
+def doc_list(request):
     # Handle file upload
     if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
@@ -25,10 +25,12 @@ def list(request):
             newdoc.author = MyProfile.objects.get(user=request.user)
             newdoc.doctypeTag = request.POST['doctypeTag']
             newdoc.schoolnameTag = request.POST['schoolnameTag']
+            newdoc.description = request.POST['description']
+            newdoc.title = request.POST['title']
             newdoc.save()
 
             # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('filesManagement.views.list'))
+            return HttpResponseRedirect(reverse('filesManagement.views.doc_list'))
     else:
         form = DocumentForm() # A empty, unbound form
 

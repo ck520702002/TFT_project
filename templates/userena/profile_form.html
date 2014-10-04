@@ -24,6 +24,8 @@
 {% block content %}
 <div class="panel panel-default">
       <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %}的個人資料編輯頁面</div>
+      <input id="id_mugshot" name="mugshot" type="file">
+
         <div class="panel-body">
             <form action="" enctype="multipart/form-data" method="post">
               {% csrf_token %}

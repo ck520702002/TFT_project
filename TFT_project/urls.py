@@ -31,10 +31,10 @@ urlpatterns = patterns('',
     url(r'^pastpost_discuss/', PastPostDiscuss.as_view()),
     url(r'^pastpost_file/', PastPostFile.as_view()),
     url(r'^link', LinkView.as_view()),
+    url(r'^files/', include('filesManagement.urls')),
     url(r'^myfiles/', include('filesManagement.urls')),
     url(r'^teacher/oneonone', TeacherInfoOneOnOneView.as_view()),
     url(r'^teacher/nwmentor', TeacherInfoNwMentorView.as_view()),
-    #url(r'^files/', include('filesManagement.urls')),
     url(r'^$', login_required(HomePageView.as_view()), name='main_base.html'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

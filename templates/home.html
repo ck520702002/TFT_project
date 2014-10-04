@@ -52,7 +52,7 @@
 	                      	</td>
 							{% elif post.doctypeTag != null %}
 							<!--for file-->
-							<td width="40%"><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a></td>
+							<td width="40%"><a href="{{ post.docfile.url }}" >{{ post.title }}</a></td>
 							{% else %}
 							<!--for bulletin-->
 							<td width="40%"><a href="/posts/bulletin/{{ post.id }}/detail" >{{ post.title|linebreaks }}</a></td>

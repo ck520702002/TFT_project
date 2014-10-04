@@ -42,6 +42,8 @@
                 <option  value="永安國小">永安國小</option>
             </select>-->
             <!--workaround for schoolname-->
+            <textarea id="id_title" name="title" type="text"  class="form-control" placeholder="檔案標題"rows="1" required></textarea><br/>
+            <textarea id="id_description" name="description" type="text"  class="form-control" placeholder="檔案簡介"rows="6" required></textarea><br/>
             <input id="id_schoolnameTag" name="schoolnameTag" value="仁光國小" type="hidden">
             &nbsp;
             <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
@@ -86,7 +88,7 @@
                                             <button class="btn btn-info btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td><a href="{{ document.docfile.url }}">{{ document.title }}</a></td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
                                         <td>{{document.time}}</td>
                                     </tr>

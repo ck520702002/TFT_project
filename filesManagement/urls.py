@@ -5,5 +5,5 @@ from views import *
 urlpatterns = patterns('',
     #url(r'^list/$', 'list', name='list'),
     url(r'^(?P<username>[\.\w-]+)/$',ShowFolders.as_view()),
-    url(r'^$', 'list', name='list'),
+    url(r'^$', doc_list,name='list'),
 )

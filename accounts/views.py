@@ -17,10 +17,17 @@ def profile_edit(request, username, edit_profile_form=forms.CustomEditProfileFor
             edit_profile_form=edit_profile_form, template_name=template_name,
             success_url=success_url, extra_context=extra_context)
 
-class ProfileView(DetailView):
-    template_name = 'userena/profile_view.html'
+#class ProfileView(DetailView):
+#    template_name = 'userena/profile_view.html'
+#
+#    def get(self, request, *args, **kwargs):
+#    	searchProfile = get_object_or_404(MyProfile, pk = kwargs['pk'])
+#        print searchProfile.phone_number
+#        return render(request, self.template_name, {'profile': searchProfile,'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})
 
-    def get(self, request, *args, **kwargs):
-    	searchProfile = get_object_or_404(MyProfile, pk = kwargs['pk'])
-        #print searchProfile.phone_number
-        return render(request, self.template_name, {'profile': searchProfile})
+class ProfileView(DetailView):
+    def get():
+        template_name = 'userena/profile_view.html'
+        searchProfile = get_object_or_404(MyProfile, pk = kwargs['pk'])
+        import pdb;pdb.set_trace()
+        return render(request, self.template_name, {'profile': searchProfile,'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})
