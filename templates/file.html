@@ -8,8 +8,11 @@
 {% block content %}
     <!-- Upload form. Note enctype attribute! -->
 <div class="panel panel-default">
-    <div class="panel-heading">檔案上傳</div>
+    <div class="panel-heading" data-toggle="collapse" href="#collapseOne" style="cursor:pointer;">檔案上傳</div>
     <div class="panel-body">
+        <div id="collapseOne" class="accordion-body collapse">
+        <div class="accordion-inner">
+        </br>
         <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.non_field_errors }}
@@ -48,6 +51,9 @@
             &nbsp;
             <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
         </form>
+    </br>
+    </div>
+</div>
     </div>
 </div>
   
@@ -88,9 +94,9 @@
                                             <button class="btn btn-info btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.title }}</a></td>
-                                        <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td><a href="{{ document.id }}">{{ document.title }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endfor %}
                                     {% else %}
@@ -120,9 +126,9 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
-                                        <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td><a href="{{ document.id }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endif %}
                                     {% endfor %}
@@ -161,9 +167,9 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
-                                        <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td><a href="{{ document.id }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endif %}
                                     {% endfor %}
@@ -202,9 +208,9 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
-                                        <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td><a href="{{ document.id }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endif %}
                                     {% endfor %}
@@ -237,9 +243,9 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td>{{document.author.user}}</td>
                                         <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endif %}
                                     {% endfor %}
@@ -271,9 +277,9 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
-                                        <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td><a href="{{ document.id }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endif %}
                                     {% endfor %}
@@ -305,9 +311,9 @@
                                             <button class="btn btn-warning btn-block btn-primary" typle="button">{{ document.doctypeTag }}</button>
                                         </td>
                                         <!--<td><button class="btn btn-success btn-block btn-primary" typle="button">{{ document.schoolnameTag }}</button></td>-->
-                                        <td><a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a></td>
-                                        <td><a href='/accounts/view/{{document.author.pk}}'>{{document.author.user}}</a></td>
-                                        <td>{{document.time}}</td>
+                                        <td><a href="/files/{{ document.id }}">{{ document.docfile.name|filename }}</a></td>
+                                        <td>{{document.author.user}}</td>
+                                        <td>{{document.time|date:"SHORT_DATE_FORMAT"}}</td>
                                     </tr>
                                     {% endif %}
                                     {% endfor %}

@@ -7,8 +7,9 @@
     <div class="panel-heading">{{ profile.user}}的基本資料</div>
 	<div class="panel-body">
 		<fieldset>
+       
         <div class="form-group">
-            <label for="inputName" class="col-lg-2 control-label">姓名</label>
+            <tr for="inputName" class="col-lg-2 control-label">姓名</tr>
             {% if profile.user.last_name == "" and profile.user.first_name == "" %}
               </br>
             {% else %}
@@ -74,7 +75,6 @@
              </br>
             {% endif %}
         </div>
-
     	</fieldset>
 		<br/>
 		<input style="margin-top:10px" type="submit" class="btn btn-default" onclick="history.back()" value="回前頁">

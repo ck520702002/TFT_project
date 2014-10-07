@@ -13,6 +13,11 @@ class IndexView(TemplateView):
 
 class LinkView(TemplateView):
     template_name = 'link.html'
+    def get_context_data(self, **kwargs):
+		context = super(LinkView, self).get_context_data(**kwargs)
+		context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+		return context
+    	
     
 class TeacherInfoOneOnOneView(TemplateView):
     template_name = 'teacher/teacher_info.html'

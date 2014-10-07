@@ -9,60 +9,88 @@
 
 <script src="{% static "ckeditor/ckeditor.js"%}" type="text/javascript"><!--mce:2--></script>
 	
+<div class="panel panel-default">	
+	
+  	
+	<div class="panel-heading" data-toggle="collapse" href="#collapseOne" style="cursor:pointer;">
+		發表文章
+	</div>
+	<div class="panel-body">
+		<div id="collapseOne" class="accordion-body collapse">
+      	<div class="accordion-inner">
+			<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
+				<div class="control-group">
+					<div class="controls">
+					</br>
+						<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1" required></textarea><br/>
 
-<div class="panel panel-default">
-    <div class="panel-heading">發表文章</div>
-    <div class="panel-body">
-		<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
-			<div class="control-group">
-				<div class="controls">
-					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1" required></textarea><br/>
+						<textarea id="context" name="context" type="text" value="" class="ckeditor" placeholder="說點話吧"rows="3" required></textarea>
 
-					<textarea id="context" name="context" type="text" value="" class="ckeditor" placeholder="說點話吧"rows="3" required></textarea>
+					</div>
+					    
+					
+					<br/> 
+					<div class="span4">
+						<label  class="control-label" for="tag">請選擇分類：</label>
+						<select required class="btn" id="id_tag1" name="tag1">
+							<option value></option>
+							<optgroup label="心情札記"> 
+						        <option id="id_tag4" name="tag4" value="心情札記">心情札記</option>
+						    <optgroup label="教學日誌"> 
+						        <option id="id_tag4" name="tag4" value="教學日誌">教學日誌</option>
+						    <optgroup label="教學提問"> 
+						        <option id="id_tag1" name="tag1" value="語文">語文</option>
+						        <option id="id_tag1" name="tag1" value="數學">數學</option>
+						        <option id="id_tag1" name="tag1" value="社會">社會</option>
+						        <option id="id_tag1" name="tag1" value="自然與生活科技">自然與生活科技</option>
+						        <option id="id_tag1" name="tag1" value="藝術與人生">藝術與人生</option>
+						        <option id="id_tag1" name="tag1" value="健康與教育">健康與教育</option>
+						        <option id="id_tag1" name="tag1" value="綜合學習領域">綜合學習領域</option>
+						        <option id="id_tag1" name="tag1" value="低年級生活課程">低年級生活課程</option>
+						        <option id="id_tag1" name="tag1" value="補救教學">補救教學</option>
+						        <option id="id_tag1" name="tag1" value="班級經營">班級經營</option>
+						        <option id="id_tag1" name="tag1" value="親師溝通">親師溝通</option>
+						        <option id="id_tag1" name="tag1" value="個案輔導">個案輔導</option>
+						        <option id="id_tag1" name="tag1" value="校務行政">校務行政</option>
+						    <optgroup label="資訊交流"> 
+						        <option id="id_tag2" name="tag2" value="好書推薦">好書推薦</option>
+					        	<option id="id_tag2" name="tag2" value="研習講座">研習講座</option>
+					        	<option id="id_tag2" name="tag2" value="教學資源">教學資源</option>
+					        	<option id="id_tag2" name="tag2" value="聚會玩樂">聚會玩樂</option>
+					        	<option id="id_tag2" name="tag2" value="其他">其他</option>		        	
+						</select>
 
+						<!--<input id="id_author" name="author" value={{user.username}} type="hidden">-->
+					</div>
+					<div class="span4" align="right">
+						<input  align="right" type="submit" class="btn btn-primary" value="送出">
+					</br></br>
+					</div>
 				</div>
-				    
-				
-				<br/> 
-				<div class="span4">
-					<label  class="control-label" for="tag">請選擇分類：</label>
-					<select required class="btn" id="id_tag1" name="tag1">
-						<option value></option>
-						<optgroup label="心情札記"> 
-					        <option id="id_tag4" name="tag4" value="心情札記">心情札記</option>
-					    <optgroup label="教學日誌"> 
-					        <option id="id_tag4" name="tag4" value="教學日誌">教學日誌</option>
-					    <optgroup label="教學提問"> 
-					        <option id="id_tag1" name="tag1" value="語文">語文</option>
-					        <option id="id_tag1" name="tag1" value="數學">數學</option>
-					        <option id="id_tag1" name="tag1" value="社會">社會</option>
-					        <option id="id_tag1" name="tag1" value="自然與生活科技">自然與生活科技</option>
-					        <option id="id_tag1" name="tag1" value="藝術與人生">藝術與人生</option>
-					        <option id="id_tag1" name="tag1" value="健康與教育">健康與教育</option>
-					        <option id="id_tag1" name="tag1" value="綜合學習領域">綜合學習領域</option>
-					        <option id="id_tag1" name="tag1" value="低年級生活課程">低年級生活課程</option>
-					        <option id="id_tag1" name="tag1" value="補救教學">補救教學</option>
-					        <option id="id_tag1" name="tag1" value="班級經營">班級經營</option>
-					        <option id="id_tag1" name="tag1" value="親師溝通">親師溝通</option>
-					        <option id="id_tag1" name="tag1" value="個案輔導">個案輔導</option>
-					        <option id="id_tag1" name="tag1" value="校務行政">校務行政</option>
-					    <optgroup label="資訊交流"> 
-					        <option id="id_tag2" name="tag2" value="好書推薦">好書推薦</option>
-				        	<option id="id_tag2" name="tag2" value="研習講座">研習講座</option>
-				        	<option id="id_tag2" name="tag2" value="教學資源">教學資源</option>
-				        	<option id="id_tag2" name="tag2" value="聚會玩樂">聚會玩樂</option>
-				        	<option id="id_tag2" name="tag2" value="其他">其他</option>		        	
-					</select>
-
-					<!--<input id="id_author" name="author" value={{user.username}} type="hidden">-->
-				</div>
-				<div class="span4" align="right">
-					<input  align="right" type="submit" class="btn btn-primary" value="送出">
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
+		</div>
+		
+		
 	</div>
 </div>
+
+<!--
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Collapsible Group Item #1
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+</div> 
+-->
 
 <!--discuss_origin-->
 <div class="control-group">
@@ -108,8 +136,8 @@
 													{% endautoescape %}
 												</div>	
 											</td>
-											<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
-											<td width="15%" > {{ post.time }}</td>
+											<td width="15%">{{post.author.user}}</td>
+											<td width="15%" > {{ post.time|date:"SHORT_DATE_FORMAT" }}</td>
 
 										</tr>
 									{% endif %}
@@ -141,8 +169,8 @@
 														{{ post.context |linebreaks}}
 													</div>	
 												</td>
-												<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
-												<td width="15%" > {{ post.time }}</td>
+												<td width="15%">{{post.author.user}}</td>
+												<td width="15%" >{{ post.time }}</td>
 												{%endif%}
 											</tr>
 											{% endfor %}
@@ -171,7 +199,7 @@
 												{{post.context|linebreaks}}
 											</div>	
 										</td>
-												<td width="15%"><a href="/accounts/view/{{post.author.pk}}">{{post.author.user}}</a></td>
+												<td width="15%">{{post.author.user}}</td>
 												<td width="15%" > {{ post.time }}</td>
 											</tr>
 											{%endif%}
@@ -201,7 +229,7 @@
 														{{ post.context |linebreaks}}
 													</div>	
 												</td>
-												<td width="15%"><a href="/accounts/view/{{post.author.pk}}">{{post.author.user}}</a></td>
+												<td width="15%">{{post.author.user}}</td>
 												<td width="15%" > {{ post.time }}</td>
 											</tr>
 											{%endif%}
@@ -235,7 +263,7 @@
 													{{ post.context |linebreaks}}
 												</div>	
 											</td>
-											<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
+											<td width="15%">{{post.author.user}}</td>
 											<td width="15%" > {{ post.time }}</td>
 												{%endif%}
 											</tr>

@@ -15,82 +15,141 @@
     
 <div class="panel panel-default">
       <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %} 的基本資料<a href="{% url 'userena_profile_edit' user.username %}" align="right">{% trans " (編輯)" %}</a></div>
-    <img src="{{ user.get_profile.get_mugshot_url }}" />
+    </br>
+    <img data-src="holder.js/140x140" style="margin-left:220px" class="img-polaroid" alt="140x140" 
+         src="{{ user.get_profile.get_mugshot_url }}"/ style="width: 140px; height: 140px;">
+    
+    </br></br>
     <div class="panel-body">
         <form class="form-horizontal">
         <fieldset>
-        <div class="form-group">
-            <label for="inputName" class="col-lg-2 control-label">姓名</label>
-            {% if profile.user.last_name == "" and profile.user.first_name == "" %}
-              </br>
-            {% else %}
-              <p>{{ profile.user.last_name }}{{ profile.user.first_name }}</p>
-            {% endif %}
-        </div>
         
+    <table class="table">
+                       
+                        <tbody>
+                            <tr>
+                                <td width="20%">
+                                <div class="form-group">
+                                <label for="inputName" class="col-lg-2 control-label">姓名</label>
+                                </td>
+                                
+                                <td>
+                                {% if profile.user.last_name == "" and profile.user.first_name == "" %}
+                                </br>
+                                {% else %}
+                                <p>{{ profile.user.last_name }}{{ profile.user.first_name }}</p>
+                                {% endif %}
+                                </div>
+                                </td>
+                                
+                            </tr>
+                                <!--<div class="form-group">
+                                <label for="inputphone" class="col-lg-2 control-label">email</label>
+                                {% if profile.user.email and not hide_email %}
+                                  <dd></dd>
+                                {% endif %}
+                                </div>-->
+                            <tr>
+                               <td width="20%">
+                               <div class="form-group"><!--帳號-->
+                               <label for="inputphone" class="col-lg-2 control-label">帳號</label>
+                               </td>
 
-        <!--<div class="form-group">
-            <label for="inputphone" class="col-lg-2 control-label">email</label>
-            {% if profile.user.email and not hide_email %}
-              <dd></dd>
-            {% endif %}
-        </div>-->
-        <div class="form-group"><!--帳號-->
-            <label for="inputphone" class="col-lg-2 control-label">帳號</label>
-            {% if profile.user != "" %}
-              <p>{{ profile.user }}</p>
-            {% else %}
-             </br>
-            {% endif %}
-        </div>
-        <!--email-->
-        <!--<div class="form-group">
-            <label for="inputphone" class="col-lg-2 control-label">E-Mail</label>
-            {% if profile.user.email != "" %}
-              <p>{{ profile.user.email }}</p>
-            {% else %}
-             </br>
-            {% endif %}
-        </div>-->
-        <!--電話-->
-        <!--<div class="form-group">
-            <label for="inputphone" class="col-lg-2 control-label">聯絡電話</label>
-            {% if profile.phone_number != "" %}
-              <p>{{ profile.phone_number }}</p>
-            {% else %}
-             </br>
-            {% endif %}
-        </div>-->
-        <div class="form-group"><!--地區-->
-            <label for="inputplace" class="col-lg-2 control-label">任職單位</label>
-            {% if profile.school  != "" %}
-              <p>{{ profile.school }}</p>
-            {% else %}
-             </br>
-            {% endif %}
-        </div>
-        <div class="form-group"><!--簡介-->
-            <label for="textArea" class="col-lg-2 control-label">簡介</label>
-            {% if profile.school  != "" %}
-              <p>{{ profile.description }}</p>
-            {% else %}
-             </br>
-            {% endif %}
-        </div>
+                               <td>
+                               {% if profile.user != "" %}
+                               <p>{{ profile.user }}</p>
+                               {% else %}
+                               {% endif %}
+                               </div>   
+                               </td>
+                            </tr>
+                                 <!--email-->
+                              <!--<div class="form-group">
+                                  <label for="inputphone" class="col-lg-2 control-label">E-Mail</label>
+                                  {% if profile.user.email != "" %}
+                                    <p>{{ profile.user.email }}</p>
+                                  {% else %}
+                                   </br>
+                                  {% endif %}
+                              </div>-->
+                              <!--電話-->
+                              <!--<div class="form-group">
+                                  <label for="inputphone" class="col-lg-2 control-label">聯絡電話</label>
+                                  {% if profile.phone_number != "" %}
+                                    <p>{{ profile.phone_number }}</p>
+                                  {% else %}
+                                   </br>
+                                  {% endif %}
+                              </div>-->
+                            <tr>
+                               <td width="20%">
+                               <div class="form-group"><!--地區-->
+                               <label for="inputplace" class="col-lg-2 control-label">任職單位</label>
+                               </td>
 
-        <div class="form-group"><!--tft group-->
-            <label for="textArea" class="col-lg-2 control-label">群組類別</label>
-            {% if profile.authorized_groups  != "" %}
-              <p>{{ profile.authorized_groups }}</p>
-            {% else %}
-             </br>
-            {% endif %}
-        </div>
+                               <td>
+                               {% if profile.school  != "" %}
+                               <p>{{ profile.school }}</p>
+                               {% else %}
+                               </br>
+                               {% endif %}
+                               </div>
+                               </td>
 
-        <div class="form-group"><!--更改密碼-->
-            <label for="textArea" class="col-lg-2 control-label">更改密碼</label>
-            <p><a href="{% url 'userena_password_change' user.username %}">{% trans "前往更改密碼" %}</a></p>
-         </div>
+                            </tr>
+                            
+                            <tr>
+                               <td width="20%">
+                               <div class="form-group"><!--簡介-->
+                               <label for="textArea" class="col-lg-2 control-label">簡介</label>
+                               </td>
+
+                               <td>
+                               {% if profile.school  != "" %}
+                               <p>{{ profile.description }}</p>
+                               {% else %}
+                               </br>
+                               {% endif %}
+                               </div>
+                               </td>
+                        
+
+                            </tr>
+
+                            <tr>
+                               <td width="20%">
+                               <div class="form-group"><!--tft group-->
+                               <label for="textArea" class="col-lg-2 control-label">群組類別</label>
+                               </td>
+
+                               <td>
+                               {% if profile.authorized_groups  != "" %}
+                               <p>{{ profile.authorized_groups }}</p>
+                               {% else %}
+
+                               {% endif %}
+                               </div>
+                               </td>
+
+                            </tr>
+
+                            <tr>
+                               <td width="20%">
+                               <div class="form-group"><!--更改密碼-->
+                               <label for="textArea" class="col-lg-2 control-label">更改密碼</label>
+                               </td>
+                               
+                               <td>
+                               <p><a href="{% url 'userena_password_change' user.username %}">{% trans "前往更改密碼" %}</a></p>
+                               </div>     
+                               </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+    
+
+
         </fieldset>
         </div>
   </div>
