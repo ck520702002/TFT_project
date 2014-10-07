@@ -8,8 +8,11 @@
 {% block content %}
     <!-- Upload form. Note enctype attribute! -->
 <div class="panel panel-default">
-    <div class="panel-heading">檔案上傳</div>
+    <div class="panel-heading" data-toggle="collapse" href="#collapseOne" style="cursor:pointer;">檔案上傳</div>
     <div class="panel-body">
+        <div id="collapseOne" class="accordion-body collapse">
+        <div class="accordion-inner">
+        </br>
         <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.non_field_errors }}
@@ -48,6 +51,9 @@
             &nbsp;
             <input type="submit" value="送出" class="btn btn-primary" padding-top="5px" />
         </form>
+    </br>
+    </div>
+</div>
     </div>
 </div>
   
