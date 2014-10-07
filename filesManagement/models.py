@@ -7,7 +7,7 @@ import os
 class Folder(models.Model):
 	title = models.CharField(max_length=20,blank=False)
 	author = models.ForeignKey(User)
-	upper_folder = models.ForeignKey("Folder")
+	upper_folder = models.ForeignKey("Folder",null=True,blank=True)
 	def __unicode__(self):
 		return self.title
 
@@ -20,4 +20,6 @@ class Document(models.Model):
 	author = models.ForeignKey("accounts.MyProfile")
 	doctypeTag = models.CharField(max_length=10,blank=True)
 	schoolnameTag = models.CharField(max_length=10,blank=True)
-	folder = models.ForeignKey(Folder)
+	folder = models.ForeignKey("Folder",blank=True,null=True)
+	def __unicode__(self):
+		return self.title

@@ -1,0 +1,14 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+	<label class="control-label" for="textarea">公告欄列表</label>
+{% for post in object_list %}
+{% if post.tag1 == "announcement" %}
+<ul>
+    <li><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></li>
+</ul>
+{% endif %}
+{% endfor %}
+{% endblock%}

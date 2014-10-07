@@ -19,6 +19,7 @@
 					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1" required></textarea><br/>
 
 					<textarea id="context" name="context" type="text" value="" class="ckeditor" placeholder="說點話吧"rows="3" required></textarea>
+
 				</div>
 				    
 				
@@ -89,6 +90,7 @@
 									</thead>
 									<tbody>
                                     {% for post in posts %}
+                                   		{% if post.tag1 != "announcement" %}
 										<tr>
 											<td width="15%">
 											{% if post.tag1 == "心情札記" or post.tag1 == "教學日誌" or post.tag1 == "語文" or post.tag1 == "數學" or post.tag1 == "社會" or post.tag1 == "自然與生活科技" or post.tag1 == "藝術與人文" or post.tag1 == "健康與體育" or post.tag1 == "綜合學習領域" or post.tag1 == "低年級生活課程" or post.tag1 == "補救教學" or post.tag1 == "班級經營" or post.tag1 == "親師溝通" or post.tag1 == "個案輔導" or post.tag1 == "校務行政" %}
@@ -96,17 +98,21 @@
 											{% endif %}
 											{% if post.tag1 == "好書推薦" or post.tag1 == "研習講座" or post.tag1 == "教學資源" or post.tag1 == "聚會玩樂" or post.tag1 == "其他" %}
 												<button class="btn btn-success btn-block btn-primary" typle="button">{{ post.tag1 }} </button>
-											{%endif%}
+											{% endif %}
 											</td>
+											
 											<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 												<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+													{% autoescape off %}
 													{{ post.context|linebreaks}}
+													{% endautoescape %}
 												</div>	
 											</td>
 											<td width="15%"><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
 											<td width="15%" > {{ post.time }}</td>
+
 										</tr>
-									
+									{% endif %}
 									{% endfor %}
 									</tbody>
 									</table>
@@ -155,14 +161,14 @@
 											</tr>
 										</thead>
 										<tbody>
-											{% for post in posts %}
+											{% for post in searchPost %}
 											{% if post.tag1 == "教學日誌" %}
 											<tr>
 												<td width="15%">
 													<button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button> 
 												<td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 											<div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-												{{ post.context |linebreaks}}
+												{{post.context|linebreaks}}
 											</div>	
 										</td>
 												<td width="15%"><a href="/accounts/view/{{post.author.pk}}">{{post.author.user}}</a></td>
@@ -254,12 +260,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/bundles/bootstrapSourceJS?v=XkouIldXq_pPzIiEbylJIGwgBv2qYDSef1Dnn06aIkQ1"></script>
 
-<?php
-include_once "ckeditor/ckeditor.php";
-$CKEditor = new CKEditor();
-$CKEditor->basePath = 'ckeditor/';
-$CKEditor->replace("context");
-?>
 </body>
 </html>
 {% endblock %}

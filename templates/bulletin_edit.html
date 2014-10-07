@@ -1,0 +1,30 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+<div class="panel panel-default" style="word-break:break-all">
+    <div class="panel-heading">編輯文章</div>
+	<div class="panel-body">
+		<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
+			<div class="control-group">
+				<div class="controls">
+					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1">{{post.title}}</textarea><br/>
+				    <textarea id="id_context" name="context" type="text" value="" class="form-control" placeholder="說點話吧"rows="20">{{post.context|linebreaks}}</textarea>
+				</div> 
+				                    
+				<div class="span4">
+				    <div align="right">
+            			<button type="button" class="btn btn-default" onclick="history.back()">取消</button>
+            			<input type="hidden" id="post" name="post" value="{{post.pk}}" />
+            			<input type="submit" class="btn btn-primary" value="{% trans "確定更新" %}" />
+        			</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>
+
+
+{% endblock%}

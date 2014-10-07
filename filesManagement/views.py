@@ -3,17 +3,18 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from filesManagement.models import Document
+from filesManagement.models import Document, Folder
 from filesManagement.forms import DocumentForm
+from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from accounts.models import MyProfile
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from posts.models import Bulletin
+from posts.models import Post
 import os
 
-def list(request):
+def doc_list(request):
     # Handle file upload
     if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
@@ -24,10 +25,12 @@ def list(request):
             newdoc.author = MyProfile.objects.get(user=request.user)
             newdoc.doctypeTag = request.POST['doctypeTag']
             newdoc.schoolnameTag = request.POST['schoolnameTag']
+            newdoc.description = request.POST['description']
+            newdoc.title = request.POST['title']
             newdoc.save()
 
             # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('filesManagement.views.list'))
+            return HttpResponseRedirect(reverse('filesManagement.views.doc_list'))
     else:
         form = DocumentForm() # A empty, unbound form
 
@@ -39,15 +42,33 @@ def list(request):
     # Render list page with the documents and the form
     return render_to_response(
         'file.html',
-        {'documents': documents, 'form': form, 'bulletins' : Bulletin.objects.all().order_by("-time")},
+        {'documents': documents, 'form': form, 'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")},
         context_instance=RequestContext(request)
     )
 
-class ShowFolders(ListView):
-    template_name = 'myfolders.html'
+class folder_detail(TemplateView):
+    template_name = 'folder_detail.html'
+    def get(self, request, *args, **kwargs):
+        folder = Folder.objects.filter(pk=kwargs['pk'])[0]
+        subfolders = Folder.objects.filter(upper_folder = kwargs['pk'])
+        subfiles = Document.objects.filter(folder = kwargs['pk'])
+        return render(request, self.template_name, {'folder':folder, 'subfolders': subfolders,'subfiles':subfiles, 'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")}) 
+
+class ShowFolders(TemplateView):
+    template_name = 'folder_list.html'
+    def get(self, request, *args, **kwargs):
+        if not request.user.has_perm('accounts.view_profile'):
+            return render(request, '401.html')
+        folders = Folder.objects.filter(author = request.user).filter(upper_folder__isnull=True)
+        bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+        return render(request, self.template_name, {'folders': folders, 'bulletins' : bulletins})  
 
 class ShowFile(ListView):
-    template_name = 'files.html'  
+    model = Document
+
+
+    
+
 
 class PastPostFile(ListView):
     template_name = 'pastpost_file.html'  
@@ -55,10 +76,8 @@ class PastPostFile(ListView):
         if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
         newdoc = Document.objects.filter(author = request.user).order_by("-time")
-        #for post in newdoc:
-            #post.docfile.name = os.path.basename(post.docfile.name)
-        #print str(newdoc.count())
-        return render(request, self.template_name, {'documents': newdoc, 'bulletins' : Bulletin.objects.all().order_by("-time")})
+        bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
+        return render(request, self.template_name, {'documents': newdoc, 'bulletins' : bulletins})
     def post(self, request, *args, **kwargs):
         if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
@@ -67,5 +86,20 @@ class PastPostFile(ListView):
         docToDel.docfile.delete()
         docToDel.delete()
         return redirect("/pastpost_file")
+
+class MyDocsView(TemplateView):
+    template_name = 'mydocs.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyDocsView, self).get_context_data(**kwargs)
+        context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+        return context
+
+
+class MyFileView(TemplateView):
+    template_name = 'myfiles.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyFileView, self).get_context_data(**kwargs)
+        context['bulletins'] = bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
+        return context
 
 

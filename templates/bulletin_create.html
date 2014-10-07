@@ -1,0 +1,32 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+
+{%block content%}
+<!--jean-->
+
+<script src="{% static "ckeditor/ckeditor.js"%}" type="text/javascript"><!--mce:2--></script>
+	
+
+<div class="panel panel-default">
+    <div class="panel-heading">發表公告</div>
+    <div class="panel-body">
+		<form action="" method = "post" padding-bottom="10px">{% csrf_token%}
+			<div class="control-group">
+				<div class="controls">
+					<textarea id="id_title" name="title" type="text"  class="form-control" placeholder="文章標題"rows="1" required></textarea><br/>
+
+					<textarea id="context" name="context" type="text" value="" class="ckeditor" placeholder="說點話吧"rows="3" required></textarea>
+				</div>
+				<div class="span4" align="right">
+					<input  align="right" type="submit" class="btn btn-primary" value="送出">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}

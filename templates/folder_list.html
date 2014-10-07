@@ -1,0 +1,12 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+	<label class="control-label" for="textarea">資料夾列表</label>
+{% for folder in folders %}
+<ul>
+    <li><a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a></li>
+</ul>
+{% endfor %}
+{% endblock%}

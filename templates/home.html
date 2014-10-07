@@ -45,12 +45,14 @@
 							<!--for post-->
 							<td width="40%"><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
 		                        <div style="width: 200px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
+		                          {% autoescape off %}
 		                          {{ post.context |linebreaks}}
+		                          {% endautoescape %}
 		                        </div>  
 	                      	</td>
 							{% elif post.doctypeTag != null %}
 							<!--for file-->
-							<td width="40%"><a href="{{ post.docfile.url }}" >{{ post.docfile.name|filename }}</a></td>
+							<td width="40%"><a href="{{ post.docfile.url }}" >{{ post.title }}</a></td>
 							{% else %}
 							<!--for bulletin-->
 							<td width="40%"><a href="/posts/bulletin/{{ post.id }}/detail" >{{ post.title|linebreaks }}</a></td>

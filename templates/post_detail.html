@@ -6,7 +6,9 @@
 <div class="panel panel-default" style="word-break:break-all">
     <div class="panel-heading"><b><font size="4">{{ post.title |linebreaks}}</font></b></div>
 	<div class="panel-body">
+		{% autoescape off %}
 		{{ post.context |linebreaks}}
+		{% endautoescape %}
 		<br/>
 		<hr>
 		<h5>{{user.username}}:</h5>

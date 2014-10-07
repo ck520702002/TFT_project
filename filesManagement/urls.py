@@ -2,8 +2,9 @@
 from django.conf.urls import patterns, url
 from views import *
 
-urlpatterns = patterns('filesManagement.views',
+urlpatterns = patterns('',
     #url(r'^list/$', 'list', name='list'),
-    url(r'^accounts/(?P<username>[\.\w-]+)/$',ShowFolders.as_view()),
-    url(r'^$', 'list', name='list'),
+    url(r'^$',doc_list,name='list'),
+    url(r'^myfiles/(?P<pk>\d+)/$',folder_detail.as_view()),
+    url(r'^myfiles/$', ShowFolders.as_view())
 )
