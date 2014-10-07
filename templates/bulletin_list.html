@@ -19,48 +19,22 @@
 												<th width="10%">時間</th>
 										</tr>
 									</thead>
+									{% for post in object_list %}
+									{% if post.tag1 == "announcement" %}
 										<tr>
-											    <td>TFT第一次會議地點</td>
-											    <td>Paula</td>
-											    <td>2014/10/07</td>
+											    <td><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></td>
+											    <td>{{post.author.user}}</td>
+											    <td>{{ post.time |date:"SHORT_DATE_FORMAT"}}</td>
 									    </tr>
-									</thead>
-										<tr>
-												<td>TFT第二次會議地點</td>
-												<td>Paula</td>
-												<td>2014/10/08</td>
-										</tr>
-									</thead>
-									    <tr>
-												<td>TFT第三次會議地點</td>
-												<td>Paula</td>
-												<td>2014/10/09</td>
-										</tr>
-									</thead>
-
-										</tbody>
+									{% endif %}
+									{% endfor %}									
 									</table>
 								</div>
-							</div> <!-- /tabbable -->
+							</div> 
 						</div>
 					</div>
-				</div> <!--??-->
-
-
-            <!--/span-->
-			
+				</div> 
         </div>
-
-{% for post in object_list %}
-{% if post.tag1 == "announcement" %}
-
-
-
-<ul>
-    <li><a href="/posts/list/{{ post.id }}/detail" >{{ post.title }}</a></li>
-</ul>
-{% endif %}
-{% endfor %}
 {% endblock%}
 
 

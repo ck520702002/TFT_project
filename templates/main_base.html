@@ -182,7 +182,7 @@
                                 </div>
                                 </div>
                             <td>{{ post.author.user }}</td>
-                            <td>{{ post.time }}</td>
+                            <td>{{ post.time|date:"SHORT_DATE_FORMAT" }}</td>
                           </tr>
                           {% endfor %}
                         </tbody>
