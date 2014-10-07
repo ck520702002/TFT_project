@@ -6,7 +6,7 @@
 	<label class="control-label" for="textarea">資料夾列表</label>
 {% for folder in folders %}
 <ul>
-    <li><a href="/posts/list/{{ folder.id }}/detail" >{{ folder.title }}</a></li>
+    <li><a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a></li>
 </ul>
 {% endfor %}
 {% endblock%}

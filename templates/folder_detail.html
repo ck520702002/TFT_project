@@ -1,0 +1,19 @@
+{% extends 'main_base.html' %}
+{% load i18n %}
+{% load url from future %}
+{% load filename %}
+
+{% block content %}
+	<label class="control-label" for="textarea">{{folder.title}}</label>
+	<a href="/files/myfiles/{{ folder.upper_folder.id }}">上一頁</a>
+{% for folder in subfolders %}
+<ul>
+    <li><a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a></li>
+</ul>
+{% endfor %}
+{% for file in subfiles %}
+<ul>
+    <li><a href="{{ file.docfile.url }}">{{ file.docfile.name|filename }}</a></li>
+</ul>
+{% endfor %}
+{% endblock%}

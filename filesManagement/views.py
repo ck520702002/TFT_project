@@ -46,18 +46,29 @@ def doc_list(request):
         context_instance=RequestContext(request)
     )
 
+class folder_detail(TemplateView):
+    template_name = 'folder_detail.html'
+    def get(self, request, *args, **kwargs):
+        folder = Folder.objects.filter(pk=kwargs['pk'])[0]
+        subfolders = Folder.objects.filter(upper_folder = kwargs['pk'])
+        subfiles = Document.objects.filter(folder = kwargs['pk'])
+        return render(request, self.template_name, {'folder':folder, 'subfolders': subfolders,'subfiles':subfiles, 'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")}) 
+
 class ShowFolders(TemplateView):
     template_name = 'folder_list.html'
     def get(self, request, *args, **kwargs):
         if not request.user.has_perm('accounts.view_profile'):
             return render(request, '401.html')
-        folders = Folder.objects.filter(author = request.user)
+        folders = Folder.objects.filter(author = request.user).filter(upper_folder__isnull=True)
         bulletins = Post.objects.filter(tag1 = 'announcement').order_by("-time")
-        import pdb;pdb.set_trace();
         return render(request, self.template_name, {'folders': folders, 'bulletins' : bulletins})  
 
 class ShowFile(ListView):
     model = Document
+
+
+    
+
 
 class PastPostFile(ListView):
     template_name = 'pastpost_file.html'  

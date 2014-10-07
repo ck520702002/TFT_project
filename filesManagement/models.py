@@ -21,3 +21,5 @@ class Document(models.Model):
 	doctypeTag = models.CharField(max_length=10,blank=True)
 	schoolnameTag = models.CharField(max_length=10,blank=True)
 	folder = models.ForeignKey("Folder",blank=True,null=True)
+	def __unicode__(self):
+		return self.title
