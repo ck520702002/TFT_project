@@ -16,9 +16,10 @@
 <div class="panel panel-default">
       <div class="panel-heading">{% blocktrans with profile.user.username as username %} {{ username }}{% endblocktrans %} 的基本資料<a href="{% url 'userena_profile_edit' user.username %}" align="right">{% trans " (編輯)" %}</a></div>
     </br>
-    <img data-src="holder.js/140x140" style="margin-left:20px" class="img-polaroid" alt="140x140" 
+    <img data-src="holder.js/140x140" style="margin-left:220px" class="img-polaroid" alt="140x140" 
          src="{{ user.get_profile.get_mugshot_url }}"/ style="width: 140px; height: 140px;">
     
+    </br></br>
     <div class="panel-body">
         <form class="form-horizontal">
         <fieldset>
