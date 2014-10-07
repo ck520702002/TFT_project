@@ -6,6 +6,8 @@
 {% block content %}
 	<label class="control-label" for="textarea">{{folder.title}}</label>
 	<a href="/files/myfiles/{{ folder.upper_folder.id }}">上一頁</a>
+	<a href="">編輯資料夾</a>
+	<a href="">管理檔案</a>
 {% for folder in subfolders %}
 <ul>
     <li><a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a></li>

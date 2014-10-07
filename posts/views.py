@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from accounts.models import MyProfile
 from Msg.models import Message
 from posts.models import Post
+from filesManagement.models import Document
 
 
 class PostView(CreateView,ListView):
@@ -63,9 +64,29 @@ class PostDetail(DetailView):
 		newmsg.author = MyProfile.objects.get(user=request.user)
 		newmsg.belong_post = Post.objects.get(pk = request.POST['postid'])
 		newmsg.save()
-		#print "qam debug"
-		#print "postid"+request.POST['postid']
 		return redirect("/posts/list/"+request.POST['postid']+"/detail")
+
+class FileDetail(DetailView):
+	model = Document
+	template_name = 'file_detail.html'
+	def get(self, request, *args, **kwargs):
+		if not request.user.has_perm('accounts.view_profile'):
+			return render(request, '401.html')
+		newdoc = Post.objects.filter(author = request.user).order_by("-time")
+		searchPost = Post.objects.get(pk=kwargs['pk'])
+		allmsg = Message.objects.filter(belong_post=searchPost).order_by("-time")
+		return render(request, self.template_name, {'post':searchPost, 'allmsg': allmsg, 'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})	
+
+	def post(self, request, *args, **kwargs):
+		if not request.user.has_perm('accounts.view_profile'):
+			return render(request, '401.html')
+		newmsg = Message()
+		newmsg.context = request.POST['context']
+		newmsg.author = MyProfile.objects.get(user=request.user)
+		newmsg.belong_post = Post.objects.get(pk = request.POST['postid'])
+		newmsg.save()
+		return redirect("/posts/list/"+request.POST['postid']+"/detail")
+
 
 class ShowFile(ListView):
 	model = Post
