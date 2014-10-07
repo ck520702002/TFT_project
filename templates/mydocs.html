@@ -18,21 +18,13 @@
           <thead>
             <tr>
               <th>標題</th>
-              <th width="15%">作者</th>
-              <th width="15%">時間</th>
+              <th>時間</th>
             </tr>
           </thead>
           <tbody>
-            {% for post in posts %}
-            {% if post.tag1 == "教學日誌" %}
             <tr>
               <td width="15%">
-                <button class="btn btn-warning btn-block btn-primary" typle="button">{{ post.tag1 }}</button> 
-              <td ><a href="/posts/list/{{ post.id }}/detail" >{{ post.title |linebreaks}}</a>
-            <div style="width: 400px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;">
-              {{ post.context |linebreaks}}
-            </div>  
-          </td>
+              <td ><a href="#" >{{ post.titl</a>
               <td width="15%"><a href="/accounts/view/{{post.author.pk}}">{{post.author.user}}</a></td>
               <td width="15%" > {{ post.time }}</td>
             </tr>
