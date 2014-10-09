@@ -4,100 +4,119 @@
 {% load filename %}
 
 {% block content %}
-	<label class="control-label" for="textarea">{{folder.title}}</label>
-	<a href="/files/myfiles/{{ folder.upper_folder.id }}">上一頁</a>
-	<a href="">編輯資料夾</a>
-	<a href="">管理檔案</a>
-{% for folder in subfolders %}
-<ul>
-    <li><a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a></li>
-</ul>
-{% endfor %}
-{% for file in subfiles %}
-<ul>
-    <li><a href="{{ file.docfile.url }}">{{ file.docfile.name|filename }}</a></li>
-</ul>
-{% endfor %}
-
+	<!--<label class="control-label" for="textarea">{{folder.title}}</label>-->
     <div class="panel panel-default">
-      <div class="panel-heading">{{ folder.title }} 資料夾</div>
+      <div class="panel-heading">{{ folder.title }}</div>
       <div class="panel-body">
+
+      	<div align="right">
+			<div class="btn-group" style="margin-top:10px; margin-bottom:10px"> 
+	          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+	          動作<span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu" align="left" aria-labelledby="dropdownMenu">
+	            <li><a tabindex="-1" href="#myModalRename" data-toggle="modal">重新命名</a></li>
+	            <li><a tabindex="-1" href="#">刪除</a></li>
+	          </ul>
+	        </div>
+
+	        <div class="btn-group" style="margin-top:10px; margin-bottom:10px"> 
+	          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+	          新增<span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu" align="left" aria-labelledby="dropdownMenu">
+	            <li><a tabindex="-1" href="#myModalAddFoldr" data-toggle="modal">資料夾</a></li>
+	            <li><a tabindex="-1" href="#myModalAddDoc" data-toggle="modal">檔案</a></li>
+	          </ul>
+	        </div>
+		</div>
+
 		<table class="table ">
-			<!--<label class="control-label" for="textarea">資料夾列表</label>-->
-			<div align="right">
-				<div class="btn-group"> 
-	              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-	              動作<span class="caret"></span></a>
-	              <ul class="dropdown-menu" role="menu" align="left" aria-labelledby="dropdownMenu">
-	                <li><a tabindex="-1" href="#">重新命名</a></li>
-	                <li><a tabindex="-1" href="#">刪除</a></li>
-	              </ul>
-	            </div>
-
-            	<!-- Button to trigger modal -->
-			  <button href="#myModalAdd" type="button" class="btn" data-toggle="modal" >新增</button>
-			  <!-- Modal -->
-			  <div id="myModalAdd" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			    <div class="modal-dialog">
-			    <div class="modal-header">
-			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			      <h3 id="myModalAddLabel">新增檔案夾</h3>
-			    </div>
-			    <div class="modal-body">
-			      <form class="form-horizontal">
-			        <div class="control-group">
-			          <label class="control-label" for="inputFileName">檔案夾名稱</label>
-			          <input type="text" id="inputFileName">
-			        </div>
-			      </form>
-			  </div>
-			    <div class="modal-footer">
-			      <button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
-			      <button class="btn btn-primary">儲存變更</button>
-			    </div>
-			  </div>
-			  </div>
-			</div>
-
-				<tbody>
-					{% for folder in folders %}
-		            <tr>
-		              <td align="left" width="33%">
-		              	<input type="checkbox"> 
-		              	<a href="/files/myfiles/{{ folder.id }}/"><img src="https://dl.dropboxusercontent.com/u/70509514/folder_grey.png"></img>&nbsp;{{ folder.title }}</a>
-		              </td>
-		            </tr>
-		            {% endfor %}
-		        </tbody>
-		</table>			
-
-
-
-<!--
-
-  <a href="#myModalDel" role="button" class="btn" data-toggle="modal">刪除檔案夾</a>
-
-  <div id="myModalDel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalDelLabel">刪除檔案夾</h3>
-    </div>
-    <div class="modal-body">
-      <input type="checkbox"> 檔案夾名稱A<br/>
-      <input type="checkbox"> 檔案夾名稱B<br/>
-      <input type="checkbox"> 檔案夾名稱C<br/>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
-      <button class="btn btn-primary">儲存變更</button>
-    </div>
-  </div>
-  </div>
--->
+			<tbody>
+				{% for folder in subfolders %}
+				    <tr>
+				    	<td><input type="checkbox">&nbsp;
+				    		<img src="https://dl.dropboxusercontent.com/u/70509514/folder_grey.png"></img>&nbsp; <a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a>
+				    	</td>
+				    </tr>
+				{% endfor %}
+				{% for file in subfiles %}
+				<tr>
+				    <td><input type="checkbox">&nbsp;<a href="{{ file.docfile.url }}">{{ file.docfile.name|filename }}</a></td>
+				</tr>
+				{% endfor %}
+	        </tbody>
+		</table>
+		<input style="margin-top:10px; margin-bottom:10px" type="button" class="btn btn-default" onclick="history.back()" value="回前頁">			
+		<!--<button class="btn" data-dismiss="modal" margin-bottom="10px" aria-hidden="true"><a href="/files/myfiles/{{ folder.upper_folder.id }}">上一頁</a></button>-->
 
       </div>
     </div>
   </div>
+
+<!-- ModalRename -->
+<div id="myModalRename" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalRename">重新命名</h3>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="inputFileName">名稱</label>
+      <input type="text" id="inputFileName">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
+  <button class="btn btn-primary">儲存變更</button>
+</div>
+</div>
+</div><!--endModalRename-->
+
+
+<!-- ModalFoldr -->
+<div id="myModalAddFoldr" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalAddFoldrLabel">新增檔案夾</h3>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="inputFileName">檔案夾名稱</label>
+      <input type="text" id="inputFileName">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
+  <button class="btn btn-primary">儲存變更</button>
+</div>
+</div>
+</div><!--endModalFoldr-->
+
+
+<!-- ModalDoc -->
+<div id="myModalAddDoc" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalAddDocLabel">新增檔案</h3>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div class="control-group">
+      <p>檔案上傳</p>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
+  <button class="btn btn-primary">儲存變更</button>
+</div>
+</div>
+</div><!--endModalDoc-->
 
 {% endblock%}
