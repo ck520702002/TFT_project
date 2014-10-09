@@ -92,7 +92,7 @@ def signup(request, signup_form=SignupForm,
         form = signup_form(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            new_profile = MyProfile()
+            new_profile = MyProfile(user=user)
             # Send the signup complete signal
             userena_signals.signup_complete.send(sender=None,
                                                  user=user)

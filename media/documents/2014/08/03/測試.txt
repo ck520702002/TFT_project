@@ -1,6 +1,0 @@
-1. git
-git clone tftaiwan@173.254.28.89:/home2/tftaiwan/teachplatform/development
-Paulathebeauty<3
-2. pytohn
-3. django
-4. 
