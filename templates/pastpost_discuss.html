@@ -55,7 +55,7 @@
                   </div>  
                 </td>
                 <td><a href='/accounts/view/{{post.author.pk}}'>{{post.author.user}}</a></td>
-                <td> {{ post.time }}</td>
+                <td> {{ post.time |date:"SHORT_DATE_FORMAT"}}</td>
                 <td><a href="/posts/list/{{ post.id }}/edit" >編輯</a></td>
                 <td><a onClick="cancel({{post.pk}})">刪除</a></td>
               </tr>

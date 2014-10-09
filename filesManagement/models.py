@@ -6,14 +6,14 @@ import os
 #each folder has a title and an author
 class Folder(models.Model):
 	title = models.CharField(max_length=20,blank=False)
-	author = models.ForeignKey(User)
+	author = models.ForeignKey("accounts.MyProfile")
 	upper_folder = models.ForeignKey("Folder",null=True,blank=True)
 	def __unicode__(self):
 		return self.title
 
 #each docuemnt has a set of 
 class Document(models.Model):
-	title = models.CharField(max_length=20,blank=False)
+	title = models.CharField(max_length=20,blank=True)
 	description = models.CharField(max_length=200,blank=True)
 	docfile = models.FileField(upload_to='documents/%Y/%m/%d')
 	time = models.DateTimeField(auto_now = True)

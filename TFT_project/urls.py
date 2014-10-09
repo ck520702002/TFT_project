@@ -8,7 +8,7 @@ from django.conf import settings
 from TFT_project.views import TeacherInfoOneOnOneView
 from TFT_project.views import TeacherInfoNwMentorView
 from TFT_project.views import HomePageView
-from accounts.views import profile_detail,profile_edit
+from accounts.views import profile_detail,profile_edit,signup
 from accounts.views import ProfileView
 from django.contrib.auth.decorators import login_required
 #from filesManagement.views import ShowFile
@@ -22,8 +22,10 @@ urlpatterns = patterns('',
     url(r'^/', HomePageView.as_view()),
     url(r'^accounts/(?P<username>[\.\w-]+)/edit/$', profile_edit, name='userena_profile_edit'),
     url(r'^accounts/(?P<username>[\.\w-]+)/password/$', userena_views.password_change, {'success_url':'/'}),
+    url(r'^accounts/signin', userena_views.signin),
+    url(r'^accounts/signup', signup,{'success_url':'/'}),
+    url(r'^accounts/signout', userena_views.signout),
     url(r'^accounts/(?P<username>[\.\w-]+)/$', profile_detail, name='userena_profile_detail'),
-    url(r'^accounts/signup', userena_views.signup,{'success_url':'/'}),
     url(r'^accounts/view/(?P<pk>\d+)', ProfileView.as_view()),
 	url(r'^accounts/', include('userena.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),

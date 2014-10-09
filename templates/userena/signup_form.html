@@ -56,7 +56,7 @@ function restrictCharacters(myfield, e, restrictionType) {
   <fieldset>
     {{ form.non_field_errors }}
     <p>
-        <input style="margin-left:5px;width:230px" class="required" id="id_username" maxlength="75" name="username" type="text" placeholder="ID,請輸入英文或數字"  onmousedown="alert('請輸入英文或數字')" ><!-- onkeypress="return restrictCharacters(this, event, alphaOnly);" -->
+        <input style="margin-left:5px;width:230px" class="required" id="id_username" maxlength="75" name="username" type="text" placeholder="ID,請輸入英文或數字" ><!-- onkeypress="return restrictCharacters(this, event, alphaOnly);" -->
         {{ field.errors }}
     </p>
     <p>

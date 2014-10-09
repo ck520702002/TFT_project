@@ -1,8 +1,21 @@
 {% extends 'main_base.html' %}
 {% load i18n %}
 {% load url from future %}
-
+{% load filename %}
 {% block content %}
+<script>
+  function cancel(pk,type) {
+    answer = confirm("你確定要刪除嗎？");
+    if (type == "folder" && answer){
+      document.forms["delete_folder"].elements.pri_key.value = pk;
+      document.forms["delete_folder"].submit();
+    }
+    else if (type == "doc" && answer){
+      document.forms["delete_doc"].elements.pri_key.value = pk;
+      document.forms["delete_doc"].submit();
+    }
+  }
+</script>
     <div class="panel panel-default">
       <div class="panel-heading">{{ user.username }} 的教學歷程檔案</div>
       <div class="panel-body">		       
@@ -26,6 +39,7 @@
 		        </div>
 			</div>
 			<tbody>
+        <form name="delete_folder" method="post" >{% csrf_token %}
 				{% for folder in folders %}
 	            <tr>
 	              <td align="left">
@@ -34,8 +48,23 @@
 			      <td width="12%"><a href="#myModalRename" data-toggle="modal">重新命名</a></td>
 			      <td width="8%"><a href="#">刪除</a></td>
 	            </tr>
-	            {% endfor %}
-	        </tbody>
+        {% endfor %}
+        <input type="hidden" name="pri_key" value="" />
+        <input type="hidden" name="del_folder" value="true" />
+        </form>
+        
+        <form name="delete_doc" method="post" >{% csrf_token %}
+        {% for file in subfiles %}
+        <tr>
+            <td><a href="{{ file.docfile.url }}">{{ file.docfile.name|filename }}</a></td>
+            <td width="12%"><a href="#myModalRename" data-toggle="modal">重新命名</a></td>
+            <td width="8%"><a onClick="cancel({{file.pk}} , 'doc')">刪除</a></td>
+        </tr>
+        {% endfor %}
+        <input type="hidden" name="pri_key" value="" />
+        <input type="hidden" name="del_doc" value="true" />
+        </form>
+	   </tbody>
 		</table>		
       </div>
     </div>
@@ -63,8 +92,7 @@
 </div>
 </div><!--endModalRename-->
 
-
-<!-- ModalFoldr-->
+<!-- ModalFoldr -->
 <div id="myModalAddFoldr" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-header">
@@ -72,16 +100,12 @@
   <h3 id="myModalAddFoldrLabel">新增檔案夾</h3>
 </div>
 <div class="modal-body">
-  <form class="form-horizontal">
-    <div class="control-group">
+  <form method="post" class="form-horizontal">
+      {% csrf_token %}
       <label class="control-label" for="inputFileName">檔案夾名稱</label>
-      <input type="text" id="inputFileName">
-    </div>
+      <input type="text" name="new_folder_name">
+      <input name="add_folder "type="submit" value="建立" class="btn btn-primary" padding-top="5px" />
   </form>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
-  <button class="btn btn-primary">儲存變更</button>
 </div>
 </div>
 </div><!--endModalFoldr-->
@@ -95,19 +119,23 @@
   <h3 id="myModalAddDocLabel">新增檔案</h3>
 </div>
 <div class="modal-body">
-  <form class="form-horizontal">
     <div class="control-group">
       <p>檔案上傳</p>
+      <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.docfile.help_text }}
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+            </br>
+            <textarea id="id_title" name="title" type="text"  class="form-control" placeholder="檔案標題"rows="1" ></textarea><br/>
+            <textarea id="id_description" name="description" type="text"  class="form-control" placeholder="檔案簡介"rows="6" ></textarea><br/>
+            <input name="add_doc" type="submit" value="上傳" class="btn btn-primary" padding-top="5px" />
+      </form>
     </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
-  <button class="btn btn-primary">儲存變更</button>
 </div>
 </div>
 </div><!--endModalDoc-->
-
 {% endblock %}   
 
     <!-- JavaScript -->

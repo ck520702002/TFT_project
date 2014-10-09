@@ -4,21 +4,26 @@
 {% load filename %}
 
 {% block content %}
+<script>
+  function cancel(pk,type) {
+    answer = confirm("你確定要刪除嗎？");
+    if (type == "folder" && answer){
+      document.forms["delete_folder"].elements.pri_key.value = pk;
+      document.forms["delete_folder"].submit();
+    }
+    else if (type == "doc" && answer){
+      document.forms["delete_doc"].elements.pri_key.value = pk;
+      document.forms["delete_doc"].submit();
+    }
+  }
+</script>
+
 	<!--<label class="control-label" for="textarea">{{folder.title}}</label>-->
     <div class="panel panel-default">
       <div class="panel-heading">{{ folder.title }}</div>
       <div class="panel-body">
 
       	<div align="right">
-      		<!--
-			<div class="btn-group" style="margin-top:10px; margin-bottom:10px"> 
-	          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-	          動作<span class="caret"></span></a>
-	          <ul class="dropdown-menu" role="menu" align="left" aria-labelledby="dropdownMenu">
-	            <li><a tabindex="-1" href="#myModalRename" data-toggle="modal">重新命名</a></li>
-	            <li><a tabindex="-1" href="#">刪除</a></li>
-	          </ul>
-	        </div>-->
 
 	        <div class="btn-group" style="margin-top:10px; margin-bottom:10px"> 
 	          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
@@ -32,21 +37,30 @@
 
 		<table class="table ">
 			<tbody>
+				<form name="delete_folder" method="post" >{% csrf_token %}
 				{% for folder in subfolders %}
 				    <tr>
 				    	<td><img src="https://dl.dropboxusercontent.com/u/70509514/folder_grey.png"></img>&nbsp; <a href="/files/myfiles/{{ folder.id }}/" >{{ folder.title }}</a>
 				    	</td>
 				    	<td width="12%"><a href="#myModalRename" data-toggle="modal">重新命名</a></td>
-				    	<td width="8%"><a href="#">刪除</a></td>
+				    	<td width="8%"><a onClick="cancel({{folder.pk}} , 'folder')">刪除</a></td>
 				    </tr>
 				{% endfor %}
+				<input type="hidden" name="pri_key" value="" />
+				<input type="hidden" name="del_folder" value="true" />
+				</form>
+
+				<form name="delete_doc" method="post" >{% csrf_token %}
 				{% for file in subfiles %}
 				<tr>
 				    <td><a href="{{ file.docfile.url }}">{{ file.docfile.name|filename }}</a></td>
 				    <td width="12%"><a href="#myModalRename" data-toggle="modal">重新命名</a></td>
-				    <td width="8%"><a href="#">刪除</a></td>
+				    <td width="8%"><a onClick="cancel({{file.pk}} , 'doc')">刪除</a></td>
 				</tr>
 				{% endfor %}
+				<input type="hidden" name="pri_key" value="" />
+				<input type="hidden" name="del_doc" value="true" />
+				</form>
 	        </tbody>
 		</table>
 		<input style="margin-top:10px; margin-bottom:10px" type="button" class="btn btn-default" onclick="history.back()" value="回前頁">			
@@ -87,16 +101,12 @@
   <h3 id="myModalAddFoldrLabel">新增檔案夾</h3>
 </div>
 <div class="modal-body">
-  <form class="form-horizontal">
-    <div class="control-group">
+  <form method="post" class="form-horizontal">
+  		{% csrf_token %}
       <label class="control-label" for="inputFileName">檔案夾名稱</label>
-      <input type="text" id="inputFileName">
-    </div>
+      <input type="text" name="new_folder_name">
+      <input name="add_folder" type="submit" value="建立" class="btn btn-primary" padding-top="5px" />
   </form>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
-  <button class="btn btn-primary">儲存變更</button>
 </div>
 </div>
 </div><!--endModalFoldr-->
@@ -110,15 +120,20 @@
   <h3 id="myModalAddDocLabel">新增檔案</h3>
 </div>
 <div class="modal-body">
-  <form class="form-horizontal">
     <div class="control-group">
       <p>檔案上傳</p>
+      <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.docfile.help_text }}
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+            </br>
+            <textarea id="id_title" name="title" type="text"  class="form-control" placeholder="檔案標題"rows="1" ></textarea><br/>
+            <textarea id="id_description" name="description" type="text"  class="form-control" placeholder="檔案簡介"rows="6" ></textarea><br/>
+            <input name="add_doc" type="submit" value="上傳" class="btn btn-primary" padding-top="5px" />
+      </form>
     </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">關閉</button>
-  <button class="btn btn-primary">儲存變更</button>
 </div>
 </div>
 </div><!--endModalDoc-->

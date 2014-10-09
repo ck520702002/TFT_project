@@ -3,12 +3,16 @@ from accounts import forms
 from userena import views as userena_views
 #from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
+from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from accounts.models import MyProfile
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,redirect
 from userena.utils import signin_redirect, get_profile_model, get_user_model
+from userena.views import ExtraContextTemplateView
 from userena import settings as userena_settings
 from posts.models import Post
-from userena.forms import EditProfileForm
+from userena.forms import EditProfileForm,SignupForm
+from userena import signals as userena_signals
+from .models import MyProfile
 # Create your views here.
 def profile_edit(request, username, edit_profile_form=EditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
@@ -70,4 +74,46 @@ def profile_detail(request, username,extra_context=None, **kwargs):
         raise PermissionDenied
     return render(request, template_name, {'profile': profile,'bulletins' : Post.objects.filter(tag1='announcement').order_by("-time")})
 
+def signup(request, signup_form=SignupForm,
+           template_name='userena/signup_form.html', success_url=None,
+           extra_context=None):
+    # If signup is disabled, return 403
+    if userena_settings.USERENA_DISABLE_SIGNUP:
+        raise PermissionDenied
 
+    # If no usernames are wanted and the default form is used, fallback to the
+    # default form that doesn't display to enter the username.
+    if userena_settings.USERENA_WITHOUT_USERNAMES and (signup_form == SignupForm):
+        signup_form = SignupFormOnlyEmail
+
+    form = signup_form()
+
+    if request.method == 'POST':
+        form = signup_form(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save()
+            new_profile = MyProfile()
+            # Send the signup complete signal
+            userena_signals.signup_complete.send(sender=None,
+                                                 user=user)
+
+
+            if success_url: redirect_to = success_url
+            else: redirect_to = reverse('userena_signup_complete',
+                                        kwargs={'username': user.username})
+
+            # A new signed user should logout the old one.
+            if request.user.is_authenticated():
+                logout(request)
+
+            if (userena_settings.USERENA_SIGNIN_AFTER_SIGNUP and
+                not userena_settings.USERENA_ACTIVATION_REQUIRED):
+                user = authenticate(identification=user.email, check_password=False)
+                login(request, user)
+
+            return redirect(redirect_to)
+
+    if not extra_context: extra_context = dict()
+    extra_context['form'] = form
+    return ExtraContextTemplateView.as_view(template_name=template_name,
+                                            extra_context=extra_context)(request)

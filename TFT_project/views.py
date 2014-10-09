@@ -36,7 +36,7 @@ class HomePageView(CreateView, ListView):
 	def get(self, request, *args, **kwargs):
 		if not request.user.has_perm('accounts.view_profile'):
 			return render(request, '401.html')
-		documents = Document.objects.all().order_by("-time")
+		documents = Document.objects.exclude(doctypeTag="private").order_by("-time")
 		posts = Post.objects.all().order_by("-time")
 		bulletins = Post.objects.filter(tag1='announcement').order_by("-time")
 		datalist = sorted(chain(list(documents), list(posts)),key=lambda instance: instance.time, reverse = True)

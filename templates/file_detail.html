@@ -12,6 +12,11 @@
 		{% endautoescape %}
 		<h4>檔案連結</h4>
 		<a href="{{ document.docfile.url }}">{{ document.docfile.name|filename }}</a>
+		{% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.docfile.help_text }}
+        {{ form.docfile.errors }}
+        {{ form.docfile }}
 		<br/>
 		<hr>
 		<h5>{{user.username}}:</h5>
