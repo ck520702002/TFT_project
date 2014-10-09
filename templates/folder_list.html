@@ -7,8 +7,8 @@
       <div class="panel-heading">{{ user.username }} 的教學歷程檔案</div>
       <div class="panel-body">		       
 		<table class="table ">
-			<!--<label class="control-label" for="textarea">資料夾列表</label>-->
 			<div align="right">
+				<!--
 				<div class="btn-group" style="margin-top:10px; margin-bottom:10px" > 
 	              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
 	              動作<span class="caret"></span></a>
@@ -16,7 +16,7 @@
 	                <li><a tabindex="-1" href="#myModalRename" data-toggle="modal">重新命名</a></li>
 	                <li><a tabindex="-1" href="#">刪除</a></li>
 	              </ul>
-	            </div>
+	            </div>-->
 	            <div class="btn-group" style="margin-top:10px; margin-bottom:10px"> 
 	          		<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">新增<span class="caret"></span></a>
 		          	<ul class="dropdown-menu" role="menu" align="left" aria-labelledby="dropdownMenu">
@@ -28,10 +28,11 @@
 			<tbody>
 				{% for folder in folders %}
 	            <tr>
-	              <td align="left" width="33%">
-	              	<input type="checkbox"> 
+	              <td align="left">
 	              	<a href="/files/myfiles/{{ folder.id }}/"><img src="https://dl.dropboxusercontent.com/u/70509514/folder_grey.png"></img>&nbsp;{{ folder.title }}</a>
 	              </td>
+			      <td width="12%"><a href="#myModalRename" data-toggle="modal">重新命名</a></td>
+			      <td width="8%"><a href="#">刪除</a></td>
 	            </tr>
 	            {% endfor %}
 	        </tbody>
@@ -40,7 +41,7 @@
     </div>
   </div>
 
-<!-- ModalRename -->
+<!-- ModalRename 
 <div id="myModalRename" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-header">
@@ -63,7 +64,7 @@
 </div><!--endModalRename-->
 
 
-<!-- ModalFoldr -->
+<!-- ModalFoldr-->
 <div id="myModalAddFoldr" class="modal fade" align="left" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-header">
